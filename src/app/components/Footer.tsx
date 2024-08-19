@@ -1,12 +1,5 @@
-import React from "react";
-import { FaGithub, FaLinkedin, FaInstagram, FaEnvelope } from "react-icons/fa";
-import {
-  GITHUB,
-  INSTAGRAM,
-  NAMASTEDEV_LOGO,
-  REACT_LOGO,
-  TMDB_LOGO,
-} from "../utils/constants";
+import { FaEnvelope, FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa";
+import { GITHUB, INSTAGRAM } from "../utils/constants";
 const Footer = () => {
   return (
     <>
@@ -96,7 +89,10 @@ const Footer = () => {
         </div>
       </div>
       <div className="w-full border border-t-[0.5px] border-r-0 border-l-0 border-gray-300 bg-[#323232] py-3 px-[80px]">
-        <p className="text-xs text-gray-200 font-extralight ">COPYRIGHT © 2021 CG Digital. ALL RIGHTS RESERVEDPrivacy policyTerms and conditions</p>
+        <p className="text-xs text-gray-200 font-extralight ">
+          COPYRIGHT © 2021 CG Digital. ALL RIGHTS RESERVEDPrivacy policyTerms
+          and conditions
+        </p>
       </div>
     </>
   );

@@ -8,7 +8,7 @@ export default function Navbar() {
     <>
       <div className="w-full py-3 px-[60px] bg-white">
         <div className="w-full flex justify-between items-center">
-          <h1 className="w-[15%]">CG |Digital</h1>
+          <h1 className="w-[15%]">My Electronics</h1>
           <div className="w-full flex">
             <input
               placeholder="Search Products..."
@@ -34,30 +34,30 @@ export default function Navbar() {
           </div>
         </div>
       </div>
-      <div className="w-full bg-[#0171b6] py-3 px-[70px] flex items-center justify-center gap-4">
+      <div className=" bg-[#0171b6] px-[30px]  flex items-center justify-center gap-4">
         <Link href="/">
-          <p className="text-white text-[12px]">TV & AUDIO</p>
+          <p className="text-white text-[12px] py-3 px-2 hover:bg-white hover:text-gray-500">TV & AUDIO</p>
         </Link>
         <Link href="/">
-          <p className="text-white text-[12px]">HOME & APPLIANCES</p>
+          <p className="text-white text-[12px] py-3 px-2 hover:bg-white hover:text-gray-500">HOME & APPLIANCES</p>
         </Link>
         <Link href="/">
-          <p className="text-white text-[12px]">MOBILE & APPLIANCES</p>
+          <p className="text-white text-[12px] py-3 px-2 hover:bg-white hover:text-gray-500">MOBILE & APPLIANCES</p>
         </Link>
         <Link href="/">
-          <p className="text-white text-[12px]">SMART HOME APPLIANCE</p>
+          <p className="text-white text-[12px] py-3 px-2 hover:bg-white hover:text-gray-500">SMART HOME APPLIANCE</p>
         </Link>
         <Link href="/">
-          <p className="text-white text-[12px]">PURIFICATION & HYGIENE</p>
+          <p className="text-white text-[12px] py-3 px-2 hover:bg-white hover:text-gray-500">PURIFICATION & HYGIENE</p>
         </Link>
         <Link href="/">
-          <p className="text-white text-[12px]">COMMERCIAL PRODUCTS</p>
+          <p className="text-white text-[12px] py-3 px-2 hover:bg-white hover:text-gray-500">COMMERCIAL PRODUCTS</p>
         </Link>
         <Link href="/">
-          <p className="text-white text-[12px]">ELECTRICAL VEHICLE</p>
+          <p className="text-white text-[12px] py-3 px-2 hover:bg-white hover:text-gray-500">ELECTRICAL VEHICLE</p>
         </Link>
         <Link href="/">
-          <p className="text-white text-[12px]">BRANDS</p>
+          <p className="text-white text-[12px] py-3 px-2 hover:bg-white hover:text-gray-500">BRANDS</p>
         </Link>
       </div>
     </>
