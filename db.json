@@ -1,3 +1,53 @@
 {
-    "TV":[]
-}
+    "Television": [
+      {
+        "name": "Samsung 55-Inch OLED TV",
+        "size": "55 Inches",
+        "price": "Rs 2,50,000",
+        "discount": "10%",
+        "category": "OLED TV",
+        "image":"https://www.cgdigital.com.np/api/images/products/PqAtRu_1674456966-OLED55C2.png"
+      },
+      {
+        "name": "LG 65-Inch QNED TV",
+        "size": "65 Inches",
+        "price": "Rs 3,20,000",
+        "discount": "15%",
+        "category": "QNED TV",
+        "image":"https://www.cgdigital.com.np/api/images/products/BOvSb1_1697369409-55UR7550PSC.jpg"
+      },
+      {
+        "name": "Sony 50-Inch QLED TV",
+        "size": "50 Inches",
+        "price": "Rs 2,00,000",
+        "discount": "5%",
+        "category": "QLED TV",
+        "image":"https://www.cgdigital.com.np/api/images/products/lH1KOX_1710220991-65GTVU1.jpg"
+      },
+      {
+        "name": "Panasonic 55-Inch 4K UHD LED TV",
+        "size": "55 Inches",
+        "price": "Rs 1,80,000",
+        "discount": "12%",
+        "category": "4K UHD LED TV",
+        "image":"https://www.cgdigital.com.np/api/images/products/FfgqQ2_1693906913-CG65G1.webp"
+      },
+      {
+        "name": "Samsung 43-Inch Smart LED TV",
+        "size": "43 Inches",
+        "price": "Rs 90,000",
+        "discount": "8%",
+        "category": "Smart LED TV",
+        "image":"https://www.cgdigital.com.np/api/images/products/HiFFr0_1688972317-55P635.jpg"
+      },
+      {
+        "name": "LG 32-Inch Normal TV",
+        "size": "32 Inches",
+        "price": "Rs 35,000",
+        "discount": "5%",
+        "category": "Normal TV",
+        "image":"https://www.cgdigital.com.np/api/images/products/FfgqQ2_1693906913-CG65G1.webp"
+      }
+    ]
+  }
+  
