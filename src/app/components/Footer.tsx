@@ -83,7 +83,7 @@ const Footer = () => {
 
             <p className="mt-5 text-gray-300 font-extralight py-2 w-[250px] px-3 border boder-white rounded-lg flex text-[13px]">
               <FaEnvelope className="mr-2 text-xs" size={16} />
-              anikettamrakar0@gmail.com
+              myelectronics@gmail.com
             </p>
           </div>
         </div>
