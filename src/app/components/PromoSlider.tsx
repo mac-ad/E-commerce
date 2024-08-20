@@ -29,7 +29,7 @@ export default function PromoSlider() {
   }, []);
 
   return (
-    <div className="w-full flex justify-center bg-gray-100 pb-8">
+    <div className="w-full flex justify-center bg-gray-100 pb-8 pt-[110px]">
       <div
         id="controls-carousel"
         className="relative w-[90%]"
