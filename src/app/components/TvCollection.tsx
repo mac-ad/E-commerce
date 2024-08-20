@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { DiscountedTvDetailCard, TVDetailCard } from "./TVDetailCard";
 
-export type Products = {
+export interface Products {
   name: string;
   size: string;
   price: string;
@@ -10,7 +10,8 @@ export type Products = {
   discount: string;
   category: string;
   image: string;
-};
+  type: 'Television' | 'AC' | 'Refrigerator';
+}
 
 export default function TvCollection() {
   const [tvCollectionData, setTvCollectionData] = useState<Products[]>([]);
@@ -40,10 +41,10 @@ export default function TvCollection() {
             SMART LED TV COLLECTION
           </span>
           IN BEST PRICE - choose your TV's
-        </h1>
+        </h1> 
         <hr className="mt-3 text-gray-400" />
         <div className="grid lg:grid-cols-6 sm:grid-cols-1 md:grid-cols-3 ">
-          {tvCollectionData.map((tvDetail) =>
+          {tvCollectionData.filter((product)=>product.type =="Television").map((tvDetail) =>
             tvDetail.discount == "0%"? (
               <TVDetailCard key={tvDetail.name} tvDetail={tvDetail} />
             ) : (

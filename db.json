@@ -7,7 +7,8 @@
       "emiPrice": "12,500",
       "discount": "10%",
       "category": "OLED TV",
-      "image": "https://www.cgdigital.com.np/api/images/products/PqAtRu_1674456966-OLED55C2.png"
+      "image": "https://www.cgdigital.com.np/api/images/products/PqAtRu_1674456966-OLED55C2.png",
+      "type": "Television"
     },
     {
       "name": "LG 65-Inch QNED TV",
@@ -16,7 +17,8 @@
       "emiPrice": "16,000",
       "discount": "15%",
       "category": "QNED TV",
-      "image": "https://www.cgdigital.com.np/api/images/products/BOvSb1_1697369409-55UR7550PSC.jpg"
+      "image": "https://www.cgdigital.com.np/api/images/products/BOvSb1_1697369409-55UR7550PSC.jpg",
+      "type": "Television"
     },
     {
       "name": "Sony 50-Inch QLED TV",
@@ -25,7 +27,8 @@
       "emiPrice": "10,000",
       "discount": "5%",
       "category": "QLED TV",
-      "image": "https://www.cgdigital.com.np/api/images/products/lH1KOX_1710220991-65GTVU1.jpg"
+      "image": "https://www.cgdigital.com.np/api/images/products/lH1KOX_1710220991-65GTVU1.jpg",
+      "type": "Television"
     },
     {
       "name": "Panasonic 55-Inch 4K UHD LED TV",
@@ -34,7 +37,8 @@
       "emiPrice": "9,000",
       "discount": "12%",
       "category": "4K UHD LED TV",
-      "image": "https://www.cgdigital.com.np/api/images/products/FfgqQ2_1693906913-CG65G1.webp"
+      "image": "https://www.cgdigital.com.np/api/images/products/FfgqQ2_1693906913-CG65G1.webp",
+      "type": "Television"
     },
     {
       "name": "Samsung 43-Inch Smart LED TV",
@@ -43,7 +47,8 @@
       "emiPrice": "4,500",
       "discount": "8%",
       "category": "Smart LED TV",
-      "image": "https://www.cgdigital.com.np/api/images/products/HiFFr0_1688972317-55P635.jpg"
+      "image": "https://www.cgdigital.com.np/api/images/products/HiFFr0_1688972317-55P635.jpg",
+      "type": "Television"
     },
     {
       "name": "LG 32-Inch Normal TV",
@@ -52,7 +57,38 @@
       "emiPrice": "1,750",
       "discount": "0%",
       "category": "Normal TV",
-      "image": "https://www.cgdigital.com.np/api/images/products/FfgqQ2_1693906913-CG65G1.webp"
+      "image": "https://www.cgdigital.com.np/api/images/products/FfgqQ2_1693906913-CG65G1.webp",
+      "type": "Television"
+    },
+    {
+      "name": "Whirlpool 265L Double Door Refrigerator",
+      "size": "265 Liters",
+      "price": "35,000",
+      "emiPrice": "2,500",
+      "discount": "12%",
+      "category": "Double Door Refrigerator",
+      "image": "https://www.example.com/api/images/products/whirlpool_double_door.png",
+      "type": "Refrigerator"
+    },
+    {
+      "name": "LG 190L Single Door Refrigerator",
+      "size": "190 Liters",
+      "price": "20,000",
+      "emiPrice": "1,500",
+      "discount": "8%",
+      "category": "Single Door Refrigerator",
+      "image": "https://www.example.com/api/images/products/lg_single_door.png",
+      "type": "Refrigerator"
+    },
+    {
+      "name": "Samsung 300L Side-by-Side Refrigerator",
+      "size": "300 Liters",
+      "price": "45,000",
+      "emiPrice": "3,000",
+      "discount": "15%",
+      "category": "Side-by-Side Refrigerator",
+      "image": "https://www.example.com/api/images/products/samsung_side_by_side.png",
+      "type": "Refrigerator"
     }
   ]
 }
