@@ -1,6 +1,5 @@
 "use client";
 import { useEffect } from "react";
-
 export default function PromoSlider() {
   useEffect(() => {
     const items = document.querySelectorAll("[data-carousel-item]");
@@ -30,7 +29,7 @@ export default function PromoSlider() {
   }, []);
 
   return (
-    <div className="w-full flex justify-center bg-white">
+    <div className="w-full flex justify-center bg-gray-100 pb-8">
       <div
         id="controls-carousel"
         className="relative w-[90%]"
@@ -39,8 +38,8 @@ export default function PromoSlider() {
         <div className="relative  overflow-hidden ">
           <div className="duration-700 ease-in-out" data-carousel-item>
             <img
-              src="https://www.cgdigital.com.np/api/images/layouts/banners/WSADXv_1723806100-cmf brand banner.jpg"
-              style={{ width: "100%", objectFit: "cover" }}
+              src='/images/my_electronics_logo.jpg'
+              style={{ width: "100%", objectFit: "cover", height:'340px' }}
               alt="Slide 1"
             />
           </div>
