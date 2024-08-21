@@ -67,7 +67,7 @@
       "emiPrice": "2,500",
       "discount": "12%",
       "category": "Double Door Refrigerator",
-      "image": "https://www.example.com/api/images/products/whirlpool_double_door.png",
+      "image": "https://www.cgdigital.com.np/api/images/products/ULxnf9_1672934191-RDNE270DSE.png",
       "type": "Refrigerator"
     },
     {
@@ -77,7 +77,7 @@
       "emiPrice": "1,500",
       "discount": "8%",
       "category": "Single Door Refrigerator",
-      "image": "https://www.example.com/api/images/products/lg_single_door.png",
+      "image": "https://www.cgdigital.com.np/api/images/products/veLU5g_1597140876-1.webp",
       "type": "Refrigerator"
     },
     {
@@ -87,8 +87,38 @@
       "emiPrice": "3,000",
       "discount": "15%",
       "category": "Side-by-Side Refrigerator",
-      "image": "https://www.example.com/api/images/products/samsung_side_by_side.png",
+      "image": "https://www.cgdigital.com.np/api/images/products/4bVWrQ_1718946033-GSQ6472NS.jpg",
       "type": "Refrigerator"
+    },
+    {
+      "name": "Daikin 1.5 Ton Inverter AC",
+      "size": "1.5 Ton",
+      "price": "60,000",
+      "emiPrice": "3,000",
+      "discount": "10%",
+      "category": "Inverter AC",
+      "image": "https://www.cgdigital.com.np/api/images/products/F8V6Do_1708076715-BRHPA 120 BRHPA 121 - I.jpg",
+      "type": "Air Conditioner"
+    },
+    {
+      "name": "Samsung 2 Ton Split AC",
+      "size": "2 Ton",
+      "price": "75,000",
+      "emiPrice": "3,750",
+      "discount": "8%",
+      "category": "Split AC",
+      "image": "https://www.cgdigital.com.np/api/images/products/rLIZR0_1645614696-CG12HP0102CE.webp",
+      "type": "Air Conditioner"
+    },
+    {
+      "name": "LG 1 Ton Window AC",
+      "size": "1 Ton",
+      "price": "40,000",
+      "emiPrice": "2,000",
+      "discount": "5%",
+      "category": "Window AC",
+      "image": "https://www.cgdigital.com.np/api/images/products/o8N63i_1701248862-TCC-48CHRA-U3(04).jpg",
+      "type": "Air Conditioner"
     }
   ]
 }
