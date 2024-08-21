@@ -9,9 +9,13 @@ export default function Navbar() {
       <div className="fixed fixed-top w-full z-50">
         <div className="w-full py-3 px-4 sm:px-6 lg:px-8 bg-white">
           <div className="w-full flex flex-wrap lg:flex-nowrap justify-between items-center">
-            <h1 className="w-full sm:w-auto lg:w-[30%] text-base sm:text-lg md:text-xl font-semibold mb-2 sm:mb-0">
-              My Electronics
-            </h1>
+            <Link
+              href="/"
+              className="w-full sm:w-auto lg:w-[30%] text-base sm:text-lg md:text-xl font-semibold mb-2 sm:mb-0"
+            >
+              <h1>My Electronics</h1>
+            </Link>
+
             <div className="w-full flex flex-wrap lg:flex-nowrap items-center mb-2 sm:mb-0">
               <input
                 placeholder="Search Products..."
