@@ -39,7 +39,7 @@ export default function SummerCollection() {
   }
 
   return (
-    <div className="w-full pt-8 bg-gray-100">
+    <div className="w-full bg-gray-100">
       <div className="w-full bg-gray-100 flex justify-center">
         <div className="w-[90%] pt-4 bg-white">
           <h1 className="text-center text-xs font-light text-gray-600">

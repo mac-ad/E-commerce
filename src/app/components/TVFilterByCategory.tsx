@@ -1,11 +1,10 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import { Products } from "./TvCollection";
-import { useRouter } from "next/navigation"; 
 
 export default function TVFilterByCategory() {
   const [products, setProducts] = useState<Products[]>([]);
-  const [categorizedProduct, setCategorizedProduct] = useState<Products[]>([]);
   const router = useRouter();
   useEffect(() => {
     fetchTelevisionDetails();
@@ -33,7 +32,6 @@ export default function TVFilterByCategory() {
     router.push(`/categories/${category}`); 
   };
 
-  console.log(categorizedProduct);
   return (
     <div className="w-full bg-gray-100 flex justify-center pb-8">
       <div className="w-[90%] p-4 ">

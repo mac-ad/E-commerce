@@ -4,7 +4,6 @@ import { Products } from "./TvCollection";
 import { useRouter } from "next/navigation";
 
 export default function SummerCollectionFilterByCategory() {
-  const [products, setProducts] = useState<Products[]>([]);
   const [categorizedProduct, setCategorizedProduct] = useState<Products[]>([]);
   const router = useRouter();
   useEffect(() => {
@@ -17,10 +16,10 @@ export default function SummerCollectionFilterByCategory() {
       throw new Error("Network response was not ok");
     }
     const response: Products[] = await data.json();
-    setProducts(response);
+    setCategorizedProduct(response);
   };
 
-  if (products.length == 0) {
+  if (categorizedProduct.length == 0) {
     return <p>Loading...</p>;
   }
 
@@ -34,14 +33,14 @@ export default function SummerCollectionFilterByCategory() {
   };
 
   return (
-    <div className="w-full bg-gray-100 flex justify-center pb-8">
+    <div className="w-full bg-gray-100 flex justify-center pb-8 pt-8">
       <div className="w-[90%] p-4 ">
         <h1 className="text-[#0171b6] font-bold text-xl">
           Beat the Heat: Presenting Your Must-Have Summer Essential!
         </h1>
         <hr className="border-[#0171b6] border-[1px] mt-1"></hr>
         <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-5 mt-6 ">
-          {products
+          {categorizedProduct
             .filter(
               (product) =>
                 product.type == "Refrigerator" ||
