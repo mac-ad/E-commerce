@@ -1,12 +1,8 @@
 "use client";
 import { CatProdDetailCard, DiscountedProductDetailCard } from "@/app/components/CatProdDetailCard";
 import { Products } from "@/app/components/TvCollection";
-import {
-  DiscountedTvDetailCard,
-  TVDetailCard,
-} from "@/app/components/TVDetailCard";
 import { useParams } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function GetProductByCategory() {
   const params = useParams();

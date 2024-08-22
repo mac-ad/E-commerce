@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { DiscountedTvDetailCard, TVDetailCard } from "./TVDetailCard";
+import { CatProdDetailCard, DiscountedProductDetailCard } from "./CatProdDetailCard";
 
 export interface Products {
   name: string;
@@ -10,7 +10,7 @@ export interface Products {
   discount: string;
   category: string;
   image: string;
-  type: "Television" | "Air Conditioner" | "Refrigerator";
+  type: "Television" | "AirConditioner" | "Refrigerator";
 }
 
 export default function TvCollection() {
@@ -44,15 +44,14 @@ export default function TvCollection() {
         </h1>
         <hr className="mt-3 text-gray-400" />
         <div className="grid lg:grid-cols-6 sm:grid-cols-1 md:grid-cols-3 ">
-          {tvCollectionData
-            .filter((product) => product.type == "Television")
-            .map((tvDetail) =>
-              tvDetail.discount == "0%" ? (
-                <TVDetailCard key={tvDetail.name} tvDetail={tvDetail} />
+          {tvCollectionData.filter((product) => product.type == "Television").
+            map((productDetail) =>
+              productDetail.discount === "0%" ? (
+                <CatProdDetailCard key={productDetail.name} productDetail={productDetail} />
               ) : (
-                <DiscountedTvDetailCard
-                  tvDetail={tvDetail}
-                  key={tvDetail.name}
+                <DiscountedProductDetailCard
+                  productDetail={productDetail}
+                  key={productDetail.name}
                 />
               )
             )}

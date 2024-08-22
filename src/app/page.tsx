@@ -1,6 +1,6 @@
 import PromoSlider from "./components/PromoSlider";
 import RefrigiratorCollection from "./components/SummerCollection";
-import SummerCollectionFilterByCategory from "./components/SummerCollectionFIlterByCategory";
+import SummerCollectionFilterByType from "./components/SummerCollectionFIlterByType";
 import TvCollection from "./components/TvCollection";
 import TVFilterSeach from "./components/TVFilterByCategory";
 
@@ -10,7 +10,7 @@ export default function Home() {
       <PromoSlider/>
       <TVFilterSeach/>
       <TvCollection/>
-      <SummerCollectionFilterByCategory/>
+      <SummerCollectionFilterByType/>
       <RefrigiratorCollection/>
     </main>
   );

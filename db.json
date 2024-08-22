@@ -98,7 +98,7 @@
       "discount": "10%",
       "category": "Inverter AC",
       "image": "https://www.cgdigital.com.np/api/images/products/F8V6Do_1708076715-BRHPA 120 BRHPA 121 - I.jpg",
-      "type": "Air Conditioner"
+      "type": "AirConditioner"
     },
     {
       "name": "Samsung 2 Ton Split AC",
@@ -108,7 +108,7 @@
       "discount": "8%",
       "category": "Split AC",
       "image": "https://www.cgdigital.com.np/api/images/products/rLIZR0_1645614696-CG12HP0102CE.webp",
-      "type": "Air Conditioner"
+      "type": "AirConditioner"
     },
     {
       "name": "LG 1 Ton Window AC",
@@ -118,7 +118,37 @@
       "discount": "5%",
       "category": "Window AC",
       "image": "https://www.cgdigital.com.np/api/images/products/o8N63i_1701248862-TCC-48CHRA-U3(04).jpg",
-      "type": "Air Conditioner"
+      "type": "AirConditioner"
+    },
+    {
+      "name": "Carrier 1.5 Ton Split AC",
+      "size": "1.5 Ton",
+      "price": "65,000",
+      "emiPrice": "3,250",
+      "discount": "12%",
+      "category": "Split AC",
+      "image":"https://www.cgdigital.com.np/api/images/products/Xq28jL_1715857314-S3W12JA3VA.AP6GEXP.jpg",
+      "type": "AirConditioner"
+    },
+    {
+      "name": "Voltas 2 Ton Inverter AC",
+      "size": "2 Ton",
+      "price": "85,000",
+      "emiPrice": "4,250",
+      "discount": "10%",
+      "category": "Inverter AC",
+      "image":"https://www.cgdigital.com.np/api/images/products/vLWs6R_1707218226-CG36CC02.jpg",
+      "type": "AirConditioner"
+    },
+    {
+      "name": "Hitachi 4 Floor Standing AC",
+      "size": "4 Ton",
+      "price": "55,000",
+      "emiPrice": "2,750",
+      "discount": "8%",
+      "category": "Floor Standing AC",
+      "image":"https://www.cgdigital.com.np/api/images/products/WH9UkB_1613384818-CG-48FSAC02-Photo.webp",
+      "type": "AirConditioner"
     }
   ]
 }

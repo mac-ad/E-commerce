@@ -1,9 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import {
-  DiscountedSummerDetailCard,
-  SummerDetailCard,
-} from "./SummerDetailCard";
+import { CatProdDetailCard, DiscountedProductDetailCard } from "./CatProdDetailCard";
 
 export interface Products {
   name: string;
@@ -13,7 +10,7 @@ export interface Products {
   discount: string;
   category: string;
   image: string;
-  type: "Television" | "Air Conditioner" | "Refrigerator";
+  type: "Television" | "AirConditioner" | "Refrigerator";
 }
 
 export default function SummerCollection() {
@@ -54,18 +51,15 @@ export default function SummerCollection() {
               .filter(
                 (product) =>
                   product.type == "Refrigerator" ||
-                  product.type == "Air Conditioner"
+                  product.type == "AirConditioner"
               )
-              .map((summerDetail) =>
-                summerDetail.discount == "0%" ? (
-                  <SummerDetailCard
-                    key={summerDetail.name}
-                    summerDetail={summerDetail}
-                  />
+              .map((productDetail) =>
+                productDetail.discount === "0%" ? (
+                  <CatProdDetailCard key={productDetail.name} productDetail={productDetail} />
                 ) : (
-                  <DiscountedSummerDetailCard
-                    summerDetail={summerDetail}
-                    key={summerDetail.name}
+                  <DiscountedProductDetailCard
+                    productDetail={productDetail}
+                    key={productDetail.name}
                   />
                 )
               )}
