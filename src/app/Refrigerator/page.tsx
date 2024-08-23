@@ -41,7 +41,7 @@ export default function Refrigerator() {
           <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1  ">
             <div className="lg:col-span-1 md:col-span-1">
               <div className="bg-white0 p-4  shadow">
-                <p>Filter content goes here...</p>
+                <p>Shop By</p>
               </div>
             </div>
             <div className="lg:col-span-3 md:col-span-1">

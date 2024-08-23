@@ -2,6 +2,7 @@
   "Products": [
     {
       "name": "Samsung 55-Inch OLED TV",
+      "brand": "Samsung",
       "size": "55 Inches",
       "price": "2,50,000",
       "emiPrice": "12,500",
@@ -12,6 +13,7 @@
     },
     {
       "name": "LG 65-Inch QNED TV",
+      "brand": "LG",
       "size": "65 Inches",
       "price": "3,20,000",
       "emiPrice": "16,000",
@@ -21,7 +23,41 @@
       "type": "Television"
     },
     {
+      "name": "Samsung 55-Inch QNED TV",
+      "brand": "Samsung",
+      "size": "55 Inches",
+      "price": "3,00,000",
+      "emiPrice": "17,000",
+      "discount": "15%",
+      "category": "QNED TV",
+      "image": "https://www.cgdigital.com.np/api/images/products/BOvSb1_1697369409-55UR7550PSC.jpg",
+      "type": "Television"
+    },
+    {
+      "name": "CG 42-Inch QNED TV",
+      "brand": "CG",
+      "size": "42 Inches",
+      "price": "2,60,000",
+      "emiPrice": "18,000",
+      "discount": "15%",
+      "category": "QNED TV",
+      "image": "https://www.cgdigital.com.np/api/images/products/BOvSb1_1697369409-55UR7550PSC.jpg",
+      "type": "Television"
+    },
+    {
+      "name": "CG 32-Inch QNED TV",
+      "brand": "CG",
+      "size": "32 Inches",
+      "price": "1,90,000",
+      "emiPrice": "19,000",
+      "discount": "10%",
+      "category": "QNED TV",
+      "image": "https://www.cgdigital.com.np/api/images/products/BOvSb1_1697369409-55UR7550PSC.jpg",
+      "type": "Television"
+    },
+    {
       "name": "Sony 50-Inch QLED TV",
+      "brand": "Sony",
       "size": "50 Inches",
       "price": "2,00,000",
       "emiPrice": "10,000",
@@ -32,6 +68,7 @@
     },
     {
       "name": "Panasonic 55-Inch 4K UHD LED TV",
+      "brand": "Panasonic",
       "size": "55 Inches",
       "price": "1,80,000",
       "emiPrice": "9,000",
@@ -42,6 +79,7 @@
     },
     {
       "name": "Samsung 43-Inch Smart LED TV",
+      "brand": "Samsung",
       "size": "43 Inches",
       "price": "90,000",
       "emiPrice": "4,500",
@@ -52,6 +90,7 @@
     },
     {
       "name": "LG 32-Inch Normal TV",
+      "brand": "LG",
       "size": "32 Inches",
       "price": "35,000",
       "emiPrice": "1,750",
@@ -62,6 +101,7 @@
     },
     {
       "name": "Whirlpool 265L Double Door Refrigerator",
+      "brand": "Whirlpool",
       "size": "265 Liters",
       "price": "35,000",
       "emiPrice": "2,500",
@@ -72,6 +112,7 @@
     },
     {
       "name": "LG 190L Single Door Refrigerator",
+      "brand": "LG",
       "size": "190 Liters",
       "price": "20,000",
       "emiPrice": "1,500",
@@ -82,6 +123,7 @@
     },
     {
       "name": "Samsung 300L Side-by-Side Refrigerator",
+      "brand": "Samsung",
       "size": "300 Liters",
       "price": "45,000",
       "emiPrice": "3,000",
@@ -92,6 +134,7 @@
     },
     {
       "name": "Daikin 1.5 Ton Inverter AC",
+      "brand": "Daikin",
       "size": "1.5 Ton",
       "price": "60,000",
       "emiPrice": "3,000",
@@ -102,6 +145,7 @@
     },
     {
       "name": "Samsung 2 Ton Split AC",
+      "brand": "Samsung",
       "size": "2 Ton",
       "price": "75,000",
       "emiPrice": "3,750",
@@ -112,6 +156,7 @@
     },
     {
       "name": "LG 1 Ton Window AC",
+      "brand": "LG",
       "size": "1 Ton",
       "price": "40,000",
       "emiPrice": "2,000",
@@ -122,32 +167,35 @@
     },
     {
       "name": "Carrier 1.5 Ton Split AC",
+      "brand": "Carrier",
       "size": "1.5 Ton",
       "price": "65,000",
       "emiPrice": "3,250",
       "discount": "12%",
       "category": "Split AC",
-      "image":"https://www.cgdigital.com.np/api/images/products/Xq28jL_1715857314-S3W12JA3VA.AP6GEXP.jpg",
+      "image": "https://www.cgdigital.com.np/api/images/products/Xq28jL_1715857314-S3W12JA3VA.AP6GEXP.jpg",
       "type": "AirConditioner"
     },
     {
       "name": "Voltas 2 Ton Inverter AC",
+      "brand": "Voltas",
       "size": "2 Ton",
       "price": "85,000",
       "emiPrice": "4,250",
       "discount": "10%",
       "category": "Inverter AC",
-      "image":"https://www.cgdigital.com.np/api/images/products/vLWs6R_1707218226-CG36CC02.jpg",
+      "image": "https://www.cgdigital.com.np/api/images/products/vLWs6R_1707218226-CG36CC02.jpg",
       "type": "AirConditioner"
     },
     {
-      "name": "Hitachi 4 Floor Standing AC",
+      "name": "Hitachi 4 Ton Floor Standing AC",
+      "brand": "Hitachi",
       "size": "4 Ton",
       "price": "55,000",
       "emiPrice": "2,750",
       "discount": "8%",
       "category": "Floor Standing AC",
-      "image":"https://www.cgdigital.com.np/api/images/products/WH9UkB_1613384818-CG-48FSAC02-Photo.webp",
+      "image": "https://www.cgdigital.com.np/api/images/products/WH9UkB_1613384818-CG-48FSAC02-Photo.webp",
       "type": "AirConditioner"
     }
   ]

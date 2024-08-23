@@ -4,6 +4,7 @@ import { CatProdDetailCard, DiscountedProductDetailCard } from "./CatProdDetailC
 
 export interface Products {
   name: string;
+  brand:string;
   size: string;
   price: string;
   emiPrice: string;

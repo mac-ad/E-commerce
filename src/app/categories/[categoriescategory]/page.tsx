@@ -1,13 +1,18 @@
 "use client";
-import { CatProdDetailCard, DiscountedProductDetailCard } from "@/app/components/CatProdDetailCard";
+import {
+  CatProdDetailCard,
+  DiscountedProductDetailCard,
+} from "@/app/components/CatProdDetailCard";
 import { Products } from "@/app/components/TvCollection";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import { FaAngleDown } from "react-icons/fa";
 
 export default function GetProductByCategory() {
   const params = useParams();
   const category = decodeURIComponent(params.categoriescategory.toString());
   const [productsByCategory, setProductsByCategory] = useState<Products[]>([]);
+  const [filteredProducts, setFilteredProducts] = useState<Products[]>([]);
 
   const fetchDataByCategory = async () => {
     try {
@@ -19,6 +24,7 @@ export default function GetProductByCategory() {
       }
       const response = await data.json();
       setProductsByCategory(response);
+      setFilteredProducts(response);
     } catch (error) {
       console.error("Error fetching products:", error);
     }
@@ -32,23 +38,85 @@ export default function GetProductByCategory() {
     return <p>Loading...</p>;
   }
 
+  const filterByBrand = (brand: string) => {
+    const filteredBrandData = productsByCategory.filter(
+      (product) => product.brand == brand
+    );
+    return setFilteredProducts(filteredBrandData);
+  };
+
+  const filterBySize = (size: string) => {
+    const filteredBrandData = productsByCategory.filter(
+      (product) => product.size == size
+    );
+    return setFilteredProducts(filteredBrandData);
+  };
+  // const category = productsByCategory.map((product)=>product.category)
   return (
     <div className="w-full pt-[110px] bg-gray-100 flex justify-center">
       <div className="w-[90%] bg-white">
         <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1  ">
           <div className="lg:col-span-1 md:col-span-1">
-            <div className="bg-white0 p-4  shadow">
-              <p>Filter content goes here...</p>
+            <div className="bg-white py-2 px-3 border border-gray-200 flex justify-between">
+              <h1 className="font-semibold text-sm">Shop By</h1>
+              <p>
+                <FaAngleDown />
+              </p>
+            </div>
+            <div className="bg-white border border-gray-200">
+              <p
+                className="text-xs py-2 px-6 cursor-pointer hover:bg-gray-200"
+                onClick={() => fetchDataByCategory()}
+              >
+                {category}
+              </p>
+            </div>
+            <div className="bg-white py-2 px-3 border border-gray-200 flex justify-between">
+              <h1 className="font-semibold text-sm">Brand</h1>
+              <p>
+                <FaAngleDown />
+              </p>
+            </div>
+            <div className="bg-white  border border-gray-200">
+              {productsByCategory.map((product) => (
+                <p
+                  className="text-xs py-2 px-6 cursor-pointer hover:bg-gray-200"
+                  key={product.name}
+                  onClick={() => filterByBrand(product.brand)}
+                >
+                  {product.brand.toUpperCase()}
+                </p>
+              ))}
+            </div>
+            <div className="bg-white py-2 px-3 border border-gray-200 flex justify-between">
+              <h1 className="font-semibold text-sm">Filter</h1>
+              <p>
+                <FaAngleDown />
+              </p>
+            </div>
+            <div className="bg-white  border border-gray-200">
+              {productsByCategory.map((product) => (
+                <p
+                  className="text-xs py-2 px-6 cursor-pointer hover:bg-gray-200"
+                  key={product.name}
+                  onClick={() => filterBySize(product.size)}
+                >
+                  {product.size.toUpperCase()}
+                </p>
+              ))}
             </div>
           </div>
-          <div className="lg:col-span-3 md:col-span-1">
+          <div className="lg:col-span-3 md:col-span-1 border border-gray-200">
             <h1 className="text-[#888888] font-semibold text-xl p-4">
               {category}
             </h1>
             <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
-              {productsByCategory.map((productDetail) =>
+              {filteredProducts.map((productDetail) =>
                 productDetail.discount === "0%" ? (
-                  <CatProdDetailCard key={productDetail.name} productDetail={productDetail} />
+                  <CatProdDetailCard
+                    key={productDetail.name}
+                    productDetail={productDetail}
+                  />
                 ) : (
                   <DiscountedProductDetailCard
                     productDetail={productDetail}
