@@ -77,15 +77,19 @@ export default function GetProductByCategory() {
                 <FaAngleDown />
               </p>
             </div>
-            <div className="bg-white  border border-gray-200">
+            <div className="bg-white  border border-gray-200 ">
               {productsByCategory.map((product) => (
-                <p
-                  className="text-xs py-2 px-6 cursor-pointer hover:bg-gray-200"
+                <div
+                  className="py-2 px-6 flex  cursor-pointer hover:bg-gray-200"
                   key={product.name}
-                  onClick={() => filterByBrand(product.brand)}
                 >
-                  {product.brand.toUpperCase()}
-                </p>
+                  <input
+                    type="checkbox"
+                    className="mr-2"
+                    onClick={() => filterByBrand(product.brand)}
+                  />
+                  <p className="text-xs ">{product.brand.toUpperCase()}</p>
+                </div>
               ))}
             </div>
             <div className="bg-white py-2 px-3 border border-gray-200 flex justify-between">
@@ -110,6 +114,7 @@ export default function GetProductByCategory() {
             <h1 className="text-[#888888] font-semibold text-xl p-4">
               {category}
             </h1>
+            <p className="text-[#888888] px-4 pb-4 text-sm">Showing {filteredProducts.length} Results</p>
             <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
               {filteredProducts.map((productDetail) =>
                 productDetail.discount === "0%" ? (
