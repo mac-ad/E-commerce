@@ -114,7 +114,11 @@ export default function GetProductByCategory() {
             <h1 className="text-[#888888] font-semibold text-xl p-4">
               {category}
             </h1>
-            <p className="text-[#888888] px-4 pb-4 text-sm">Showing {filteredProducts.length} Results</p>
+            <div className="flex justify-between">
+              <p className="text-[#888888] px-4 pb-4 text-sm">
+                Showing {filteredProducts.length} Results
+              </p>
+            </div>
             <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
               {filteredProducts.map((productDetail) =>
                 productDetail.discount === "0%" ? (

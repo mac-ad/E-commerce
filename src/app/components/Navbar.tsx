@@ -13,7 +13,11 @@ export default function Navbar() {
               href="/"
               className="w-full sm:w-auto lg:w-[30%] text-base sm:text-lg md:text-xl font-semibold mb-2 sm:mb-0"
             >
-              <h1>My Electronics</h1>
+              <img
+                src="/images/my_electronics_logo.jpg"
+                style={{ width: '150px', height: "70px" }}
+                alt="Slide 1"
+              />
             </Link>
 
             <div className="w-full flex flex-wrap lg:flex-nowrap items-center mb-2 sm:mb-0">

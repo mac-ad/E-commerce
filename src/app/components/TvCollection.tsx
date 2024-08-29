@@ -19,6 +19,7 @@ export default function TvCollection() {
 
   useEffect(() => {
     fetchTvCollection();
+    fetchAPI();
   }, []);
 
   const fetchTvCollection = async () => {
@@ -29,6 +30,15 @@ export default function TvCollection() {
     const data: Products[] = await response.json();
     setTvCollectionData(data);
   };
+
+  const fetchAPI = async() =>{
+    const data = await fetch("/api/products");
+    if(!data.ok){
+      throw new Error("Network response was not ok")
+    }
+    const response = await data.json();
+    console.log(response)
+  }
 
   if (tvCollectionData.length === 0) {
     return <p>Loading...</p>;
