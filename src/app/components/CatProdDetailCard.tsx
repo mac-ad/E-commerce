@@ -35,7 +35,7 @@ const WithDiscountTag = (Component: FC<WithDiscountTagProps>) => {
   const EnhancedComponent: FC<WithDiscountTagProps> = ({ productDetail }) => {
     return (
       <div className="relative group">
-       <div className="absolute top-[160px] z-20 transition-transform duration-300 ease-in-out transform group-hover:scale-110 hover:z-10">
+       <div className="absolute top-[200px] z-20 transition-transform duration-300 ease-in-out transform group-hover:scale-110 hover:z-10">
           <span className="inline-block p-2 text-xs text-white bg-[#0171b6] -z-10 rounded-r-lg rounded-t-none ">
             SAVE {productDetail.discount}
           </span>

@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { CatProdDetailCard, DiscountedProductDetailCard } from "./CatProdDetailCard";
+import { UseQueryResult, useQuery } from "@tanstack/react-query";
 
 export interface Products {
   name: string;
@@ -16,27 +17,56 @@ export interface Products {
   type: "TV" | "AirConditioner" | "Refrigerator";
 }
 
-export default function SummerCollection() {
-  const [summerCollectionData, setSummerCollectionData] = useState<Products[]>(
-    []
-  );
-
-  useEffect(() => {
-    fetchSummerCollection();
-  }, []);
-
-  const fetchSummerCollection = async () => {
-    const response = await fetch("/api/products");
-    if (!response.ok) {
-      throw new Error("Network response was not ok");
-    }
-    const data: Products[] = await response.json();
-    setSummerCollectionData(data);
-  };
-
-  if (summerCollectionData.length === 0) {
-    return <p>Loading...</p>;
+export const fetchSummerCollection = async() =>{
+  const res = await fetch(`/api/products`)
+  if (!res.ok) {
+    throw new Error("Network response was not ok");
   }
+  return res.json();
+}
+export default function SummerCollection() {
+  // const [summerCollectionData, setSummerCollectionData] = useState<Products[]>(
+  //   []
+  // );
+  const {
+    data: summerCollectionData,
+    isLoading,
+    isError,
+  }: UseQueryResult<Products[], Error> = useQuery({
+    queryKey: ["products"],
+    queryFn: fetchSummerCollection,
+  });
+
+  if (isLoading) {
+    return (
+      <div className="w-full bg-gray-100 p-3 min-h-screen flex justify-center items-center">
+        {/* <Spinner /> */}
+        Loading...
+      </div>
+    );
+  }
+
+  if (isError || !summerCollectionData) {
+    return <div>Error fetching summer collection data</div>;
+  }
+
+
+  // useEffect(() => {
+  //   fetchSummerCollection();
+  // }, []);
+
+  // const fetchSummerCollection = async () => {
+  //   const response = await fetch("/api/products");
+  //   if (!response.ok) {
+  //     throw new Error("Network response was not ok");
+  //   }
+  //   const data: Products[] = await response.json();
+  //   setSummerCollectionData(data);
+  // };
+
+  // if (summerCollectionData.length === 0) {
+  //   return <p>Loading...</p>;
+  // }
 
   return (
     <div className="w-full bg-gray-100">
