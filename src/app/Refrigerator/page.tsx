@@ -15,7 +15,7 @@ export default function Refrigerator() {
     const fetchDataByCategory = async () => {
       try {
         const data = await fetch(
-          `http://localhost:2000/products?type=${type}`
+          `/api/products?type=${type}`
         );
         if (!data.ok) {
           throw new Error("Failed to fetch products");
@@ -50,7 +50,7 @@ export default function Refrigerator() {
               </h1>
               <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1">
                 {productType.map((productDetail) =>
-                  productDetail.discount === "0%" ? (
+                  productDetail.discount === 0 ? (
                     <CatProdDetailCard key={productDetail.name} productDetail={productDetail} />
                   ) : (
                     <DiscountedProductDetailCard

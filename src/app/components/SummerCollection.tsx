@@ -4,14 +4,16 @@ import { CatProdDetailCard, DiscountedProductDetailCard } from "./CatProdDetailC
 
 export interface Products {
   name: string;
-  brand:string;
-  size: string;
-  price: string;
-  emiPrice: string;
-  discount: string;
-  category: string;
-  image: string;
-  type: "Television" | "AirConditioner" | "Refrigerator";
+  brand: string;
+  discount: number;
+  price: number;
+  quantity: number;
+  description: string;
+  product_image?: string;
+  emiprice: number;
+  category:string;
+  size: number;
+  type: "TV" | "AirConditioner" | "Refrigerator";
 }
 
 export default function SummerCollection() {
@@ -24,7 +26,7 @@ export default function SummerCollection() {
   }, []);
 
   const fetchSummerCollection = async () => {
-    const response = await fetch("http://localhost:2000/Products");
+    const response = await fetch("/api/products");
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
@@ -47,15 +49,13 @@ export default function SummerCollection() {
             </span>
           </h1>
           <hr className="mt-3 text-gray-400" />
-          <div className="grid lg:grid-cols-6 sm:grid-cols-1 md:grid-cols-3 ">
+          <div className="grid lg:grid-cols-5 sm:grid-cols-1 md:grid-cols-3 ">
             {summerCollectionData
               .filter(
                 (product) =>
-                  product.type == "Refrigerator" ||
-                  product.type == "AirConditioner"
-              )
+                  product.type == "Refrigerator"               )
               .map((productDetail) =>
-                productDetail.discount === "0%" ? (
+                productDetail.discount === 0 ? (
                   <CatProdDetailCard key={productDetail.name} productDetail={productDetail} />
                 ) : (
                   <DiscountedProductDetailCard

@@ -1,48 +1,81 @@
 "use client";
 import { useEffect, useState } from "react";
 import { CatProdDetailCard, DiscountedProductDetailCard } from "./CatProdDetailCard";
+import { UseQueryResult, useQuery } from "@tanstack/react-query";
 
 export interface Products {
   name: string;
-  brand:string;
-  size: string;
-  price: string;
-  emiPrice: string;
-  discount: string;
-  category: string;
-  image: string;
-  type: "Television" | "AirConditioner" | "Refrigerator";
+  brand: string;
+  discount: number;
+  price: number;
+  quantity: number;
+  description: string;
+  product_image?: string;
+  emiprice: number;
+  category:string;
+  size: number;
+  type: "TV" | "AirConditioner" | "Refrigerator";
+}
+
+export const fetchTVCollection = async() =>{
+  const res = await fetch(`/api/products`)
+  if (!res.ok) {
+    throw new Error("Network response was not ok");
+  }
+  return res.json();
 }
 
 export default function TvCollection() {
-  const [tvCollectionData, setTvCollectionData] = useState<Products[]>([]);
+  // const [tvCollectionData, setTvCollectionData] = useState<Products[]>([]);
 
-  useEffect(() => {
-    fetchTvCollection();
-    fetchAPI();
-  }, []);
+  const {
+    data: tvCollectionData,
+    isLoading,
+    isError,
+  }: UseQueryResult<Products[], Error> = useQuery({
+    queryKey: ["products"],
+    queryFn: fetchTVCollection,
+  });
 
-  const fetchTvCollection = async () => {
-    const response = await fetch("http://localhost:2000/Products");
-    if (!response.ok) {
-      throw new Error("Network response was not ok");
-    }
-    const data: Products[] = await response.json();
-    setTvCollectionData(data);
-  };
-
-  const fetchAPI = async() =>{
-    const data = await fetch("/api/products");
-    if(!data.ok){
-      throw new Error("Network response was not ok")
-    }
-    const response = await data.json();
-    console.log(response)
+  if (isLoading) {
+    return (
+      <div className="w-full bg-gray-100 p-3 min-h-screen flex justify-center items-center">
+        {/* <Spinner /> */}
+        Loading...
+      </div>
+    );
   }
 
-  if (tvCollectionData.length === 0) {
-    return <p>Loading...</p>;
+  if (isError || !tvCollectionData) {
+    return <div>Error fetching members</div>;
   }
+
+  // useEffect(() => {
+  //   fetchTvCollection();
+  //   fetchAPI();
+  // }, []);
+
+  // const fetchTvCollection = async () => {
+  //   const response = await fetch("/api/products");
+  //   if (!response.ok) {
+  //     throw new Error("Network response was not ok");
+  //   }
+  //   const data: Products[] = await response.json();
+  //   setTvCollectionData(data);
+  // };
+
+  // const fetchAPI = async() =>{
+  //   const data = await fetch("/api/products");
+  //   if(!data.ok){
+  //     throw new Error("Network response was not ok")
+  //   }
+  //   const response = await data.json();
+  //   console.log(response)
+  // }
+
+  // if (tvCollectionData.length === 0) {
+  //   return <p>Loading...</p>;
+  // }
 
   return (
     <div className="w-full bg-gray-100 flex justify-center">
@@ -54,10 +87,10 @@ export default function TvCollection() {
           IN BEST PRICE - choose your TV's
         </h1>
         <hr className="mt-3 text-gray-400" />
-        <div className="grid lg:grid-cols-6 sm:grid-cols-1 md:grid-cols-3 ">
-          {tvCollectionData.filter((product) => product.type == "Television").
+        <div className="grid lg:grid-cols-5 sm:grid-cols-1 md:grid-cols-3 ">
+          {tvCollectionData.filter((product) => product.type == "TV").
             map((productDetail) =>
-              productDetail.discount === "0%" ? (
+              productDetail.discount === 0 ? (
                 <CatProdDetailCard key={productDetail.name} productDetail={productDetail} />
               ) : (
                 <DiscountedProductDetailCard
