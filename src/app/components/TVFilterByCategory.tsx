@@ -12,7 +12,7 @@ export default function TVFilterByCategory() {
   }, []);
 
   const fetchTelevisionDetails = async () => {
-    const data = await fetch("http://localhost:2000/products");
+    const data = await fetch("/api/products");
     if (!data.ok) {
       throw new Error("Network response was not ok");
     }
@@ -31,7 +31,7 @@ export default function TVFilterByCategory() {
   const uniqueCategories = Array.from(
     new Set(
       products
-        .filter((product) => product.type === "Television")
+        .filter((product) => product.type === "TV")
         .map((product) => product.category)
     )
   );

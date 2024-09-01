@@ -12,7 +12,7 @@ export default function SummerCollectionFilterByType() {
   }, []);
 
   const fetchSummerCollectionDetails = async () => {
-    const data = await fetch("http://localhost:2000/products");
+    const data = await fetch("/api/products");
     if (!data.ok) {
       throw new Error("Network response was not ok");
     }

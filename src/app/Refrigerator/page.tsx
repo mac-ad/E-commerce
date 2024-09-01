@@ -34,9 +34,9 @@ export default function Refrigerator() {
     if (!productType) {
       return <p>Loading...</p>;
     }
-  
+  const filterByRefrigerator = productType.filter((type)=> type.type == "Refrigerator")
     return (
-      <div className="w-full pt-[110px] bg-gray-100 flex justify-center">
+      <div className="w-full pt-[130px] bg-gray-100 flex justify-center">
         <div className="w-[90%] bg-white">
           <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1  ">
             <div className="lg:col-span-1 md:col-span-1">
@@ -49,7 +49,7 @@ export default function Refrigerator() {
                 {type}
               </h1>
               <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1">
-                {productType.map((productDetail) =>
+                {filterByRefrigerator.map((productDetail) =>
                   productDetail.discount === 0 ? (
                     <CatProdDetailCard key={productDetail.name} productDetail={productDetail} />
                   ) : (

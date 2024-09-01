@@ -45,7 +45,7 @@ export default function GetProductByCategory() {
     return setFilteredProducts(filteredBrandData);
   };
 
-  const filterBySize = (size: string) => {
+  const filterBySize = (size: number) => {
     const filteredBrandData = productsByCategory.filter(
       (product) => product.size == size
     );
@@ -105,7 +105,7 @@ export default function GetProductByCategory() {
                   key={product.name}
                   onClick={() => filterBySize(product.size)}
                 >
-                  {product.size.toUpperCase()}
+                  {product.size}
                 </p>
               ))}
             </div>
@@ -121,7 +121,7 @@ export default function GetProductByCategory() {
             </div>
             <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
               {filteredProducts.map((productDetail) =>
-                productDetail.discount === "0%" ? (
+                productDetail.discount === 0 ? (
                   <CatProdDetailCard
                     key={productDetail.name}
                     productDetail={productDetail}
