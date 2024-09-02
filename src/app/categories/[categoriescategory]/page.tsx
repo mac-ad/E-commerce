@@ -17,7 +17,7 @@ export default function GetProductByCategory() {
   const fetchDataByCategory = async () => {
     try {
       const data = await fetch(
-        `http://localhost:2000/products?category=${category}`
+        `/api/products?category=${category}`
       );
       if (!data.ok) {
         throw new Error("Failed to fetch products");
@@ -53,7 +53,7 @@ export default function GetProductByCategory() {
   };
   // const category = productsByCategory.map((product)=>product.category)
   return (
-    <div className="w-full pt-[110px] bg-gray-100 flex justify-center">
+    <div className="w-full pt-[130px] bg-gray-100 flex justify-center">
       <div className="w-[90%] bg-white">
         <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1  ">
           <div className="lg:col-span-1 md:col-span-1">

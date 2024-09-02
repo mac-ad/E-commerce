@@ -1,8 +1,10 @@
 import { FC } from "react";
 import { Products } from "./TvCollection";
+import Link from "next/link";
 
 export const CatProdDetailCard: FC<{ productDetail: Products }> = ({ productDetail }) => {
   return (
+    <Link href={`/${productDetail.$id}`}>
     <div className="border border-gray-100 bg-white px-[7px] shadow-lg flex flex-col h-full transition-transform duration-300 ease-in-out transform hover:scale-105 hover:shadow-xl relative hover:z-10">
       <img
         src={productDetail.product_image}
@@ -24,6 +26,7 @@ export const CatProdDetailCard: FC<{ productDetail: Products }> = ({ productDeta
         </p>
       </div>
     </div>
+    </Link>
   );
 };
 
