@@ -33,6 +33,8 @@ export default function AirConditioner() {
     if (!productType) {
       return <p>Loading...</p>;
     }
+
+    console.log(productType)
   
     return (
       <div className="w-full pt-[110px] bg-gray-100 flex justify-center">
@@ -49,7 +51,7 @@ export default function AirConditioner() {
               </h1>
               <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1">
                 {productType.map((productDetail) =>
-                  productDetail.discount === "0%" ? (
+                  productDetail.discount === 0 ? (
                     <CatProdDetailCard key={productDetail.name} productDetail={productDetail} />
                   ) : (
                     <DiscountedProductDetailCard

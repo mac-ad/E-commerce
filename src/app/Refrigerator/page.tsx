@@ -34,6 +34,7 @@ export default function Refrigerator() {
     if (!productType) {
       return <p>Loading...</p>;
     }
+    console.log(productType)
   const filterByRefrigerator = productType.filter((type)=> type.type == "Refrigerator")
     return (
       <div className="w-full pt-[130px] bg-gray-100 flex justify-center">

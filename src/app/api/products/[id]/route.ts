@@ -99,7 +99,7 @@ export async function GET(
   try {
     const id = params.id;
     const product = await fetchProducts(id);
-    return NextResponse.json({ product });
+    return NextResponse.json({ product:[product] });
   } catch (error) {
     return NextResponse.json(
       {
