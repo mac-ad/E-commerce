@@ -1,9 +1,23 @@
+'use client'
+
+import { useState } from "react";
 import { BsPersonFill } from "react-icons/bs";
 import { FaShoppingCart } from "react-icons/fa";
 import { IoGitCompareSharp } from "react-icons/io5";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Navbar() {
+  const [showDropdown, setShowDropdown] = useState(false);
+
+  const handleMouseEnter = () => {
+    setShowDropdown(true);
+  };
+
+  const handleMouseLeave = () => {
+    setShowDropdown(false);
+  };
+
   return (
     <>
       <div className="fixed fixed-top w-full z-50">
@@ -13,9 +27,10 @@ export default function Navbar() {
               href="/"
               className="w-full sm:w-auto lg:w-[30%] text-base sm:text-lg md:text-xl font-semibold mb-2 sm:mb-0"
             >
-              <img
+              <Image
                 src="/images/my_electronics_logo.jpg"
-                style={{ width: '150px', height: "70px" }}
+                width={150}
+                height={60}
                 alt="Slide 1"
               />
             </Link>
@@ -47,12 +62,38 @@ export default function Navbar() {
           </div>
         </div>
 
-        <div className="bg-[#0171b6] px-4 sm:px-6 lg:px-8 flex flex-wrap lg:flex-nowrap items-center justify-center lg:justify-between ">
-          <Link href="/">
-            <p className="text-white text-[12px] py-3 px-2 hover:bg-white hover:text-gray-500">
-              TV & AUDIO
-            </p>
-          </Link>
+        <div className="bg-[#0171b6] px-4 sm:px-6 lg:px-8 flex flex-wrap lg:flex-nowrap items-center justify-center lg:justify-between">
+          <div
+            className="relative"
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+          >
+            <Link href="/">
+              <p className="text-white text-[12px] py-3 px-2 hover:bg-white hover:text-gray-500">
+                TV & AUDIO
+              </p>
+            </Link>
+            {showDropdown && (
+              <div className="absolute left-0  w-48 bg-white shadow-lg rounded-lg z-10">
+                <Link href="/category/tv">
+                  <p className="px-4 py-2 text-sm hover:bg-gray-200 cursor-pointer">
+                    Televisions
+                  </p>
+                </Link>
+                <Link href="/category/audio">
+                  <p className="px-4 py-2 text-sm hover:bg-gray-200 cursor-pointer">
+                    Audio Systems
+                  </p>
+                </Link>
+                <Link href="/category/soundbars">
+                  <p className="px-4 py-2 text-sm hover:bg-gray-200 cursor-pointer">
+                    Soundbars
+                  </p>
+                </Link>
+              </div>
+            )}
+          </div>
+
           <Link href="/">
             <p className="text-white text-[12px] py-3 px-2 hover:bg-white hover:text-gray-500">
               HOME & APPLIANCES

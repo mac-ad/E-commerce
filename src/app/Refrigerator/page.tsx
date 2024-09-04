@@ -1,70 +1,75 @@
-'use client'
-import { useParams, usePathname } from 'next/navigation';
-import { useEffect, useState } from 'react';
-import { Products } from '../components/TvCollection';
-import { CatProdDetailCard, DiscountedProductDetailCard } from '../components/CatProdDetailCard';
+"use client";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
+import {
+  CatProdDetailCard,
+  DiscountedProductDetailCard,
+} from "../components/CatProdDetailCard";
+import { Products } from "../components/TvCollection";
+import Spinner from "../ui/Spinner";
 
 export default function Refrigerator() {
-    const pathname = usePathname();
-    const type = pathname.split('/').pop();
-    console.log(type)
-    console.log(pathname)
-    // const type = decodeURIComponent(params.Refrigerator.toString());
-    const [productType, setProductType] = useState<Products[]>([]);
-  
-    const fetchDataByCategory = async () => {
-      try {
-        const data = await fetch(
-          `/api/products?type=${type}`
-        );
-        if (!data.ok) {
-          throw new Error("Failed to fetch products");
-        }
-        const response = await data.json();
-        setProductType(response);
-      } catch (error) {
-        console.error("Error fetching products:", error);
+  const pathname = usePathname();
+  const type = pathname.split("/").pop();
+  console.log(type);
+  console.log(pathname);
+  // const type = decodeURIComponent(params.Refrigerator.toString());
+  const [productType, setProductType] = useState<Products[]>([]);
+
+  const fetchDataByCategory = async () => {
+    try {
+      const data = await fetch(`/api/products/type?type=${type}`);
+      if (!data.ok) {
+        throw new Error("Failed to fetch products");
       }
-    };
-  
-    useEffect(() => {
-      fetchDataByCategory();
-    }, [type]);
-  
-    if (!productType) {
-      return <p>Loading...</p>;
+      const response = await data.json();
+      setProductType(response.products);
+    } catch (error) {
+      console.error("Error fetching products:", error);
     }
-    console.log(productType)
-  const filterByRefrigerator = productType.filter((type)=> type.type == "Refrigerator")
+  };
+
+  useEffect(() => {
+    fetchDataByCategory();
+  }, [type]);
+
+  if (productType.length == 0) {
     return (
-      <div className="w-full pt-[130px] bg-gray-100 flex justify-center">
-        <div className="w-[90%] bg-white">
-          <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1  ">
-            <div className="lg:col-span-1 md:col-span-1">
-              <div className="bg-white0 p-4  shadow">
-                <p>Shop By</p>
-              </div>
+      <div className="w-full bg-gray-100 p-3 min-h-screen flex justify-center items-center">
+        <Spinner />
+      </div>
+    );
+  }
+  console.log(productType);
+  return (
+    <div className="w-full pt-[130px] bg-gray-100 flex justify-center">
+      <div className="w-[90%] bg-white">
+        <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1  ">
+          <div className="lg:col-span-1 md:col-span-1">
+            <div className="bg-white0 p-4  shadow">
+              <p>Shop By</p>
             </div>
-            <div className="lg:col-span-3 md:col-span-1">
-              <h1 className="text-[#888888] font-semibold text-xl p-4">
-                {type}
-              </h1>
-              <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1">
-                {filterByRefrigerator.map((productDetail) =>
-                  productDetail.discount === 0 ? (
-                    <CatProdDetailCard key={productDetail.name} productDetail={productDetail} />
-                  ) : (
-                    <DiscountedProductDetailCard
-                      productDetail={productDetail}
-                      key={productDetail.name}
-                    />
-                  )
-                )}
-              </div>
+          </div>
+          <div className="lg:col-span-3 md:col-span-1">
+            <h1 className="text-[#888888] font-semibold text-xl p-4">{type}</h1>
+            <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1">
+              {productType.map((productDetail) =>
+                productDetail.discount === 0 ? (
+                  <CatProdDetailCard
+                    key={productDetail.name}
+                    productDetail={productDetail}
+                  />
+                ) : (
+                  <DiscountedProductDetailCard
+                    productDetail={productDetail}
+                    key={productDetail.name}
+                  />
+                )
+              )}
             </div>
           </div>
         </div>
       </div>
-    );
-  }
-  
+    </div>
+  );
+}

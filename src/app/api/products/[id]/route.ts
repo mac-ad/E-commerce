@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 
 const database = new Databases(client);
 
-async function fetchProducts(id: string) {
+export async function fetchProducts(id: string) {
   try {
     const product = await database.getDocument(
       process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID as string,

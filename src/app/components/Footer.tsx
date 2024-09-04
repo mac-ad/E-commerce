@@ -1,5 +1,8 @@
-import { FaEnvelope, FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa";
-import { GITHUB, INSTAGRAM } from "../utils/constants";
+import { FaPhone } from "react-icons/fa6";
+import { MdOutlineMailOutline } from "react-icons/md";
+import { ImHome } from "react-icons/im";
+import { LiaFaxSolid } from "react-icons/lia";
+
 const Footer = () => {
   return (
     <>
@@ -36,12 +39,12 @@ const Footer = () => {
                 F.A.Q.s
               </p>
             </div>
-            <div className="main-heads">
+            {/* <div className="main-heads">
               <h1 className="text-sm font-semibold text-white">ASSISTANCE</h1>
               <p className="text-gray-300 mt-3 font-extralight text-[13px] w-[230px]">
                 Store Locator
               </p>
-            </div>
+            </div> */}
             <div className="main-heads">
               <h1 className="text-sm font-semibold text-gray-300">STORES</h1>
               <p className="text-gray-300 font-extralight mt-3 w-[250px] text-[13px]">
@@ -53,45 +56,52 @@ const Footer = () => {
             </div>
             <div className="main-heads">
               <h1 className="text-sm font-semibold text-white">
-                LETS GET CONNECTED
+                Branch Office, JAPAN
               </h1>
-              <div className="flex space-x-6 mt-5">
-                <a
-                  href={GITHUB}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-white hover:text-gray-400"
-                >
-                  <FaGithub size={20} />
-                </a>
-                <a
-                  href="https://linkedin.com/in/your-username"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-white hover:text-gray-400"
-                >
-                  <FaLinkedin size={20} />
-                </a>
-                <a
-                  href={INSTAGRAM}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-white hover:text-gray-400"
-                >
-                  <FaInstagram size={20} />
-                </a>
-              </div>
+              <p className="text-gray-300 text-[13px] mt-5 flex font-extralight">
+                <FaPhone className="mr-2" />
+                027-289-0762
+              </p>
+              <p className="text-gray-300 text-[13px] flex font-extralight mt-5"><LiaFaxSolid className="mr-2" size={18}/> 027-289-077</p>
 
-              {/* <p className="mt-5 text-gray-300 font-extralight py-2 w-[250px] px-3 border boder-white rounded-lg flex text-[13px]">
-                <FaEnvelope className="mr-2 text-xs" size={16} />
-                myelectronics@gmail.com
-              </p> */}
+              <p className="text-gray-300 text-[13px] mt-5 flex font-extralight">
+                <MdOutlineMailOutline className="mr-2" size={18} />
+                myhtc@mytechuniverse.co.jp
+              </p>
+              <p className="text-gray-300 text-[13px] mt-5 flex font-extralight">
+                <ImHome className="mr-2" size={18} />
+                371-0854 Gunma Ken, Maebashi-shi,
+              </p>
+              <p className="text-gray-300 text-[13px] font-extralight ml-6"> Owatarimachi 1-6-1 Okushi Maebashi,</p>
+              <p className="text-gray-300 text-[13px] font-extralight ml-6"> 1-A</p>
+
+              <h1 className="text-sm font-semibold text-white mt-5">
+                Head Office, Nepal
+              </h1>
+              <p className="text-gray-300 text-[13px] mt-5 flex font-extralight">
+                <FaPhone size={16} className="mr-2" />
+                +977-9851113133
+              </p>
+
+              <p className="text-gray-300 text-[13px] mt-5 flex font-extralight">
+                <MdOutlineMailOutline className="mr-2" size={18} />
+                balabhadraandsons@gmail.com
+              </p>
+              <p className="text-gray-300 text-[13px] mt-5 flex font-extralight">
+                <MdOutlineMailOutline className="mr-2" size={18} />
+               hemanta@mytechuniverse.co.jp
+              </p>
+              <p className="text-gray-300 text-[13px] mt-5 flex font-extralight">
+                <ImHome className="mr-2" size={18} />
+                Kathmandu, Nepal
+              </p>
             </div>
+            
           </div>
         </div>
         <div className="w-full border border-t-[0.5px] border-r-0 border-l-0 border-gray-300 bg-[#323232] py-3 px-[80px]">
-          <p className="text-xs text-gray-200 font-extralight ">
-            COPYRIGHT © 2021 CG Digital. ALL RIGHTS RESERVEDPrivacy policyTerms
+          <p className="text-xs text-gray-200 font-extralight text-center ">
+            COPYRIGHT © 2021 MyTechUniverse. ALL RIGHTS RESERVED Privacy policyTerms
             and conditions
           </p>
         </div>
