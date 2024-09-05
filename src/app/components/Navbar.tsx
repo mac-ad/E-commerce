@@ -1,21 +1,33 @@
-'use client'
-
+"use client";
+import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { BsPersonFill } from "react-icons/bs";
 import { FaShoppingCart } from "react-icons/fa";
 import { IoGitCompareSharp } from "react-icons/io5";
-import Link from "next/link";
-import Image from "next/image";
 
 export default function Navbar() {
   const [showDropdown, setShowDropdown] = useState(false);
+  const [searchText, setSearchText] = useState("");
+  const router = useRouter();
+  console.log(searchText);
 
+ 
   const handleMouseEnter = () => {
     setShowDropdown(true);
   };
 
   const handleMouseLeave = () => {
     setShowDropdown(false);
+  };
+
+  const searchProduct = () => {
+    // const result = search.filter((searchedText) =>
+    //   searchedText.name.toLowerCase().includes(searchText.toLowerCase())
+    // );
+    // return result;
+    router.push(`/search/${searchText}`)
   };
 
   return (
@@ -39,8 +51,13 @@ export default function Navbar() {
               <input
                 placeholder="Search Products..."
                 className="w-full sm:w-[60%] md:w-[70%] lg:w-[70%] p-2 sm:p-3 border border-t-0 text-sm shadow-lg"
+                value={searchText}
+                onChange={(e) => setSearchText(e.target.value)}
               />
-              <button className="w-full sm:w-auto mt-2 sm:mt-0 bg-[#0171b6] py-2 sm:py-3 px-4 sm:px-6 md:px-8 text-white text-sm">
+              <button
+                className="w-full sm:w-auto mt-2 sm:mt-0 bg-[#0171b6] py-2 sm:py-3 px-4 sm:px-6 md:px-8 text-white text-sm"
+                onClick={searchProduct}
+              >
                 Search
               </button>
             </div>

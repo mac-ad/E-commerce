@@ -56,7 +56,7 @@ export default function GetProductByCategory() {
   };
   // const category = productsByCategory.map((product)=>product.category)
   return (
-    <div className="w-full pt-[130px] bg-gray-100 flex justify-center">
+    <div className="w-full pt-[130px] bg-gray-100 flex justify-center pb-8">
       <div className="w-[90%] bg-white">
         <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1  ">
           <div className="lg:col-span-1 md:col-span-1">
