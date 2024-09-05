@@ -17,14 +17,14 @@ export default function GetProductByCategory() {
   const fetchDataByCategory = async () => {
     try {
       const data = await fetch(
-        `/api/products?category=${category}`
+        `/api/products/category?category=${category}`
       );
       if (!data.ok) {
         throw new Error("Failed to fetch products");
       }
       const response = await data.json();
-      setProductsByCategory(response);
-      setFilteredProducts(response);
+      setProductsByCategory(response.products);
+      setFilteredProducts(response.products);
     } catch (error) {
       console.error("Error fetching products:", error);
     }
@@ -34,7 +34,7 @@ export default function GetProductByCategory() {
     fetchDataByCategory();
   }, [category]);
 
-  if (!productsByCategory) {
+  if (productsByCategory.length == 0) {
     return <p>Loading...</p>;
   }
 
