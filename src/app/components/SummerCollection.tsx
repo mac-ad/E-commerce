@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { CatProdDetailCard, DiscountedProductDetailCard } from "./CatProdDetailCard";
 import { UseQueryResult, useQuery } from "@tanstack/react-query";
+import Spinner from "../ui/Spinner";
 
 export interface Products {
   name: string;
@@ -15,6 +16,7 @@ export interface Products {
   category:string;
   size: number;
   type: "TV" | "AirConditioner" | "Refrigerator";
+  $id:string;
 }
 
 export const fetchSummerCollection = async() =>{
@@ -40,9 +42,8 @@ export default function SummerCollection() {
   if (isLoading) {
     return (
       <div className="w-full bg-gray-100 p-3 min-h-screen flex justify-center items-center">
-        {/* <Spinner /> */}
-        Loading...
-      </div>
+      <Spinner />
+    </div>
     );
   }
 
@@ -69,7 +70,7 @@ export default function SummerCollection() {
   // }
 
   return (
-    <div className="w-full bg-gray-100">
+    <div className="w-full bg-gray-100 pb-8">
       <div className="w-full bg-gray-100 flex justify-center">
         <div className="w-[90%] pt-4 bg-white">
           <h1 className="text-center text-xs font-light text-gray-600">

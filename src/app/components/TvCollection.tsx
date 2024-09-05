@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { CatProdDetailCard, DiscountedProductDetailCard } from "./CatProdDetailCard";
 import { UseQueryResult, useQuery } from "@tanstack/react-query";
+import Spinner from "../ui/Spinner";
 
 export interface Products {
   name: string;
@@ -41,8 +42,7 @@ export default function TvCollection() {
   if (isLoading) {
     return (
       <div className="w-full bg-gray-100 p-3 min-h-screen flex justify-center items-center">
-        {/* <Spinner /> */}
-        Loading...
+        <Spinner />
       </div>
     );
   }

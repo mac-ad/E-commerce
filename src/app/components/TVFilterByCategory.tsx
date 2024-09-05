@@ -2,6 +2,7 @@
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Products } from "./TvCollection";
+import Spinner from "../ui/Spinner";
 
 export default function TVFilterByCategory() {
   const [products, setProducts] = useState<Products[]>([]);
@@ -21,7 +22,11 @@ export default function TVFilterByCategory() {
   };
 
   if (products.length == 0) {
-    return <p>Loading...</p>;
+    return (
+      <div className="w-full bg-gray-100 p-3 min-h-screen flex justify-center items-center">
+        <Spinner />
+      </div>
+    );
   }
 
   const filterByCategory = (category: string) => {

@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { FaShoppingCart } from "react-icons/fa";
 import { Products } from "../components/TvCollection";
 import Link from "next/link";
+import Spinner from "../ui/Spinner";
 
 export const fetchProductById = async (id: string | string[]) => {
   const data = await fetch(`/api/products/${id}`);
@@ -32,7 +33,11 @@ export default function ProductById() {
   }, [params.id]);
 
   if (productType.length == 0) {
-    return <p className="pt-[140px] bg-white">Loading...</p>;
+    return (
+      <div className="w-full bg-gray-100 p-3 min-h-screen flex justify-center items-center">
+        <Spinner />
+      </div>
+    );
   }
 
   const totalDiscount = productType.map(
@@ -57,7 +62,9 @@ export default function ProductById() {
             </div>
 
             <div className="col-span-2">
-              <Link href="/"><p className="text-xs text-gray-500 font-light">Home ›</p></Link>
+              <Link href="/">
+                <p className="text-xs text-gray-500 font-light">Home ›</p>
+              </Link>
               <h1 className="text-base font-light mt-2"> {product.name} </h1>
               {product.discount ? (
                 <p className="text-sm font-semibold mt-1 text-blue-400">
@@ -81,7 +88,6 @@ export default function ProductById() {
                 ) : null}
               </div>
               <p className="mt-1 text-sm">{product.description}</p>
-
             </div>
             <button className="flex justify-center bg-[#0171b6] px-4 py-3 rounded-sm">
               <div className="flex">

@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { Products } from "./TvCollection";
 import { useRouter } from "next/navigation";
+import Spinner from "../ui/Spinner";
 
 export default function SummerCollectionFilterByType() {
   const [categorizedProduct, setCategorizedProduct] = useState<Products[]>([]);
@@ -21,7 +22,11 @@ export default function SummerCollectionFilterByType() {
   };
 
   if (categorizedProduct.length === 0) {
-    return <p>Loading...</p>;
+    return (
+      <div className="w-full bg-gray-100 p-3 min-h-screen flex justify-center items-center">
+        <Spinner />
+      </div>
+    );
   }
 
   const uniqueTypes = Array.from(

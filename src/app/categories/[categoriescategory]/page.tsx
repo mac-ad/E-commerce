@@ -4,6 +4,7 @@ import {
   DiscountedProductDetailCard,
 } from "@/app/components/CatProdDetailCard";
 import { Products } from "@/app/components/TvCollection";
+import Spinner from "@/app/ui/Spinner";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { FaAngleDown } from "react-icons/fa";
@@ -16,9 +17,7 @@ export default function GetProductByCategory() {
 
   const fetchDataByCategory = async () => {
     try {
-      const data = await fetch(
-        `/api/products/category?category=${category}`
-      );
+      const data = await fetch(`/api/products/category?category=${category}`);
       if (!data.ok) {
         throw new Error("Failed to fetch products");
       }
@@ -35,7 +34,11 @@ export default function GetProductByCategory() {
   }, [category]);
 
   if (productsByCategory.length == 0) {
-    return <p>Loading...</p>;
+    return (
+      <div className="w-full bg-gray-100 p-3 min-h-screen flex justify-center items-center">
+        <Spinner />
+      </div>
+    );
   }
 
   const filterByBrand = (brand: string) => {
