@@ -54,6 +54,14 @@ export default function GetProductByCategory() {
     );
     return setFilteredProducts(filteredBrandData);
   };
+
+  const uniqueBrand = Array.from(
+    new Set(productsByCategory.map((product) => product.brand))
+  );
+
+  const uniquesize = Array.from(
+    new Set(productsByCategory.map((product) => product.size))
+  );
   // const category = productsByCategory.map((product)=>product.category)
   return (
     <div className="w-full pt-[130px] bg-gray-100 flex justify-center pb-8">
@@ -81,17 +89,17 @@ export default function GetProductByCategory() {
               </p>
             </div>
             <div className="bg-white  border border-gray-200 ">
-              {productsByCategory.map((product) => (
+              {uniqueBrand.map((brand) => (
                 <div
                   className="py-2 px-6 flex  cursor-pointer hover:bg-gray-200"
-                  key={product.name}
+                  key={brand}
                 >
                   <input
                     type="checkbox"
                     className="mr-2"
-                    onClick={() => filterByBrand(product.brand)}
+                    onClick={() => filterByBrand(brand)}
                   />
-                  <p className="text-xs ">{product.brand.toUpperCase()}</p>
+                  <p className="text-xs ">{brand.toUpperCase()}</p>
                 </div>
               ))}
             </div>
@@ -102,13 +110,13 @@ export default function GetProductByCategory() {
               </p>
             </div>
             <div className="bg-white  border border-gray-200">
-              {productsByCategory.map((product) => (
+              {uniquesize.map((size) => (
                 <p
                   className="text-xs py-2 px-6 cursor-pointer hover:bg-gray-200"
-                  key={product.name}
-                  onClick={() => filterBySize(product.size)}
+                  key={size}
+                  onClick={() => filterBySize(size)}
                 >
-                  {product.size}
+                  {size}
                 </p>
               ))}
             </div>
