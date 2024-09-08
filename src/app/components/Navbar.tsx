@@ -9,11 +9,11 @@ import { IoGitCompareSharp } from "react-icons/io5";
 
 export default function Navbar() {
   const [showDropdown, setShowDropdown] = useState(false);
+  const [visible, setVisible] = useState(false);
   const [searchText, setSearchText] = useState("");
   const router = useRouter();
   console.log(searchText);
 
- 
   const handleMouseEnter = () => {
     setShowDropdown(true);
   };
@@ -23,11 +23,11 @@ export default function Navbar() {
   };
 
   const searchProduct = () => {
-    // const result = search.filter((searchedText) =>
-    //   searchedText.name.toLowerCase().includes(searchText.toLowerCase())
-    // );
-    // return result;
-    router.push(`/search/${searchText}`)
+    router.push(`/search/${searchText}`);
+  };
+
+  const toggleLoginRegister = () => {
+    setVisible(!visible);
   };
 
   return (
@@ -66,9 +66,33 @@ export default function Navbar() {
               <h1 className="text-xs font-light">NEP</h1>
               {/* Vertical Line */}
               <div className="h-full w-px bg-gray-300 self-stretch mx-4 hidden sm:block"></div>
-              <button className="ml-0 sm:ml-4 mt-2 sm:mt-0">
+              <button
+                className="ml-0 sm:ml-4 mt-2 sm:mt-0"
+                onClick={toggleLoginRegister}
+              >
                 <BsPersonFill size={25} className="text-[#0171b6]" />
               </button>
+              {visible && (
+                <>
+                  <div className="absolute  bg-white mt-[130px] p-5 border border-gray-200 mr-[60px]">
+                    <h1 className="text-xs text-black font-semibold mb-3">
+                      Welcome to MyHomeTechuniverse
+                    </h1>
+                    <div className="flex space-x-2">
+                      <Link href="/login">
+                        <p className="px-5 py-1 text-xs border border-gray-300 text-[#0171b6]">
+                          Login
+                        </p>
+                      </Link>
+                      <Link href="/register">
+                        <p className="px-5 py-1 text-xs border border-gray-300 text-[#0171b6]">
+                          Register
+                        </p>
+                      </Link>
+                    </div>
+                  </div>
+                </>
+              )}
               <button className="ml-4 mt-2 sm:mt-0">
                 <FaShoppingCart size={24} className="text-[#0171b6]" />
               </button>
