@@ -29,9 +29,12 @@ export default function Login() {
       <div className="pt-[130px] w-full bg-gray-200">
         <div className="flex justify-center p-4">
           <div className="w-[40%] bg-white py-12 px-12 flex flex-col rounded-sm shadow-lg">
-            <h1 className="text-3xl mb-8 font-extralight text-[#0171b6]">
-              Login
-            </h1>
+          <h1 className="text-3xl mb-2 font-extralight text-[#0171b6]">
+            Login
+          </h1>
+          <h1 className="text-sm mb-6 font-extralight text-gray-500">
+            Welcome Back!
+          </h1>
 
             <label className="text-sm font-light text-[#0171b6]">
               Username

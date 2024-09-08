@@ -10,7 +10,7 @@ export default function Register() {
   return (
     <div className="pt-[130px] w-full bg-gray-200">
       <div className="flex justify-center p-4">
-        <div className="w-[40%] bg-white py-11 px-12 flex flex-col rounded-sm">
+        <div className="w-[40%] bg-white py-11 px-12 flex flex-col rounded-sm shadow-lg">
           <h1 className="text-3xl mb-2 font-extralight text-[#0171b6]">
             Register
           </h1>
