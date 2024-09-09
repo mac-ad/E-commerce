@@ -19,7 +19,7 @@ export default function Login() {
   });
 
   const submitData = (data: LoginData) => {
-    if (data.username === "Mikasha@316" && data.password === "12@Dharan") {
+    if (data.email === "Mikasha@316" && data.password === "12@Dharan") {
       router.push("/dashboard");
     }
   };
@@ -37,16 +37,16 @@ export default function Login() {
           </h1>
 
             <label className="text-sm font-light text-[#0171b6]">
-              Username
+              E-mail
             </label>
             <input
               type="text"
-              placeholder="Enter your username"
-              {...register("username")}
+              placeholder="Enter your email"
+              {...register("email")}
               className="border border-gray-300 p-2 text-sm mt-3 font-extralight rounded-sm"
             />
-            {errors.username && (
-              <p className="text-red-500 text-xs mt-1">{errors.username.message}</p>
+            {errors.email && (
+              <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>
             )}
 
             <label className="text-sm mt-3 font-light text-[#0171b6]">
