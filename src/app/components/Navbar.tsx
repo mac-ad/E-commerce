@@ -30,6 +30,15 @@ export default function Navbar() {
     setVisible(!visible);
   };
 
+  const handleAuthRoute = (authType: string) => {
+    if (authType == "register") {
+      router.push("/register");
+      setVisible(!visible);
+    } else if (authType == "login") {
+      router.push("/login");
+      setVisible(!visible);
+    }
+  };
   return (
     <>
       <div className="fixed fixed-top w-full z-50">
@@ -79,16 +88,18 @@ export default function Navbar() {
                       Welcome to MyHomeTechuniverse
                     </h1>
                     <div className="flex space-x-2">
-                      <Link href="/login">
-                        <p className="px-5 py-1 text-xs border border-gray-300 text-[#0171b6]">
-                          Login
-                        </p>
-                      </Link>
-                      <Link href="/register">
-                        <p className="px-5 py-1 text-xs border border-gray-300 text-[#0171b6]">
-                          Register
-                        </p>
-                      </Link>
+                      <p
+                        className="px-5 py-1 text-xs border border-gray-300 text-[#0171b6] cursor-pointer"
+                        onClick={() => handleAuthRoute("login")}
+                      >
+                        Login
+                      </p>
+                      <p
+                        className="px-5 py-1 text-xs border border-gray-300 text-[#0171b6] cursor-pointer"
+                        onClick={() => handleAuthRoute("register")}
+                      >
+                        Register
+                      </p>
                     </div>
                   </div>
                 </>
