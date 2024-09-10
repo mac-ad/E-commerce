@@ -1,6 +1,9 @@
 "use client";
 import { useEffect, useState } from "react";
-import { CatProdDetailCard, DiscountedProductDetailCard } from "./CatProdDetailCard";
+import {
+  CatProdDetailCard,
+  DiscountedProductDetailCard,
+} from "./CatProdDetailCard";
 import { UseQueryResult, useQuery } from "@tanstack/react-query";
 import Spinner from "../ui/Spinner";
 
@@ -13,19 +16,19 @@ export interface Products {
   description: string;
   product_image?: string;
   emiprice: number;
-  category:string;
+  category: string;
   size: number;
   type: "TV" | "AirConditioner" | "Refrigerator";
-  $id:string; 
+  $id: string;
 }
 
-export const fetchTVCollection = async() =>{
-  const res = await fetch(`/api/products`)
+export const fetchTVCollection = async () => {
+  const res = await fetch(`/api/products`);
   if (!res.ok) {
     throw new Error("Network response was not ok");
   }
   return res.json();
-}
+};
 
 export default function TvCollection() {
   // const [tvCollectionData, setTvCollectionData] = useState<Products[]>([]);
@@ -89,10 +92,14 @@ export default function TvCollection() {
         </h1>
         <hr className="mt-3 text-gray-400" />
         <div className="grid lg:grid-cols-5 sm:grid-cols-1 md:grid-cols-3 ">
-          {tvCollectionData.filter((product) => product.type == "TV").
-            map((productDetail) =>
+          {tvCollectionData
+            .filter((product) => product.type == "TV")
+            .map((productDetail) =>
               productDetail.discount === 0 ? (
-                <CatProdDetailCard key={productDetail.name} productDetail={productDetail} />
+                <CatProdDetailCard
+                  key={productDetail.name}
+                  productDetail={productDetail}
+                />
               ) : (
                 <DiscountedProductDetailCard
                   productDetail={productDetail}
