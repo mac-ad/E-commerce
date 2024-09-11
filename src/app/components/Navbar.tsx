@@ -6,6 +6,7 @@ import { useState } from "react";
 import { BsPersonFill } from "react-icons/bs";
 import { FaShoppingCart } from "react-icons/fa";
 import { IoGitCompareSharp } from "react-icons/io5";
+import { useSelector } from "react-redux";
 
 export default function Navbar() {
   const [showDropdown, setShowDropdown] = useState(false);
@@ -29,6 +30,9 @@ export default function Navbar() {
   const toggleLoginRegister = () => {
     setVisible(!visible);
   };
+
+  const cartItems = useSelector((store: any) => store.cart);
+  console.log(cartItems.items.length);
 
   const handleAuthRoute = (authType: string) => {
     if (authType == "register") {
@@ -104,8 +108,11 @@ export default function Navbar() {
                   </div>
                 </>
               )}
-              <button className="ml-4 mt-2 sm:mt-0">
+              <button className="ml-4 mt-2 sm:mt-0 flex relative">
                 <FaShoppingCart size={24} className="text-[#0171b6]" />
+                <p className=" absolute text-xs text-gray-500 font-semibold left-5 bottom-3 px-1 py-[0.5px] bg-[#0171b6] text-white rounded-full">
+                  {cartItems?.items?.length}
+                </p>
               </button>
               <button className="ml-4 mt-2 sm:mt-0">
                 <IoGitCompareSharp size={24} className="text-[#0171b6]" />

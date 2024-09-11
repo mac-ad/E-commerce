@@ -48,6 +48,10 @@ export default function ProductById() {
     (prod) => prod.price - totalDiscount[0]
   );
 
+  const handleAddToCart = () =>{
+    
+  }
+
   return (
     <div className="pt-[130px] bg-gray-100 w-full flex justify-center">
       <div className="w-full bg-white p-4 grid grid-cols-3 gap-4">
@@ -92,7 +96,7 @@ export default function ProductById() {
             <button className="flex justify-center bg-[#0171b6] px-4 py-3 rounded-sm">
               <div className="flex">
                 <FaShoppingCart size={18} className="text-white" />
-                <p className="ml-3 text-white text-sm font-semibold">
+                <p className="ml-3 text-white text-sm font-semibold" onClick={handleAddToCart}>
                   Add To Cart
                 </p>
               </div>

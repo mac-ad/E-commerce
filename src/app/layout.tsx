@@ -4,7 +4,9 @@ import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ReactQueryProvider from "@/app/utils/Providers/ReactQueryProvider";
-
+import { Provider } from "react-redux";
+import { appstore } from "@/app/utils/appstore";
+import StoreProvider from "./StoreProvider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -20,13 +22,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div >
-        <ReactQueryProvider>
-
-          <Navbar />
-          {children}
-          <Footer/>
-          </ReactQueryProvider>
+        <div>
+          <StoreProvider>
+            <ReactQueryProvider>
+              <Navbar />
+              {children}
+              <Footer />
+            </ReactQueryProvider>
+          </StoreProvider>
         </div>
       </body>
     </html>
