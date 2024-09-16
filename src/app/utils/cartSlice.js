@@ -69,7 +69,7 @@ const cartSlice = createSlice({
           return {
             ...state,
             items: state.items.map((item) =>
-              item.id === newItem.id
+              item.$id === newItem.$id
                 ? { ...item, quantity: item.quantity - 1 }
                 : item
             ),

@@ -95,8 +95,8 @@ export default function ProductById() {
                   </>
                 ) : null}
               </div>
-              <p className="mt-1 text-sm">{product.description}</p>
-            </div>
+              <p className="mt-1 text-sm" dangerouslySetInnerHTML={{ __html: product.description }} />
+              </div>
             <button className="flex justify-center bg-[#0171b6] px-4 py-3 rounded-sm">
               <div className="flex">
                 <FaShoppingCart size={18} className="text-white" />

@@ -49,6 +49,7 @@ export default function CartTotal() {
         <h1 className="text-lg font-medium text-black">Total Price</h1>
         <p className="text-black">NPR {finalPrice}</p>
       </div>
+      <button className="text-white bg-[#0171b6] p-2 w-full mt-4">Proceed To Checkout</button>
     </div>
   );
 }
