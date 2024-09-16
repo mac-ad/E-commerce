@@ -8,23 +8,26 @@ const cartSlice = createSlice({
   reducers: {
     addItem: (state, action) => {
       const newItem = action.payload;
-      const newItemId = action.$id;
-      const existingItem = state.items.find(item => item.$id === newItem.$id);
+      const existingItem = state.items.find((item) => item.$id === newItem.$id);
 
       if (existingItem) {
-        return {
-          ...state,
-          items: state.items.map(item =>
-            item.id === newItem.id
-              ? { ...item, quantity: item.quantity + 1 } // Increment the quantity
-              : item
-          )
-        };
+        if (existingItem.quantity < newItem.stock) {
+          return {
+            ...state,
+            items: state.items.map((item) =>
+              item.$id === newItem.$id
+                ? { ...item, quantity: item.quantity + 1 }
+                : item
+            ),
+          };
+        } else {
+          console.log("Cannot add more, stock limit reached");
+          return state;
+        }
       } else {
-        // If item doesn't exist, add it with quantity 1
         return {
           ...state,
-          items: [...state.items, { ...newItem, quantity: 1 }]
+          items: [...state.items, { ...newItem, quantity: 1 }],
         };
       }
     },
@@ -34,9 +37,50 @@ const cartSlice = createSlice({
     clearCart: (state) => {
       state.items = [];
     },
+    increaseItem: (state, action) => {
+      const newItem = action.payload;
+      const existingItem = state.items.find((item) => item.$id === newItem.$id);
+
+      if (existingItem) {
+        if (existingItem.quantity < newItem.stock) {
+          return {
+            ...state,
+            items: state.items.map((item) =>
+              item.$id === newItem.$id
+                ? { ...item, quantity: item.quantity + 1 }
+                : item
+            ),
+          };
+        } else {
+          console.log("Cannot add more, stock limit reached");
+          return state;
+        }
+      }
+    },
+    decreaseItem: (state, action) => {
+      const newItem = action.payload;
+      const existingItem = state.items.find((item) => item.$id === newItem.$id);
+
+      if (existingItem) {
+        if (existingItem.quantity <= 1) {
+          console.log("Cannot reduce more.");
+          return state;
+        } else {
+          return {
+            ...state,
+            items: state.items.map((item) =>
+              item.id === newItem.id
+                ? { ...item, quantity: item.quantity - 1 }
+                : item
+            ),
+          };
+        }
+      }
+    },
   },
 });
 
-export const { addItem, removeItem, clearCart } = cartSlice.actions;
+export const { addItem, removeItem, clearCart, increaseItem, decreaseItem } =
+  cartSlice.actions;
 
 export default cartSlice.reducer;

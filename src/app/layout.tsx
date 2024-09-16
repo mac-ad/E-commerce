@@ -7,6 +7,7 @@ import ReactQueryProvider from "@/app/utils/Providers/ReactQueryProvider";
 import { Provider } from "react-redux";
 import { appstore } from "@/app/utils/appstore";
 import StoreProvider from "./StoreProvider";
+import { Toaster } from "sonner";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -25,6 +26,7 @@ export default function RootLayout({
         <div>
           <StoreProvider>
             <ReactQueryProvider>
+              <Toaster position="top-center" />
               <Navbar />
               {children}
               <Footer />

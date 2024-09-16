@@ -20,6 +20,7 @@ export interface Products {
   size: number;
   type: "TV" | "AirConditioner" | "Refrigerator";
   $id: string;
+  stock:number;
 }
 
 export const fetchTVCollection = async () => {

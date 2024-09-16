@@ -19,7 +19,7 @@ export const fetchProductById = async (id: string | string[]) => {
 export default function ProductById() {
   const [productType, setProductType] = useState<Products[]>([]);
   const params = useParams();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const fetchProductById = async (id: string | string[]) => {
     const data = await fetch(`/api/products/${id}`);
@@ -47,14 +47,14 @@ export default function ProductById() {
   const totalDiscount = productType.map(
     (prod) => (prod.discount / 100) * prod.price
   );
-  
+
   const priceAfterDiscount = productType.map(
     (prod) => prod.price - totalDiscount[0]
   );
 
-  const handleAddToCart = (product:Products) =>{
-    dispatch(addItem(product))
-  }                                                            
+  const handleAddToCart = (product: Products) => {
+    dispatch(addItem(product));
+  };
 
   return (
     <div className="pt-[130px] bg-gray-100 w-full flex justify-center">
@@ -100,7 +100,10 @@ export default function ProductById() {
             <button className="flex justify-center bg-[#0171b6] px-4 py-3 rounded-sm">
               <div className="flex">
                 <FaShoppingCart size={18} className="text-white" />
-                <p className="ml-3 text-white text-sm font-semibold" onClick={()=>handleAddToCart(product)}>
+                <p
+                  className="ml-3 text-white text-sm font-semibold"
+                  onClick={() => handleAddToCart(product)}
+                >
                   Add To Cart
                 </p>
               </div>
