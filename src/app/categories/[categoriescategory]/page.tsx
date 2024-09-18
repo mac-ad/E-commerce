@@ -14,6 +14,9 @@ export default function GetProductByCategory() {
   const category = decodeURIComponent(params.categoriescategory.toString());
   const [productsByCategory, setProductsByCategory] = useState<Products[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<Products[]>([]);
+  const [priceRange, setPriceRange] = useState([0, 5000]);
+  const [minPrice, setMinPrice] = useState(0);
+  const [maxPrice, setMaxPrice] = useState(5000);
 
   const fetchDataByCategory = async () => {
     try {
@@ -24,6 +27,13 @@ export default function GetProductByCategory() {
       const response = await data.json();
       setProductsByCategory(response.products);
       setFilteredProducts(response.products);
+
+      const prices = response.products.map(
+        (product: Products) => product.price
+      );
+      setMinPrice(Math.min(...prices));
+      setMaxPrice(Math.max(...prices));
+      setPriceRange([Math.min(...prices), Math.max(...prices)]);
     } catch (error) {
       console.error("Error fetching products:", error);
     }
@@ -33,7 +43,7 @@ export default function GetProductByCategory() {
     fetchDataByCategory();
   }, [category]);
 
-  if (productsByCategory.length == 0) {
+  if (productsByCategory.length === 0) {
     return (
       <div className="w-full bg-gray-100 p-3 min-h-screen flex justify-center items-center">
         <Spinner />
@@ -43,26 +53,25 @@ export default function GetProductByCategory() {
 
   const filterByBrand = (brand: string) => {
     const filteredBrandData = productsByCategory.filter(
-      (product) => product.brand == brand
+      (product) => product.brand === brand
     );
-    return setFilteredProducts(filteredBrandData);
+    setFilteredProducts(filteredBrandData);
   };
 
   const filterBySize = (size: number) => {
-    const filteredBrandData = productsByCategory.filter(
-      (product) => product.size == size
+    const filteredSizeData = productsByCategory.filter(
+      (product) => product.size === size
     );
-    return setFilteredProducts(filteredBrandData);
+    setFilteredProducts(filteredSizeData);
   };
 
-  const uniqueBrand = Array.from(
-    new Set(productsByCategory.map((product) => product.brand))
-  );
+  const filterByPrice = (minPrice: number, maxPrice: number) => {
+    const filteredPriceData = productsByCategory.filter(
+      (product) => product.price >= minPrice && product.price <= maxPrice
+    );
+    setFilteredProducts(filteredPriceData);
+  };
 
-  const uniquesize = Array.from(
-    new Set(productsByCategory.map((product) => product.size))
-  );
-  // const category = productsByCategory.map((product)=>product.category)
   return (
     <div className="w-full pt-[130px] bg-gray-100 flex justify-center pb-8">
       <div className="w-[90%] bg-white">
@@ -82,16 +91,19 @@ export default function GetProductByCategory() {
                 {category}
               </p>
             </div>
+
             <div className="bg-white py-2 px-3 border border-gray-200 flex justify-between">
               <h1 className="font-semibold text-sm">Brand</h1>
               <p>
                 <FaAngleDown />
               </p>
             </div>
-            <div className="bg-white  border border-gray-200 ">
-              {uniqueBrand.map((brand) => (
+            <div className="bg-white border border-gray-200">
+              {Array.from(
+                new Set(productsByCategory.map((product) => product.brand))
+              ).map((brand) => (
                 <div
-                  className="py-2 px-6 flex  cursor-pointer hover:bg-gray-200"
+                  className="py-2 px-6 flex cursor-pointer hover:bg-gray-200"
                   key={brand}
                 >
                   <input
@@ -103,14 +115,17 @@ export default function GetProductByCategory() {
                 </div>
               ))}
             </div>
+
             <div className="bg-white py-2 px-3 border border-gray-200 flex justify-between">
-              <h1 className="font-semibold text-sm">Filter</h1>
+              <h1 className="font-semibold text-sm">Size</h1>
               <p>
                 <FaAngleDown />
               </p>
             </div>
-            <div className="bg-white  border border-gray-200">
-              {uniquesize.map((size) => (
+            <div className="bg-white border border-gray-200">
+              {Array.from(
+                new Set(productsByCategory.map((product) => product.size))
+              ).map((size) => (
                 <p
                   className="text-xs py-2 px-6 cursor-pointer hover:bg-gray-200"
                   key={size}
@@ -120,7 +135,36 @@ export default function GetProductByCategory() {
                 </p>
               ))}
             </div>
+
+            <div className="bg-white py-2 px-3 border border-gray-200 flex justify-between">
+              <h1 className="font-semibold text-sm">Price Range</h1>
+              <p>
+                <FaAngleDown />
+              </p>
+            </div>
+            <div className="py-2 px-6 border border-gray-200">
+              <label
+                htmlFor="price-range"
+                className="block mb-2 text-xs font-medium text-gray-900 dark:text-white"
+              >
+                NPR {priceRange[0]} - NPR {priceRange[1]}
+              </label>
+              <input
+                id="price-range"
+                type="range"
+                min={minPrice}
+                max={maxPrice}
+                value={priceRange[1]}
+                onChange={(e) => {
+                  const newMaxPrice = parseInt(e.target.value, 10);
+                  setPriceRange([priceRange[0], newMaxPrice]);
+                  filterByPrice(priceRange[0], newMaxPrice);
+                }}
+                className="w-full h-2 mb-6 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
+              />
+            </div>
           </div>
+
           <div className="lg:col-span-3 md:col-span-1 border border-gray-200">
             <h1 className="text-[#888888] font-semibold text-xl p-4">
               {category}
