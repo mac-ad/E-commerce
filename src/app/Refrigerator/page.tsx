@@ -16,6 +16,7 @@ export default function Refrigerator() {
   console.log(pathname);
   // const type = decodeURIComponent(params.Refrigerator.toString());
   const [productType, setProductType] = useState<Products[]>([]);
+  const [productFilter, setProductFilter] = useState<Products[]>([]);
 
   const fetchDataByCategory = async () => {
     try {
@@ -25,6 +26,7 @@ export default function Refrigerator() {
       }
       const response = await data.json();
       setProductType(response.products);
+      setProductFilter(response.products);
     } catch (error) {
       console.error("Error fetching products:", error);
     }
@@ -47,7 +49,7 @@ export default function Refrigerator() {
     const filteredBrandData = productType.filter(
       (product) => product.size == size
     );
-    return setProductType(filteredBrandData);
+    return setProductFilter(filteredBrandData);
   }
 
   const uniquesize = Array.from(
@@ -114,8 +116,8 @@ export default function Refrigerator() {
 
           <div className="lg:col-span-3 md:col-span-1">
             <h1 className="text-[#888888] font-semibold text-xl p-4">{type}</h1>
-            <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1">
-              {productType.map((productDetail) =>
+            <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
+              {productFilter.map((productDetail) =>
                 productDetail.discount === 0 ? (
                   <CatProdDetailCard
                     key={productDetail.name}

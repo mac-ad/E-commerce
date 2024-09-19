@@ -2,6 +2,7 @@ import { FaPhone } from "react-icons/fa6";
 import { MdOutlineMailOutline } from "react-icons/md";
 import { ImHome } from "react-icons/im";
 import { LiaFaxSolid } from "react-icons/lia";
+import Link from "next/link";
 
 const Footer = () => {
   return (
@@ -102,6 +103,16 @@ const Footer = () => {
               <ImHome className="mr-2" size={18} />
               Kathmandu, Nepal
             </p>
+          </div>
+          <div className="main-heads">
+            <h1 className="text-sm font-semibold text-white">
+              Help
+            </h1>
+            <Link href={'/complaint'}>
+            <p className="text-gray-300 text-[13px] mt-5 flex font-extralight">
+              Mail a complaint
+            </p>
+            </Link>
           </div>
         </div>
       </div>
