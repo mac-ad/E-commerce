@@ -12,11 +12,13 @@ import { FaAngleDown } from "react-icons/fa";
 export default function Refrigerator() {
   const pathname = usePathname();
   const type = pathname.split("/").pop();
-  console.log(type);
-  console.log(pathname);
-  // const type = decodeURIComponent(params.Refrigerator.toString());
   const [productType, setProductType] = useState<Products[]>([]);
   const [productFilter, setProductFilter] = useState<Products[]>([]);
+  const [priceRange, setPriceRange] = useState([0, 5000]);
+  const [minPrice, setMinPrice] = useState(0);
+  const [maxPrice, setMaxPrice] = useState(5000);
+  const [uniquesize, setUniqueSize] = useState<number[]>([]);
+  const [uniqueCategory, setUniqueCategory] = useState<string[]>([]);
 
   const fetchDataByCategory = async () => {
     try {
@@ -27,6 +29,19 @@ export default function Refrigerator() {
       const response = await data.json();
       setProductType(response.products);
       setProductFilter(response.products);
+
+      // Calculate the price range and unique sizes based on fetched products
+      const prices = response.products.map(
+        (product: Products) => product.price
+      );
+      const sizes = Array.from(new Set(response.products.map((product: Products) => product.size)));
+      const categories = Array.from(new Set(response.products.map((product: Products) => product.category)));
+
+      setMinPrice(Math.min(...prices));
+      setMaxPrice(Math.max(...prices));
+      setPriceRange([Math.min(...prices), Math.max(...prices)]);
+      setUniqueSize(sizes);
+      setUniqueCategory(categories);
     } catch (error) {
       console.error("Error fetching products:", error);
     }
@@ -36,30 +51,43 @@ export default function Refrigerator() {
     fetchDataByCategory();
   }, [type]);
 
-  if (productType.length == 0) {
+  if (productType.length === 0) {
     return (
       <div className="w-full bg-gray-100 p-3 min-h-screen flex justify-center items-center">
         <Spinner />
       </div>
     );
   }
-  console.log(productType);
 
-  const filterBySize = (size:number) =>{
-    const filteredBrandData = productType.filter(
-      (product) => product.size == size
+  const filterByCategory = (category: string) => {
+    const filteredCategoryData = productType.filter(
+      (product) => product.category === category
     );
-    return setProductFilter(filteredBrandData);
-  }
+    setProductFilter(filteredCategoryData);
 
-  const uniquesize = Array.from(
-    new Set(productType.map((product) => product.size))
-  );
+    // Update the price range and unique sizes after filtering by category
+    const prices = filteredCategoryData.map((product) => product.price);
+    const sizes = Array.from(new Set(filteredCategoryData.map((product) => product.size)));
+
+    setMinPrice(Math.min(...prices));
+    setMaxPrice(Math.max(...prices));
+    setPriceRange([Math.min(...prices), Math.max(...prices)]);
+    setUniqueSize(sizes);
+  };
+
+  const filterByPrice = (minPrice: number, maxPrice: number) => {
+    const filteredPriceData = productType.filter(
+      (product) => product.price >= minPrice && product.price <= maxPrice
+    );
+    setProductFilter(filteredPriceData);
+  };
+
   return (
     <div className="w-full pt-[130px] bg-gray-100 flex justify-center">
       <div className="w-[90%] bg-white">
-        <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1  ">
+        <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1">
           <div className="lg:col-span-1 md:col-span-1">
+            {/* Shop By Section */}
             <div className="bg-white py-2 px-3 border border-gray-200 flex justify-between">
               <h1 className="font-semibold text-sm">Shop By</h1>
               <p>
@@ -74,46 +102,75 @@ export default function Refrigerator() {
                 {type}
               </p>
             </div>
+
+            {/* Category Filter */}
             <div className="bg-white py-2 px-3 border border-gray-200 flex justify-between">
-              <h1 className="font-semibold text-sm">Brand</h1>
+              <h1 className="font-semibold text-sm">Category</h1>
               <p>
                 <FaAngleDown />
               </p>
             </div>
-            <div className="bg-white  border border-gray-200 ">
-              {/* {uniqueBrand.map((brand) => (
+            <div className="bg-white border border-gray-200">
+              {uniqueCategory.map((category) => (
                 <div
-                  className="py-2 px-6 flex  cursor-pointer hover:bg-gray-200"
-                  key={brand}
+                  className="py-2 px-6 flex cursor-pointer hover:bg-gray-200"
+                  key={category}
                 >
-                  <input
-                    type="checkbox"
-                    className="mr-2"
-                    // onClick={() => filterByBrand(brand)}
-                  />
-                  <p className="text-xs ">{brand.toUpperCase()}</p>
+                  <input type="checkbox" className="mr-2" />
+                  <p
+                    className="text-xs"
+                    onClick={() => filterByCategory(category)}
+                  >
+                    {category.toUpperCase()}
+                  </p>
                 </div>
-              ))} */}
+              ))}
             </div>
+
+            {/* Size Filter */}
             <div className="bg-white py-2 px-3 border border-gray-200 flex justify-between">
-              <h1 className="font-semibold text-sm">Filter</h1>
+              <h1 className="font-semibold text-sm">Size</h1>
               <p>
                 <FaAngleDown />
               </p>
             </div>
-            <div className="bg-white  border border-gray-200">
+            <div className="bg-white border border-gray-200">
               {uniquesize.map((size) => (
                 <p
                   className="text-xs py-2 px-6 cursor-pointer hover:bg-gray-200"
                   key={size}
-                  onClick={() => filterBySize(size)}
+                  onClick={() => setProductFilter(productType.filter((product) => product.size === size))}
                 >
                   {size}
                 </p>
               ))}
             </div>
+
+            {/* Price Range Filter */}
+            <div className="py-2 px-6 border border-gray-200">
+              <label
+                htmlFor="price-range"
+                className="block mb-2 text-xs font-medium text-gray-900 dark:text-white"
+              >
+                NPR {priceRange[0]} - NPR {priceRange[1]}
+              </label>
+              <input
+                id="price-range"
+                type="range"
+                min={minPrice}
+                max={maxPrice}
+                value={priceRange[1]}
+                onChange={(e) => {
+                  const newMaxPrice = parseInt(e.target.value, 10);
+                  setPriceRange([priceRange[0], newMaxPrice]);
+                  filterByPrice(priceRange[0], newMaxPrice);
+                }}
+                className="w-full h-2 mb-6 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
+              />
+            </div>
           </div>
 
+          {/* Product Display Section */}
           <div className="lg:col-span-3 md:col-span-1">
             <h1 className="text-[#888888] font-semibold text-xl p-4">{type}</h1>
             <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
