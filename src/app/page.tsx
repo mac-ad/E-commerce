@@ -1,3 +1,5 @@
+import AirConditioner from "./AirConditioner/page";
+import AirConditionerCollection from "./components/AirConditionerCollection";
 import PromoSlider from "./components/PromoSlider";
 import RefrigiratorCollection from "./components/SummerCollection";
 import SummerCollectionFilterByType from "./components/SummerCollectionFIlterByType";
@@ -12,6 +14,7 @@ export default function Home() {
       <TvCollection/>
       <SummerCollectionFilterByType/>
       <RefrigiratorCollection/>
+      <AirConditionerCollection/>
     </main>
   );
 }

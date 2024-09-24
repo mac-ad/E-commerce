@@ -34,7 +34,7 @@ export default function SummerCollectionFilterByType() {
       categorizedProduct
         .filter(
           (product) =>
-            product.type == "Refrigerator" || product.type == "AirConditioner"
+            product.type == "Refrigerator" || product.type == "AC"
         )
         .map((product) => product.type)
     )

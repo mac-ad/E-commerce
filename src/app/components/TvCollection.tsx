@@ -18,7 +18,7 @@ export interface Products {
   emiprice: number;
   category: string;
   size: number;
-  type: "TV" | "AirConditioner" | "Refrigerator";
+  type: "TV" | "AC" | "Refrigerator";
   $id: string;
   stock:number;
 }

@@ -30,12 +30,15 @@ export default function Refrigerator() {
       setProductType(response.products);
       setProductFilter(response.products);
 
-      // Calculate the price range and unique sizes based on fetched products
       const prices = response.products.map(
         (product: Products) => product.price
       );
-      const sizes = Array.from(new Set(response.products.map((product: Products) => product.size)));
-      const categories = Array.from(new Set(response.products.map((product: Products) => product.category)));
+      const sizes = Array.from(
+        new Set(response.products.map((product: Products) => product.size))
+      );
+      const categories = Array.from(
+        new Set(response.products.map((product: Products) => product.category))
+      );
 
       setMinPrice(Math.min(...prices));
       setMaxPrice(Math.max(...prices));
@@ -65,9 +68,10 @@ export default function Refrigerator() {
     );
     setProductFilter(filteredCategoryData);
 
-    // Update the price range and unique sizes after filtering by category
     const prices = filteredCategoryData.map((product) => product.price);
-    const sizes = Array.from(new Set(filteredCategoryData.map((product) => product.size)));
+    const sizes = Array.from(
+      new Set(filteredCategoryData.map((product) => product.size))
+    );
 
     setMinPrice(Math.min(...prices));
     setMaxPrice(Math.max(...prices));
@@ -103,7 +107,6 @@ export default function Refrigerator() {
               </p>
             </div>
 
-            {/* Category Filter */}
             <div className="bg-white py-2 px-3 border border-gray-200 flex justify-between">
               <h1 className="font-semibold text-sm">Category</h1>
               <p>
@@ -127,7 +130,6 @@ export default function Refrigerator() {
               ))}
             </div>
 
-            {/* Size Filter */}
             <div className="bg-white py-2 px-3 border border-gray-200 flex justify-between">
               <h1 className="font-semibold text-sm">Size</h1>
               <p>
@@ -139,14 +141,17 @@ export default function Refrigerator() {
                 <p
                   className="text-xs py-2 px-6 cursor-pointer hover:bg-gray-200"
                   key={size}
-                  onClick={() => setProductFilter(productType.filter((product) => product.size === size))}
+                  onClick={() =>
+                    setProductFilter(
+                      productType.filter((product) => product.size === size)
+                    )
+                  }
                 >
                   {size}
                 </p>
               ))}
             </div>
 
-            {/* Price Range Filter */}
             <div className="py-2 px-6 border border-gray-200">
               <label
                 htmlFor="price-range"
@@ -170,7 +175,6 @@ export default function Refrigerator() {
             </div>
           </div>
 
-          {/* Product Display Section */}
           <div className="lg:col-span-3 md:col-span-1">
             <h1 className="text-[#888888] font-semibold text-xl p-4">{type}</h1>
             <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">

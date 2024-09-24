@@ -34,7 +34,6 @@ export default function AirConditioner() {
       return <p>Loading...</p>;
     }
 
-    console.log(productType)
   
     return (
       <div className="w-full pt-[110px] bg-gray-100 flex justify-center">
