@@ -1,4 +1,4 @@
-import AirConditioner from "./AirConditioner/page";
+import AirConditioner from "./AC/page";
 import AirConditionerCollection from "./components/AirConditionerCollection";
 import PromoSlider from "./components/PromoSlider";
 import RefrigiratorCollection from "./components/SummerCollection";

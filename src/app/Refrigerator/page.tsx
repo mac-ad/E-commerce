@@ -91,7 +91,6 @@ export default function Refrigerator() {
       <div className="w-[90%] bg-white">
         <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1">
           <div className="lg:col-span-1 md:col-span-1">
-            {/* Shop By Section */}
             <div className="bg-white py-2 px-3 border border-gray-200 flex justify-between">
               <h1 className="font-semibold text-sm">Shop By</h1>
               <p>

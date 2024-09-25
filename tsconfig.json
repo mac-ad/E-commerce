@@ -21,6 +21,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/[AirConditioner]", "src/app/AirConditioner", "src/app/utils/appstore.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/[AirConditioner]", "src/app/AC", "src/app/utils/appstore.js"],
   "exclude": ["node_modules"]
 }
