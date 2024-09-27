@@ -15,7 +15,7 @@ export default function AirConditioner() {
 
   const [productType, setProductType] = useState<Products[]>([]);
   const [filteredProduct, setFilteredProduct] = useState<Products[]>([]);
-  const [priceRange, setPriceRange] = useState([0, 5000])
+  const [priceRange, setPriceRange] = useState([0, 5000]);
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(0);
   const [visibility, setVisibility] = useState({
@@ -31,8 +31,12 @@ export default function AirConditioner() {
         throw new Error("Failed to fetch products");
       }
       const response = await data.json();
+      const price = response.products.map((product: Products) => product.price);
       setProductType(response.products);
       setFilteredProduct(response.products);
+      setPriceRange([Math.min(...price), Math.max(...price)]);
+      setMinPrice(Math.min(...price));
+      setMaxPrice(Math.max(...price));
     } catch (error) {
       console.error("Error fetching products:", error);
     }
@@ -53,11 +57,20 @@ export default function AirConditioner() {
   const fetchByCategory = (category: string) => {
     const data = productType.filter((product) => product.category === category);
     setFilteredProduct(data);
+    const prices = data.map((product) => product.price);
+    setMinPrice(Math.min(...prices));
+    setMaxPrice(Math.max(...prices));
+    setPriceRange([Math.min(...prices), Math.max(...prices)])
   };
 
   const fetchBySize = (size: number) => {
     const data = productType.filter((product) => product.size === size);
     setFilteredProduct(data);
+  };
+
+  const filterByPrice = (maxPrice: number) => {
+    const data = productType.filter((product) => product.price <= maxPrice);
+    return setFilteredProduct(data);
   };
 
   const toggleVisibility = (section: keyof typeof visibility) => {
@@ -66,6 +79,11 @@ export default function AirConditioner() {
       [section]: !prevVisibility[section],
     }));
   };
+
+  const category = Array.from(
+    new Set(productType.map((product) => product.category))
+  );
+
 
   return (
     <div className="w-full pt-[130px] bg-gray-100 flex justify-center">
@@ -133,10 +151,21 @@ export default function AirConditioner() {
               </div>
             )}
             <div className="bg-white py-2 px-3 border border-gray-200  justify-between">
-                <p className="">
-                  NPR {priceRange[0]} - NPR {priceRange[1]}
-                </p>
-              <input type="range" className="w-full" />
+              <p className="">
+                NPR {priceRange[0]} - NPR {priceRange[1]}
+              </p>
+              <input
+                type="range"
+                className="w-full"
+                min={minPrice}
+                max={maxPrice}
+                value={priceRange[1]}
+                onChange={(e) => {
+                  const newMaxPrice = parseInt(e.target.value, 10);
+                  setPriceRange([priceRange[0], newMaxPrice]);
+                  filterByPrice(newMaxPrice);
+                }}
+              />
             </div>
           </div>
 
