@@ -15,6 +15,7 @@ export default function AirConditioner() {
 
   const [productType, setProductType] = useState<Products[]>([]);
   const [filteredProduct, setFilteredProduct] = useState<Products[]>([]);
+  const [categoryType, setCategorytype] = useState([])
   const [priceRange, setPriceRange] = useState([0, 5000]);
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(0);
@@ -33,6 +34,7 @@ export default function AirConditioner() {
       const response = await data.json();
       const price = response.products.map((product: Products) => product.price);
       setProductType(response.products);
+      setCategorytype(response.products);
       setFilteredProduct(response.products);
       setPriceRange([Math.min(...price), Math.max(...price)]);
       setMinPrice(Math.min(...price));
@@ -58,14 +60,20 @@ export default function AirConditioner() {
     const data = productType.filter((product) => product.category === category);
     setFilteredProduct(data);
     const prices = data.map((product) => product.price);
+    setProductType(data);
+    console.log(productType)
     setMinPrice(Math.min(...prices));
     setMaxPrice(Math.max(...prices));
-    setPriceRange([Math.min(...prices), Math.max(...prices)])
+    setPriceRange([Math.min(...prices), Math.max(...prices)]);
   };
 
   const fetchBySize = (size: number) => {
     const data = productType.filter((product) => product.size === size);
     setFilteredProduct(data);
+    const prices = data.map((product) => product.price);
+    setMinPrice(Math.min(...prices));
+    setMaxPrice(Math.max(...prices));
+    setPriceRange([Math.min(...prices), Math.max(...prices)]);
   };
 
   const filterByPrice = (maxPrice: number) => {
@@ -79,11 +87,6 @@ export default function AirConditioner() {
       [section]: !prevVisibility[section],
     }));
   };
-
-  const category = Array.from(
-    new Set(productType.map((product) => product.category))
-  );
-
 
   return (
     <div className="w-full pt-[130px] bg-gray-100 flex justify-center">

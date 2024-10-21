@@ -108,13 +108,13 @@ export default function Navbar() {
                   </div>
                 </>
               )}
-              <Link href='/cart'>
-              <button className="ml-4 mt-2 sm:mt-0 flex relative">
-                <FaShoppingCart size={24} className="text-[#0171b6]" />
-                <p className=" absolute text-xs text-gray-500 font-semibold left-5 bottom-3 px-[7px] py-[2px] bg-[#0171b6] text-white rounded-full">
-                  {cartItems?.items?.length}
-                </p>
-              </button>
+              <Link href="/cart">
+                <button className="ml-4 mt-2 sm:mt-0 flex relative">
+                  <FaShoppingCart size={24} className="text-[#0171b6]" />
+                  <p className=" absolute text-xs text-gray-500 font-semibold left-5 bottom-3 px-[7px] py-[2px] bg-[#0171b6] text-white rounded-full">
+                    {cartItems?.items?.length}
+                  </p>
+                </button>
               </Link>
             </div>
           </div>
