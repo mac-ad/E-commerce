@@ -7,36 +7,39 @@ import Link from "next/link";
 import Spinner from "../ui/Spinner";
 import { useDispatch } from "react-redux";
 import { addItem } from "../utils/cartSlice";
-
-export const fetchProductById = async (id: string | string[]) => {
-  const data = await fetch(`/api/products/${id}`);
-  if (!data.ok) {
-    throw new Error("Something Wrong");
-  }
-  return data.json();
-};
+import NotFound from "../components/not-found";
 
 export default function ProductById() {
   const [productType, setProductType] = useState<Products[]>([]);
+  const [error, setError] = useState(false);  // Track if there was an error
   const params = useParams();
   const dispatch = useDispatch();
 
   const fetchProductById = async (id: string | string[]) => {
-    const data = await fetch(`/api/products/${id}`);
+    try {
+      const data = await fetch(`/api/products/${id}`);
 
-    if (!data.ok) {
-      throw new Error("Something went wrong");
+      if (!data.ok) {
+        setError(true);
+        return;
+      }
+
+      const response = await data.json();
+      setProductType(response.product);
+    } catch (err) {
+      setError(true);
     }
-
-    const response = await data.json();
-    setProductType(response.product);
   };
 
   useEffect(() => {
     fetchProductById(params.id);
   }, [params.id]);
 
-  if (productType.length == 0) {
+  if (error) {
+    return <NotFound />;
+  }
+
+  if (productType.length === 0) {
     return (
       <div className="w-full bg-gray-100 p-3 min-h-screen flex justify-center items-center">
         <Spinner />
