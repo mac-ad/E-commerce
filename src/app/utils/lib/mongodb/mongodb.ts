@@ -1,6 +1,6 @@
 import mongoose, { Mongoose } from 'mongoose';
 
-const MONGODB_URI = "mongodb://admin:6711@127.0.0.1:27017/myDb?authSource=admin"
+const MONGODB_URI = process.env.MONGODB_URI
 // process.env.MONGODB_URI as string;
 
 if (!MONGODB_URI)
@@ -15,10 +15,10 @@ let cached = (global as any).mongoose || { conn: null, promise: null };
 
 
 export async function connectToDb(): Promise<any> {
-    console.log("inside connectToDb", MONGODB_URI)
+    if(!MONGODB_URI) throw new Error("Missing mongo uri")
     try {
         if (cached.conn) return cached.conn;
-        console.log(MONGODB_URI)
+        
 
         if (!cached.promise) {
             cached.promise = mongoose.connect(MONGODB_URI)

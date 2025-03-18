@@ -40,7 +40,7 @@ export default function Navbar() {
     try{
       const res = await logout().unwrap();
       // console.log(res);
-      dispatch(logoutUser());
+      dispatch(logoutUser({}));
       // dispatch(userApi.util.resetApiState());
       // dispatch(cartApi.util.resetApiState());
       router.push("/");

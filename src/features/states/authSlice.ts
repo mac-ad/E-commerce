@@ -40,7 +40,7 @@ const authSlice = createSlice({
             state.loggedIn = false;
             state.user = null;
             // localStorage.removeItem("token");
-            if(action.payload.showToast) toast.success("You are logged out. Please log back in");
+            if(action && action.payload.showToast) toast.success("You are logged out. Please log back in");
         },
     },
 });
