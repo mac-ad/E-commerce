@@ -7,7 +7,7 @@ import Link from "next/link";
 const Footer = () => {
   return (
     <>
-      <div className="w-full bg-[#323232] py-8 px-[70px] border-t-4 border-gray-800 h-full relative">
+      <div className="w-full bg-[#323232] py-8 px-[70px] border-t-4 border-gray-800">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           <div className="main-heads">
             <h1 className="text-sm font-semibold text-white">COMPANY</h1>
@@ -109,9 +109,9 @@ const Footer = () => {
               Help
             </h1>
             <Link href={'/complaint'}>
-            <p className="text-gray-300 text-[13px] mt-5 flex font-extralight">
-              Mail a complaint
-            </p>
+              <p className="text-gray-300 text-[13px] mt-5 flex font-extralight">
+                Mail a complaint
+              </p>
             </Link>
           </div>
         </div>

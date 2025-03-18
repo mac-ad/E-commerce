@@ -5,6 +5,13 @@ export type LoginData = {
   password: string;
 };
 
+export type RegisterData = {  
+  fullName: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+};
+
 export const loginSchema: ZodType<LoginData> = z.object({
   email: z
     .string()
@@ -12,14 +19,14 @@ export const loginSchema: ZodType<LoginData> = z.object({
     .min(2, { message: "Email must be at least 2 characters." }),
   password: z
     .string()
-    .min(2, { message: "Password must be at least 2 characters." })
-    .regex(
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{2,}$/,
-      {
-        message:
-          "Password must include at least one uppercase letter, one lowercase letter, one number, and one special character.",
-      }
-    ),
+    // .min(2, { message: "Password must be at least 2 characters." })
+    // .regex(
+    //   /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{2,}$/,
+    //   {
+    //     message:
+    //       "Password must include at least one uppercase letter, one lowercase letter, one number, and one special character.",
+    //   }
+    // ),
 });
 // .refine(
 //   (data) => data.email === "Mikasha@316" && data.password === "12@Dharan",
@@ -29,9 +36,9 @@ export const loginSchema: ZodType<LoginData> = z.object({
 //   }
 // );
 
-export const registerSchema = z
+export const registerSchema: ZodType<RegisterData> = z
   .object({
-    fullname: z
+    fullName: z
       .string()
       .min(2, { message: "Fullname must be of atleast 2 characters" }),
     email: z

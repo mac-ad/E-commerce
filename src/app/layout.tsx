@@ -4,10 +4,10 @@ import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ReactQueryProvider from "@/app/utils/Providers/ReactQueryProvider";
-import { Provider } from "react-redux";
-import { appstore } from "@/app/utils/appstore";
 import StoreProvider from "./StoreProvider";
 import { Toaster } from "sonner";
+import Wrapper from "./components/Wrapper";
+import App from "./App";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -20,16 +20,19 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <div>
+      <body
+      className={inter.className}
+      >
+        <div className="">
           <StoreProvider>
             <ReactQueryProvider>
-              <Toaster position="top-center" />
-              <Navbar />
-              {children}
-              <Footer />
+            <Toaster position="top-center" duration={3000} />
+              <App>
+                {children}
+              </App>
             </ReactQueryProvider>
           </StoreProvider>
         </div>

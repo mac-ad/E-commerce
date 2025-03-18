@@ -1,0 +1,65 @@
+import { NextResponse } from "next/server";
+import { UserModel } from "@/app/models/userModel";
+import { connectToDb } from "@/app/utils/lib/mongodb/mongodb";
+import { withAuthAndErrorHandler } from "@/app/utils/routesMiddleware";
+
+const model = UserModel;
+    export const PUT = withAuthAndErrorHandler(async (
+    request: Request,
+    { params }: { params: { id: string } }
+    ) => {
+        await connectToDb();
+
+        const body = await request.json();
+        const { id } = params;
+
+        const user = await model.findByIdAndUpdate(
+        id,
+        { $set: body },
+        { new: true }
+        ).select("-password");
+
+        if (!user) {
+        return NextResponse.json(
+            { error: "User not found" },
+            { status: 404 }
+        );
+        }
+
+        return NextResponse.json({
+        data: user,
+        message: "User updated successfully"
+        });
+    });
+
+export const GET = withAuthAndErrorHandler(async (
+  request: Request,
+  { params }: { params: { id: string | undefined } }
+) => {
+  await connectToDb();
+
+  const { id } = params;
+  const userId = request.userId;
+  console.log(userId,id,'id');
+
+  if(!id && !userId){
+    return NextResponse.json({
+      error: "User id is required"
+    }, { status: 404 });
+  }
+
+
+  const user = await model.findById(id || userId).select("-password");
+
+  if (!user) {
+    return NextResponse.json(
+      { error: "User not found" },
+      { status: 404 }
+    );
+  }
+
+  return NextResponse.json({
+    data: user,
+    message: "User fetched successfully"
+  });
+});

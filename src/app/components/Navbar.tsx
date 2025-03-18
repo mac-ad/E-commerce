@@ -2,18 +2,53 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BsPersonFill } from "react-icons/bs";
 import { FaShoppingCart } from "react-icons/fa";
 import { IoGitCompareSharp } from "react-icons/io5";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { HiMenu } from "react-icons/hi";
+import { BiLock } from "react-icons/bi";
+import { AppDispatch, RootState } from "@/store/store";
+import { logoutUser } from "@/features/states/authSlice";
+import { useGetCategoriesQuery } from "@/features/api/categoryApiSlice";
+import { setCategories } from "@/features/states/CategorySlice";
+import CategoriesNav from "./CategoriesNav";
+import { useLogoutMutation } from "@/features/api/apiSlice";
+import { toast } from "sonner";
+import { Button } from "@/components/ui/button";
+import { useLazyGetProfileQuery, userApi } from "@/features/api/userApiSlice";
+import { cartApi } from "@/features/api/cartApiSlice";
 
 export default function Navbar() {
   const [showDropdown, setShowDropdown] = useState(false);
   const [visible, setVisible] = useState(false);
   const [searchText, setSearchText] = useState("");
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const router = useRouter();
-  console.log(searchText);
+
+  const dispatch = useDispatch<AppDispatch>();
+  const loggedIn = useSelector((state: RootState) => state.auth.loggedIn)
+  const isAdmin = useSelector((state: RootState) => state.auth.user?.role) === "admin";
+
+  const categories = useSelector((state: RootState) => state.category.data);
+  const categoriesLoading = useSelector((state: RootState) => state.category.isLoading);
+
+  const [logout, { isLoading: loggingOut }] = useLogoutMutation();
+
+  const logoutHandler = async () => {
+    try{
+      const res = await logout().unwrap();
+      // console.log(res);
+      dispatch(logoutUser());
+      // dispatch(userApi.util.resetApiState());
+      // dispatch(cartApi.util.resetApiState());
+      router.push("/");
+    }catch(err){
+      console.log(err);
+    }
+  }
+
 
   const handleMouseEnter = () => {
     setShowDropdown(true);
@@ -31,8 +66,15 @@ export default function Navbar() {
     setVisible(!visible);
   };
 
-  const cartItems = useSelector((store: any) => store.cart);
-  console.log(cartItems.items.length);
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+
+  const cartQuantity = useSelector((state: RootState) => state.cart.totalQuantity);
+  const userId = useSelector((state: RootState) => state.auth.user?._id);
+
+  const [getProfile, {data:profile, isLoading:isProfileLoading, isError:isProfileError, error:profileError}] = useLazyGetProfileQuery();
 
   const handleAuthRoute = (authType: string) => {
     if (authType == "register") {
@@ -43,152 +85,164 @@ export default function Navbar() {
       setVisible(!visible);
     }
   };
+
+  const adminDashboardHandler = async () => {
+    try{
+      const res = await getProfile().unwrap();
+      console.log(res);
+      if(res.data.role === "admin"){
+        router.push("/admin");
+      }else{
+        toast.error("You are not authorized to access this page");
+      }
+    }catch(err){
+      console.log(err);
+    }
+  }
+
   return (
     <>
-      <div className="fixed fixed-top w-full z-50">
-        <div className="w-full py-3 px-4 sm:px-6 lg:px-8 bg-white">
+      <div className="w-full sticky top-0 z-20 bg-white">
+        <div className="py-4 w-[90%] mx-auto bg-white">
           <div className="w-full flex flex-wrap lg:flex-nowrap justify-between items-center">
-            <Link
-              href="/"
-              className="w-full sm:w-auto lg:w-[30%] text-base sm:text-lg md:text-xl font-semibold mb-2 sm:mb-0"
-            >
-              <Image
-                src="/images/my_electronics_logo.jpg"
-                width={150}
-                height={60}
-                alt="Slide 1"
-              />
-            </Link>
-
-            <div className="w-full flex flex-wrap lg:flex-nowrap items-center mb-2 sm:mb-0">
-              <input
-                placeholder="Search Products..."
-                className="w-full sm:w-[60%] md:w-[70%] lg:w-[70%] p-2 sm:p-3 border border-t-0 text-sm shadow-lg"
-                value={searchText}
-                onChange={(e) => setSearchText(e.target.value)}
-              />
-              <button
-                className="w-full sm:w-auto mt-2 sm:mt-0 bg-[#0171b6] py-2 sm:py-3 px-4 sm:px-6 md:px-8 text-white text-sm"
-                onClick={searchProduct}
+            <div className="flex justify-between items-center w-full">
+              <Link
+                href="/"
+                className="text-base sm:text-lg md:text-xl font-semibold"
               >
-                Search
-              </button>
+                <Image
+                  src="/images/my_electronics_logo.jpg"
+                  width={150}
+                  height={60}
+                  alt="Slide 1"
+                />
+              </Link>
+              <div className="flex items-center gap-4">
+                {
+                  isAdmin && <Button variant="outline" onClick = {adminDashboardHandler} className = "border-primary text-primary hover:bg-primary hover:text-white">Admin Dashboard</Button>
+                }
+               <div className="flex items-center gap-2 border-r border-gray-300 pr-5 py-4">
+                  <Image src="/images/nepal_flag.svg" width={12} height={12} alt="Nepal Flag" />
+                <span className="text-xs">NEP</span>
+               </div>
+                <div className="flex items-center gap-2">
+                  <button onClick={toggleLoginRegister} className="">
+                    <BsPersonFill size={25} className="text-primary" />
+                  </button>
+                  <Link href="/cart">
+                    <button className="flex relative">
+                      <FaShoppingCart size={24} className="text-primary" />
+                      <p className="absolute text-xs text-gray-500 font-semibold left-5 bottom-3 px-[7px] py-[2px] bg-[#0171b6] text-white rounded-full">
+                        {cartQuantity}
+                      </p>
+                    </button>
+                  </Link>
+                </div>
+                {/* <button onClick={toggleMenu}>
+                  <HiMenu size={24} className="text-[#0171b6]" />
+                </button> */}
+              </div>
             </div>
-
-            <div className="flex items-center h-full w-full sm:w-auto justify-between sm:justify-end">
-              <h1 className="text-xs font-light">NEP</h1>
-              {/* Vertical Line */}
-              <div className="h-full w-px bg-gray-300 self-stretch mx-4 hidden sm:block"></div>
+          </div>
+        </div>
+        <CategoriesNav 
+          categories={categories}
+          isLoading={categoriesLoading}
+        />
+      </div>
+      
+      {/* Welcome Modal */}
+      {visible && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[999]">
+          <div className="bg-white p-8 rounded-lg shadow-xl w-96">
+            <h1 className="text-xl font-semibold text-gray-800 mb-6 text-center">
+              Welcome to MyHomeTechuniverse
+            </h1>
+            <div className="flex flex-col space-y-4">
+              {
+                loggedIn ? (
+                  <button
+                    className="w-full py-3 text-white bg-[#0171b6] rounded-lg hover:bg-[#015da1] transition"
+                    onClick={() => { 
+                      console.log("clicked");
+                        // dispatch(logoutUser())
+                        logoutHandler();
+                        setVisible(false);
+                      }}
+                  >
+                    Logout
+                  </button>
+                ) : <>
+                <button
+                className="w-full py-3 text-white bg-[#0171b6] rounded-lg hover:bg-[#015da1] transition"
+                onClick={() => handleAuthRoute("login")}
+              >
+                Login
+              </button>
               <button
-                className="ml-0 sm:ml-4 mt-2 sm:mt-0"
+                className="w-full py-3 text-[#0171b6] border-2 border-[#0171b6] rounded-lg hover:bg-gray-50 transition"
+                onClick={() => handleAuthRoute("register")}
+              >
+                Register
+              </button>
+                </>
+              }
+              <button
+                className="w-full py-2 text-gray-600 hover:text-gray-800"
                 onClick={toggleLoginRegister}
               >
-                <BsPersonFill size={25} className="text-[#0171b6]" />
+                Close
               </button>
-              {visible && (
-                <>
-                  <div className="absolute  bg-white mt-[130px] p-5 border border-gray-200 mr-[60px]">
-                    <h1 className="text-xs text-black font-semibold mb-3">
-                      Welcome to MyHomeTechuniverse
-                    </h1>
-                    <div className="flex space-x-2">
-                      <p
-                        className="px-5 py-1 text-xs border border-gray-300 text-[#0171b6] cursor-pointer"
-                        onClick={() => handleAuthRoute("login")}
-                      >
-                        Login
-                      </p>
-                      <p
-                        className="px-5 py-1 text-xs border border-gray-300 text-[#0171b6] cursor-pointer"
-                        onClick={() => handleAuthRoute("register")}
-                      >
-                        Register
-                      </p>
-                    </div>
-                  </div>
-                </>
-              )}
-              <Link href="/cart">
-                <button className="ml-4 mt-2 sm:mt-0 flex relative">
-                  <FaShoppingCart size={24} className="text-[#0171b6]" />
-                  <p className=" absolute text-xs text-gray-500 font-semibold left-5 bottom-3 px-[7px] py-[2px] bg-[#0171b6] text-white rounded-full">
-                    {cartItems?.items?.length}
-                  </p>
-                </button>
-              </Link>
             </div>
           </div>
         </div>
-
-        <div className="bg-[#0171b6] px-4 sm:px-6 lg:px-8 flex flex-wrap lg:flex-nowrap items-center justify-center lg:justify-between">
-          <div
-            className="relative"
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-          >
-            <Link href="/">
-              <p className="text-white text-[12px] py-3 px-2 hover:bg-white hover:text-gray-500">
-                TV & AUDIO
-              </p>
-            </Link>
-            {showDropdown && (
-              <div className="absolute left-0  w-48 bg-white shadow-lg rounded-lg z-10">
-                <Link href="/category/tv">
-                  <p className="px-4 py-2 text-sm hover:bg-gray-200 cursor-pointer">
-                    Televisions
-                  </p>
-                </Link>
-                <Link href="/category/audio">
-                  <p className="px-4 py-2 text-sm hover:bg-gray-200 cursor-pointer">
-                    Audio Systems
-                  </p>
-                </Link>
-                <Link href="/category/soundbars">
-                  <p className="px-4 py-2 text-sm hover:bg-gray-200 cursor-pointer">
-                    Soundbars
-                  </p>
-                </Link>
-              </div>
-            )}
-          </div>
-
-          <Link href="/">
-            <p className="text-white text-[12px] py-3 px-2 hover:bg-white hover:text-gray-500">
-              HOME & APPLIANCES
-            </p>
-          </Link>
-          <Link href="/">
-            <p className="text-white text-[12px] py-3 px-2 hover:bg-white hover:text-gray-500">
-              MOBILE & APPLIANCES
-            </p>
-          </Link>
-          <Link href="/">
-            <p className="text-white text-[12px] py-3 px-2 hover:bg-white hover:text-gray-500">
-              SMART HOME APPLIANCE
-            </p>
-          </Link>
-          <Link href="/">
-            <p className="text-white text-[12px] py-3 px-2 hover:bg-white hover:text-gray-500">
-              PURIFICATION & HYGIENE
-            </p>
-          </Link>
-          <Link href="/">
-            <p className="text-white text-[12px] py-3 px-2 hover:bg-white hover:text-gray-500">
-              COMMERCIAL PRODUCTS
-            </p>
-          </Link>
-          <Link href="/">
-            <p className="text-white text-[12px] py-3 px-2 hover:bg-white hover:text-gray-500">
-              ELECTRICAL VEHICLE
-            </p>
-          </Link>
-          <Link href="/">
-            <p className="text-white text-[12px] py-3 px-2 hover:bg-white hover:text-gray-500">
-              BRANDS
-            </p>
-          </Link>
-        </div>
-      </div>
+      )}
     </>
   );
 }
+
+
+// const categories = [
+//   {
+//     "_id": "67cd9e69c1f3ce043e6c7bec",
+//     "name": "Toys",
+//     "createdAt": "2025-03-09T13:58:01.106Z",
+//     "updatedAt": "2025-03-09T13:58:01.106Z",
+//     "__v": 0
+//   },
+//   {
+//     "_id": "67cd9e59c1f3ce043e6c7bea",
+//     "name": "Laptops",
+//     "createdAt": "2025-03-09T13:57:45.573Z",
+//     "updatedAt": "2025-03-09T13:57:45.573Z",
+//     "__v": 0
+//   },
+//   {
+//     "_id": "67cc22a72e872387e6dc0f6d",
+//     "name": "Chargewwrs",
+//     "createdAt": "2025-03-08T10:57:43.354Z",
+//     "updatedAt": "2025-03-08T11:00:53.507Z",
+//     "__v": 0
+//   },
+//   {
+//     "_id": "67cc09563aef6ffa5917c055",
+//     "name": "Mobile & accecssories",
+//     "createdAt": "2025-03-08T09:09:42.291Z",
+//     "updatedAt": "2025-03-08T09:09:57.908Z",
+//     "__v": 0
+//   },
+//   {
+//     "_id": "67cc094e3aef6ffa5917c053",
+//     "name": "TV and appliances",
+//     "createdAt": "2025-03-08T09:09:34.449Z",
+//     "updatedAt": "2025-03-08T09:09:34.449Z",
+//     "__v": 0
+//   },
+//   {
+//     "_id": "67cc093c3aef6ffa5917c051",
+//     "name": "Home appliances",
+//     "createdAt": "2025-03-08T09:09:16.932Z",
+//     "updatedAt": "2025-03-08T09:09:16.932Z",
+//     "__v": 0
+//   }
+// ]

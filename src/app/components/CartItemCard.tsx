@@ -1,97 +1,96 @@
+import { useUpdateCartMutation } from "@/features/api/cartApiSlice";
 import Image from "next/image";
-import { Products } from "./TvCollection";
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { decreaseItem, increaseItem } from "../utils/cartSlice";
+import { useRouter } from "next/navigation";
+import { useDispatch } from "react-redux";
 import { toast } from "sonner";
-export default function CartItemCard({ item }: { item: Products }) {
-  // const [quantity, setQuantity] = useState(item.quantity);
+
+export default function CartItemCard({ item, className }: { item: any, className: string }) {
   const dispatch = useDispatch();
+  const totalDiscount = Math.round((item.productId.discount / 100) * item.productId.price);
+  const priceAfterDiscount = item.productId.price - totalDiscount;
 
-  // const handleQuantityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   const newQuantity = parseInt(e.target.value, 10);
-  //   if (!isNaN(newQuantity)) {
-  //     setQuantity(newQuantity);
-  //   }
-  // };
+  const [updateCart, {isLoading}] = useUpdateCartMutation();
 
-  const adjustCartItem = (item: Products, actionType: any) => {
-    if (actionType === "increase") {
-      if (item.quantity < item.stock) {
-        dispatch(increaseItem(item));
-      } else {
-        toast.error("Cannot add more, stock limit reached!");
-      }
-    } else if (actionType === "decrease") {
-      if (item.quantity <= 1) {
-        toast.error("Cannot reduce more");
-      } else {
-        dispatch(decreaseItem(item));
-      }
+  const router = useRouter();
+
+  const incrementHandler = async () => {
+    try{
+      await updateCart({productId: item.productId._id, qty: 1}).unwrap();
+      toast.success("Product incremented successfully");
+    }catch(error){
+      toast.error("Failed to increment product");
     }
-  };
+  }
 
-  const totalDiscount = Math.round(item.discount / 100 * item.price);
-  const priceAfterDiscount = item.price - totalDiscount
+  const decrementHandler = async () => {
+    try{
+      await updateCart({productId: item.productId._id, qty: -1}).unwrap();
+      toast.success("Product decremented successfully");
+    }catch(error){
+      toast.error("Failed to decrement product");
+    }
+  }
 
   return (
-    <>
-      <div className="w-full flex p-3">
-        <Image
-          src={item?.product_image}
-          height={140}
-          width={140}
-          alt="product_image"
-        />
-        <div className="ml-3 mt-6 w-[100%]">
-          <p className="font-medium text-[#0171b6]">{item.name}</p>
-          <p className="text-xs text-[#0171b6] mt-1">
-            <span className="text-black font-light">Sold By </span>
-            {item.brand}
-          </p>
-          {item.discount !== 0 && (
-            <p className="text-xs text-[#0171b6] mt-1">
-              <span className="text-black font-light line-through">
-                NPR {item.price}&nbsp;
-              </span>
-              &nbsp;{item.discount}% Off
-            </p>
-          )}
+    <div className={`w-full rounded-lg bg-white shadow-sm ${className}`}>
+      <div className="flex flex-col md:flex-row p-4 gap-4">
+        <div className="relative w-[120px] h-[120px] md:w-[140px] md:h-[140px] flex-shrink-0 cursor-pointer" onClick={() => router.push(`/product/${item?.productId?._id}`)}>
+          <Image
+            src={item?.productId?.images[0]}
+            fill
+            style={{objectFit: 'contain'}}
+            alt={item?.productId?.name}
+            className="rounded-md"
+          />
+        </div>
 
-          <div className="flex mt-2">
+        <div className="flex-1 flex flex-col justify-between">
+          <div>
+            <h3 className="font-medium text-gray-900 text-lg">{item?.productId?.name}</h3>
+            
+            <div className="mt-1 flex items-center gap-2">
+              <span className="text-sm text-gray-500">Sold by</span>
+              <span className="text-sm font-medium text-[#0171b6]">{item?.productId?.brand?.name}</span>
+            </div>
+
+            <div className="mt-2 flex items-center gap-2">
+              <span className="text-lg font-semibold text-[#0171b6]">
+                NPR {priceAfterDiscount?.toLocaleString("en-IN")}
+              </span>
+              {item?.productId?.discount > 0 && (
+                <>
+                  <span className="text-sm text-gray-500 line-through">
+                    NPR {item?.productId?.price?.toLocaleString("en-IN")}
+                  </span>
+                  <span className="text-sm font-medium text-green-600">
+                    {item?.productId?.discount}% Off
+                  </span>
+                </>
+              )}
+            </div>
+          </div>
+
+          <div className="mt-4 flex items-center gap-3">
             <button
-              className="w-5 px-1 py-[0.5px] rounded-lg text-white bg-[#0171b6] 
-            "
-              onClick={() => {
-                adjustCartItem(item, "increase");
-              }}
+              className="w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
+              onClick={decrementHandler}
             >
-              +
+              <span className="text-gray-600 text-lg">−</span>
             </button>
-            <input
-              className="text-xs mt-1 w-10 text-center"
-              value={item.quantity}
-              // onChange={handleQuantityChange}
-            />
+
+            <span className="w-12 text-center font-medium text-gray-900">
+              {item?.qty}
+            </span>
+
             <button
-              className={`w-5 px-1 py-[0.5px] rounded-lg text-white bg-[#0171b6] ${
-                item.quantity < 0
-                  ? "disabled:cursor-not-allowed disabled:opacity-50"
-                  : ""
-              }`}
-              onClick={() => {
-                adjustCartItem(item, "decrease");
-              }}
+              className="w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
+              onClick={incrementHandler}
             >
-              -
+              <span className="text-gray-600 text-lg">+</span>
             </button>
           </div>
         </div>
-        <p className="w-[30%] flex justify-end text-sm mt-6 font-semibold ">
-          Rs {priceAfterDiscount}
-        </p>
       </div>
-      <hr className="border border-[0.1px] border-gray-200 mt-2" />
-    </>
+    </div>
   );
 }

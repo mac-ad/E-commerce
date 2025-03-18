@@ -4,18 +4,18 @@ import { useRouter } from "next/navigation";
 
 const NotFound = () => {
   const router = useRouter();
-  console.log(router)
+  // console.log(router)
 
-  useEffect(() => {
-   const timer = setTimeout(() => {
-      router.push("/");  
-    }, 3000); 
+  // useEffect(() => {
+  //  const timer = setTimeout(() => {
+  //     router.push("/");  
+  //   }, 3000); 
 
-    return () => clearTimeout(timer);
-  }, [router]);
+  //   return () => clearTimeout(timer);
+  // }, [router]);
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+    <div className="flex items-center justify-center min-h-screen bg-gray-100 w-full">
       <div className="text-center">
         <h1 className="text-6xl font-extrabold text-blue-500">404</h1>
         <p className="text-xl text-gray-600 mt-4">
