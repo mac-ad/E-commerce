@@ -6,6 +6,7 @@ import { decodeToken } from "@/app/utils/lib/jwt";
 import { UserType } from "@/app/utils/types/api/common";
 import brandModel from "@/app/models/brandModel";
 import { uploadMiddleware } from "@/app/utils/lib/multer";
+import { deleteImages } from "@/app/utils/lib/deleteImage";
 
 const model = productModel;
 
@@ -41,6 +42,10 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
     try {
         const formData = await request.formData();
         await connectToDb();
+
+        const product = await model.findById(params.id);
+
+        if(!product) return NextResponse.json({ message: "Product not found" }, { status: 404 });
         
          // Check if formData only contains isActive field
          const formDataKeys = Array.from(formData.keys());
@@ -59,6 +64,12 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
         const images = formData.getAll('images') as File[];
         const existingImages = formData.getAll('existingImages') as string[];
 
+        //  check the deleted images from the existingImages array
+        const deletedImages = product?.images.filter((image:string) => !existingImages.includes(image));
+
+        if(deletedImages.length > 0){
+            await deleteImages(deletedImages);
+        }
        
 
         if(!images.length && !existingImages.length) return NextResponse.json({
@@ -121,20 +132,18 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
 
         data.images = imagesToPut;
 
-        const product = await model.findByIdAndUpdate(
+
+
+        const updatedProduct = await model.findByIdAndUpdate(
             params.id,
             { $set: data },
             { new: true }
         ).select('-createdAt -updatedAt -__v');
 
         // add this category to brand category array
-        await brandModel.findByIdAndUpdate(data.brand, { $addToSet: { category: data.category } });
+        await brandModel.findByIdAndUpdate(product?.brand, { $addToSet: { category: data.category } });
 
-        if (!product) {
-            return NextResponse.json({ message: "Product not found" }, { status: 404 });
-        }
-
-        return NextResponse.json({ data: product }, { status: 200 });
+        return NextResponse.json({ data: updatedProduct }, { status: 200 });
     } catch (error: any) {
         return NextResponse.json({ message: error.message }, { status: 500 });
     }
@@ -148,6 +157,8 @@ export async function DELETE(request: NextRequest, { params }: { params: { id: s
         if (!product) {
             return NextResponse.json({ message: "Product not found" }, { status: 404 });
         }
+        // delete the images of product from server
+        await deleteImages(product.images);
 
         return NextResponse.json({ message: "Product deleted successfully" }, { status: 200 });
     } catch (error: any) {
