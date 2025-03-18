@@ -20,7 +20,6 @@ const InputSwitch = <T extends FieldValues>({
   disabled = false,
   defaultChecked = false
 }: InputSwitchProps<T>) => {
-    console.log(defaultChecked)
 
     const { onChange, ...rest } = register(name as Path<T>)
 

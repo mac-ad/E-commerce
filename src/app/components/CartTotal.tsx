@@ -2,11 +2,16 @@
 
 import { useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
+import { getCurrency } from "../utils/utilityFunctions";
+
+const getNumber = (value:any) => {
+
+  return Number(value.toFixed(2))
+}
 
 export default function CartTotal() {
   const cartProducts = useSelector((store: any) => store.cart);
   const router = useRouter();
-  console.log({cartProducts});
   if (cartProducts.items.length == 0) {
     return (
       <div className="p-6 text-center bg-gray-50 rounded-lg">
@@ -16,19 +21,19 @@ export default function CartTotal() {
   }
 
   const totalPrice = cartProducts.items.reduce(
-    (acc: number, product: any) => acc + product?.productId?.price * product.qty,
+    (acc: number, product: any) => acc + getNumber(product?.productId?.price * product.qty),
     0
   );
 
   const totalDiscount = cartProducts.items.reduce(
     (acc: number, product: any) => (
-      acc + Math.round((product?.productId?.discount / 100) * product?.productId?.price) * product.qty
+      acc + (getNumber((product?.productId?.discount / 100)) * product?.productId?.price) * product.qty
     ),
     0
   );
 
   const getDiscountedPrice = (price: number, discount: number) => {
-    return Math.round(price - (discount / 100) * price);
+    return getNumber(price - (discount / 100) * price);
   }
 
   const handleProceedToCheckout = () => {
@@ -60,7 +65,7 @@ export default function CartTotal() {
       <div className="mt-6 space-y-2">
         <div className="flex justify-between py-3 border-t border-gray-100">
           <p className="text-sm text-gray-600">Subtotal ({cartProducts.items.length} items)</p>
-          <p className="text-sm font-medium">NPR {(totalPrice - totalDiscount)?.toLocaleString("en-IN")}</p>
+          <p className="text-sm font-medium">{getCurrency(Number(totalPrice - totalDiscount))}</p>
         </div>
 
         {/* <div className="flex justify-between py-3 border-t border-gray-100">
@@ -70,7 +75,7 @@ export default function CartTotal() {
 
         <div className="flex justify-between py-3 border-t border-gray-100">
           <p className="text-base font-semibold">Total</p>
-          <p className="text-base font-semibold">NPR {finalPrice?.toLocaleString("en-IN")}</p>
+          <p className="text-base font-semibold">{getCurrency(Number(finalPrice))}</p>
         </div>
       </div>
 

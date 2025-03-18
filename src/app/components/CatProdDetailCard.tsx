@@ -1,6 +1,7 @@
 import { FC } from "react";
 import Link from "next/link";
 import { Product } from "@/features/api/productApiSlice";
+import { getCurrency, getDiscountedPrice } from "../utils/utilityFunctions";
 
 export const CatProdDetailCard: FC<{ data: Product }> = ({ data }) => {
   return (
@@ -31,11 +32,18 @@ export const CatProdDetailCard: FC<{ data: Product }> = ({ data }) => {
               <div className="flex flex-col items-end">
                 {data.discount ? (
                   <p className="text-xs text-gray-400 line-through">
-                    NPR {data.price?.toLocaleString("en-IN")}
+                   {getCurrency(data?.price)}
                   </p>
                 ) : null}
                 <p className="font-semibold text-xs">
-                  NPR {data.price ? (data.discount ? (data.price - (data.discount / 100 * data.price))?.toLocaleString("en-IN") : data.price.toLocaleString("en-IN")) : ''}
+                  {
+                      getCurrency(
+                        getDiscountedPrice({
+                        originalPrice:data?.price,
+                        discount : data?.discount
+                      })
+                    )
+                  }
                 </p>
                 
               </div>

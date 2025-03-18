@@ -11,6 +11,7 @@ import { Icon } from '@iconify/react';
 import {useDispatch} from 'react-redux';
 import { LoginData, loginSchema } from '../../utils/types/z.schema';
 import { logUser } from '@/features/states/authSlice';
+import Link from 'next/link';
 
 const Login = () => {
     const router = useRouter();
@@ -36,10 +37,8 @@ const Login = () => {
       // if (data.email === "Mikasha@316" && data.password === "12@Dharan") {
       //   router.push("/dashboard");
       // }
-      console.log("tryy logging in");
       try {
         const res = await login(data).unwrap();
-        console.log("res = ", res)
         const user = res.data.user;
         const token = res.data.token;
         dispatch(logUser({user}))
@@ -103,9 +102,9 @@ const Login = () => {
                   }
                 </button>
   
-                <p className="flex justify-end text-[10px] sm:text-xs mt-2 text-gray-400 font-light">
+                <Link href="/forgot-password" className="flex justify-end text-[10px] sm:text-xs mt-2 text-gray-400 font-light hover:text-gray-500 transition-colors">
                   Forgot password?
-                </p>
+                </Link>
                 <p className="flex justify-center text-xs sm:text-sm font-extralight my-2">
                   OR
                 </p>

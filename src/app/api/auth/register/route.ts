@@ -15,7 +15,6 @@ const userSchema = z.object({
 const modle = UserModel;
 
 export async function POST(req: Request) {
-  console.log("inside register")
   try {
     await connectToDb();
     const body = await req.json();

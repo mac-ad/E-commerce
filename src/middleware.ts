@@ -5,7 +5,6 @@ import { decodeToken } from "./app/utils/lib/jwt";
 const handleAdminRoute = (req: NextRequest) => {
   const token = req.cookies.get("token")?.value?.split(",")[0] || req.headers.get("Authorization")?.split(" ")[1];
   const decodedToken = token ? decodeToken(token) : null;
-  console.log(decodedToken,"decodedToken")
   let redirectUrl = "/";
   if(!decodedToken) redirectUrl = "/login";
   if(decodedToken?.role === "admin") {
@@ -50,27 +49,13 @@ export function middleware(req: NextRequest) {
   const decodedToken = token ? decodeToken(token) : null;
 
   // Set CORS headers
-  response.headers.set("Access-Control-Allow-Credentials", "true");
-  response.headers.set("Access-Control-Allow-Origin", "*");
-  response.headers.set("Access-Control-Allow-Methods", "GET,DELETE,PATCH,POST,PUT");
-  response.headers.set(
-    "Access-Control-Allow-Headers",
-    "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, Authorization"
-  );
-
-  // Check if request is POST, PUT, or DELETE and not a cart API route
-  // if (
-  //   ['POST', 'PUT', 'DELETE'].includes(req.method) && 
-  //   !pathname.startsWith('/api/cart')
-  // ) {
-  //   // Check if user is admin
-  //   if (!decodedToken || decodedToken.role !== 'admin') {
-  //     return NextResponse.json(
-  //       { message: "Unauthorized - Admin access required" },
-  //       { status: 401, headers: response.headers }
-  //     );
-  //   }
-  // }
+  // response.headers.set("Access-Control-Allow-Credentials", "true");
+  // response.headers.set("Access-Control-Allow-Origin", "*");
+  // response.headers.set("Access-Control-Allow-Methods", "GET,DELETE,PATCH,POST,PUT");
+  // response.headers.set(
+  //   "Access-Control-Allow-Headers",
+  //   "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, Authorization"
+  // );
 
   // Handle preflight requests (OPTIONS method)
   if (req.method === "OPTIONS") {

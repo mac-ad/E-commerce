@@ -52,7 +52,6 @@ export default function CheckoutPage() {
       await clearCart().unwrap();
       toast.success("Order placed successfully");
     }catch(error){
-      console.log(error);
       toast.error("Failed to place order");
     }
   }

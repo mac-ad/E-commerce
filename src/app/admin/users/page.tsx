@@ -27,7 +27,6 @@ const UsersPage = () => {
     setCurrentUserId(id)
     try {
       const res = await updateUser({data:{role},id}).unwrap()
-      console.log(res)
       toast.success("Role updated successfully")
       setCurrentUserId(null)
     } catch (error) {

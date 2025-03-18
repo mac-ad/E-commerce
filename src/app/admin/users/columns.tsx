@@ -2,6 +2,7 @@
 
 import { Column } from "@tanstack/react-table"
 import { DataTableColumnHeader } from "@/app/components/DataTable/DataTableColumnHeader"
+import { getDate } from "@/app/utils/utilityFunctions"
 
 export const UserColumns = [
   {
@@ -32,11 +33,7 @@ export const UserColumns = [
   {
     accessorKey: "createdAt",
     header: ({ column }: { column: Column<any> }) => <DataTableColumnHeader column={column} title="Join Date" />,
-    cell: ({ row }: { row: any }) => <div>{new Date(row.original.createdAt).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    })}</div>,
+    cell: ({ row }: { row: any }) => <div>{getDate(row.original.createdAt)}</div>,
     enableSorting: false,
   },
 ] 

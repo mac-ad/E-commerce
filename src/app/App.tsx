@@ -32,8 +32,6 @@ const App = ({
     const { data: brands } = useGetBrandsQuery();
     const { data: categoriesResponse, isLoading: isCategoriesLoading } = useGetCategoriesQuery();
     const { data: cartItems, isLoading: isCartLoading, error: cartError,refetch: refetchCart } = useGetCartQuery();
-    // const { data: profileData, isLoading: isProfileLoading } = useGetProfileQuery();
-    const [getProfile, {data: profileData, isLoading: isProfileLoading}] = useLazyGetProfileQuery();
 
     // Scroll to top on route change
     useEffect(() => {
@@ -47,27 +45,16 @@ const App = ({
                const res = await fetch(`${BASE_URL}/profile`);
                const response = await res.json();
                const data = response.data;
-                console.log(data,'data');
                 if (data) {
                     dispatch(logUser({ user: data }));
-                    // dispatch(userApi.util.invalidateTags(['User']));
-                    // dispatch(cartApi.util.invalidateTags(['Cart']));
                     toast.success(`Welcome ${data.fullName}`)
                 }
                
             } catch (error) {
-                // Handle error silently
-                // dispatch(userApi.util.resetApiState());
-                // dispatch(cartApi.util.resetApiState());
-
             }
         };
         fetchProfile();
     }, [dispatch]);
-
-    // useEffect(() => {
-    //     console.log(profileData,'profileData');
-    // }, [profileData,dispatch]);
 
     // Invalidate cache on login state change
     useEffect(() => {
@@ -82,7 +69,8 @@ const App = ({
             dispatch(resetUser());
             dispatch(resetCart());
         }
-    }, [loggedIn]);
+    }, [loggedIn,dispatch]);
+
 
 
     // Update brands

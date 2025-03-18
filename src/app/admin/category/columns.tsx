@@ -5,6 +5,7 @@ import { ArrowUpDown, MoreHorizontal } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CategoryItem } from "@/features/states/CategorySlice";
 import { DataTableColumnHeader } from "@/app/components/DataTable/DataTableColumnHeader";
+import { getDate } from "@/app/utils/utilityFunctions";
 
 export const columns: ColumnDef<CategoryItem>[] = [
     {
@@ -40,13 +41,7 @@ export const columns: ColumnDef<CategoryItem>[] = [
       );
     },
     cell: ({ row }: { row: Row<any> }) => {
-        const createdAt = new Date(row.original.createdAt);
-        const formattedDate = createdAt.toLocaleDateString('en-US', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'  
-        });
-        return <div>{formattedDate}</div>
+        return <div>{getDate(row.original.createdAt)}</div>
     }
   },
 ];

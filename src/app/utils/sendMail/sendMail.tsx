@@ -5,6 +5,7 @@ import { getOrderConfirmationEmailTemplate } from "../lib/mail/templates/orderCo
 import { getWelcomeTemplate } from "../lib/mail/templates/welcomeMailTemplate";
 import { IOrderToCreate } from "../types/api/order";
 import { getOrderStatusEmailTemplate } from "../lib/mail/templates/orderStatusTemplate";
+import { getOtpEmailTemplate } from "../lib/mail/templates/otpTemplate";
 
 export const sendWelcomeMail = async ({
     to,
@@ -13,7 +14,6 @@ export const sendWelcomeMail = async ({
     to: string;
     username: string;
 }) => {
-    console.log("inside welcome mail")
     try {
         const html = getWelcomeTemplate({ username });
         const subject = EMAIL_SUBJECT.WELCOME_MAIL;
@@ -37,7 +37,6 @@ export const sendOrderConfirmationEmail = async ({
     order: IOrderWithProduct
 }) => {
     try {
-        console.log("order = ", order)
         const html = getOrderConfirmationEmailTemplate({
             username,
             order,
@@ -82,5 +81,32 @@ export const sendOrderStatusEmail = async ({
         })
     } catch (err) {
         throw new Error(`send order status mail failed : ${err}`)
+    }
+}
+
+export const sendOtpEmail = async ({
+    to,
+    username,
+    otp
+}: {
+    to: string;
+    username: string;
+    otp: string;
+}) => {
+    try {
+        const html = getOtpEmailTemplate({
+            username,
+            otp
+        })
+
+        const subject = EMAIL_SUBJECT.OTP_MAIL
+
+        await sendEmail({
+            to,
+            subject,
+            html
+        })
+    } catch (err) {
+        throw new Error(`send otp mail failed : ${err}`)
     }
 }

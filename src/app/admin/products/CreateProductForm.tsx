@@ -46,7 +46,6 @@ const CreateProductForm = ({
     const brands = useSelector((state: RootState) => state.brand.data);
     // const brandsLoading = useSelector((state: RootState) => state.brand.isLoading);
 
-    console.log(formValues)
 
     return (
         <div>
@@ -109,7 +108,6 @@ const CreateProductForm = ({
                         <InputImageUpload
                             onImageSelect={(files: (string | File)[]) => {
                                 setValue("images", files);
-                                console.log('images',files)
                             }}
                             value={formValues.images}
                             register={register}

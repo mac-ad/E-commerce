@@ -1,6 +1,7 @@
 import ActiveToggle from "@/app/components/ActiveToggle";
 import DataTableActiveHeader from "@/app/components/DataTable/DataTableActiveHeader";
 import { DataTableColumnHeader } from "@/app/components/DataTable/DataTableColumnHeader";
+import { getCurrency } from "@/app/utils/utilityFunctions";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Column, Row, Table } from "@tanstack/react-table";
 
@@ -44,7 +45,7 @@ export const ProductColumns = [
         accessorKey: "price",
         header: ({column}: { column: Column<any> }) => <DataTableColumnHeader column={column} title="Price" />,
         cell: ({row}: { row: Row<any> }) => <div className = "">
-            {row?.original?.price?.toLocaleString("en-IN", {style: "currency", currency: "NPR"})}
+            {getCurrency(row?.original?.price)}
         </div>,
         enableSorting: false,   
     },

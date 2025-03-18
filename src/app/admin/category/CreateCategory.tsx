@@ -57,15 +57,11 @@ const CreateCategory = ({
     }, [categoryId])
 
 
-    console.log("formValues",formValues)
-
     const onSubmit = async (data: CategoryFormValues) => {
         const formData = new FormData()
         
         formData.append('name', data.name)
 
-        console.log("data",data)
-       
         if (data.bannerImage instanceof File) {
             formData.append('bannerImage', data.bannerImage)
         } else if (typeof data.bannerImage === 'string') {

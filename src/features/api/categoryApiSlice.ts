@@ -18,7 +18,6 @@ export const categoryApi = createApi({
         method: 'GET',
         transformResponse: (response: any) => {
           if (!response) return [];
-          console.log("response", response);
           return response.data.data;
         },
       }),

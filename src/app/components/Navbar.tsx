@@ -39,10 +39,8 @@ export default function Navbar() {
   const logoutHandler = async () => {
     try{
       const res = await logout().unwrap();
-      // console.log(res);
       dispatch(logoutUser({}));
-      // dispatch(userApi.util.resetApiState());
-      // dispatch(cartApi.util.resetApiState());
+      toast.success("You are logged out. Please log back in");
       router.push("/");
     }catch(err){
       console.log(err);
@@ -89,7 +87,6 @@ export default function Navbar() {
   const adminDashboardHandler = async () => {
     try{
       const res = await getProfile().unwrap();
-      console.log(res);
       if(res.data.role === "admin"){
         router.push("/admin");
       }else{
@@ -164,7 +161,6 @@ export default function Navbar() {
                   <button
                     className="w-full py-3 text-white bg-[#0171b6] rounded-lg hover:bg-[#015da1] transition"
                     onClick={() => { 
-                      console.log("clicked");
                         // dispatch(logoutUser())
                         logoutHandler();
                         setVisible(false);

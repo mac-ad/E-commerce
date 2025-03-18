@@ -2,6 +2,7 @@
 
 import { Column, Row, Table } from "@tanstack/react-table"
 import { DataTableColumnHeader } from "@/app/components/DataTable/DataTableColumnHeader"
+import { getCurrency, getDate } from "@/app/utils/utilityFunctions"
 
 export const OrderColumns = [
   {
@@ -17,7 +18,7 @@ export const OrderColumns = [
   {
     accessorKey: "totalAmount",
     header: ({ column }: { column: Column<any> }) => <DataTableColumnHeader column={column} title="Total" />,
-    cell: ({ row }: { row: Row<any> }) => <div>{row.original.totalAmount.toLocaleString("en-IN", { style: "currency", currency: "NPR" })}</div>
+    cell: ({ row }: { row: Row<any> }) => <div>{getCurrency(row?.original?.totalAmount)}</div>
   },
   {
     accessorKey: "status",
@@ -33,11 +34,7 @@ export const OrderColumns = [
   {
     accessorKey: "orderDate",
     header: ({ column }: { column: Column<any> }) => <DataTableColumnHeader column={column} title="Order Date" />,
-    cell: ({ row }: { row: Row<any> }) => <div>{new Date(row.original.orderDate).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long', 
-      day: 'numeric'
-    })}</div>
+    cell: ({ row }: { row: Row<any> }) => <div>{getDate(row?.original?.orderDate)}</div>
   },
 ]
 

@@ -17,3 +17,45 @@ export const debounce = <T extends (...args: any[]) => void>(func: T, wait: numb
     }, wait);
   };
 };
+
+export const getCurrency = (value:number) => {
+  return value?.toLocaleString("en-IN",{
+    style: "currency",
+    currency: "NPR", 
+    minimumFractionDigits: 0, 
+    maximumFractionDigits: 0 
+  })
+}
+
+export const getDiscountedPrice = ({
+  originalPrice,
+  discount
+}:{
+  originalPrice:number;
+  discount:number;
+}) => {
+  const discountAmount = Number((discount / 100) * originalPrice);
+  return originalPrice - discountAmount;
+}
+
+export const getDiscountAmount = ({
+  originalPrice,
+  discount
+}:{
+  originalPrice:number;
+  discount:number;
+}) => {
+  return Number((discount / 100) * originalPrice);
+}
+
+export const getDate = (value:string) => {
+  const date = new Date(value);
+
+  const dateFormat = {
+    year:'numeric',
+    month : 'long',
+    day : 'numeric'
+  };
+
+  return date?.toLocaleDateString('en-US',dateFormat as any)
+}

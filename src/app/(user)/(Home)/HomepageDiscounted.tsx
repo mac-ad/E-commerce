@@ -10,6 +10,7 @@ const HomepageDiscounted = ({className}:{className?:string}) => {
     discounted:true  // Sort by highest discount first
   });
 
+
   if (data?.data?.length === 0) {
     return null; // Don't render section if no discounted products
   }

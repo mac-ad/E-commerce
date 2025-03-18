@@ -31,6 +31,12 @@ const userSchema = new Schema(
       default: UserRoleEnum.USER,
       index: true // Index for role-based queries
     },
+    resetToken: {
+      type: String,
+    },
+    resetTokenExpiry: {
+      type: Date,
+    }
   },
   {
     timestamps: true,

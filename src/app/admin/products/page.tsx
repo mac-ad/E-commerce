@@ -44,6 +44,8 @@ const ProductsPage = () => {
 
   const {data:products,isLoading,isFetching,refetch} = useGetProductsQuery({...pagination,isActive,search,category:currentCategoryId})
 
+  console.log({products,isLoading,isFetching})
+
   const [updateProduct, {isLoading:changingStatus}] = useUpdateProductMutation()
 
   useEffect(() => {

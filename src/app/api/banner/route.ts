@@ -59,7 +59,6 @@ export async function POST(request: NextRequest) {
         const files = formData.getAll("image") as File[];
         // const parsedData = bannerSchema.parse()
 
-        console.log("files", files, files.length)
 
         if (!files?.length) return NextResponse.json({
             message: "Image is required",
@@ -83,7 +82,6 @@ export async function POST(request: NextRequest) {
         }
 
         const parsedData = bannerSchema.parse(data);
-        console.log(parsedData)
         const newBanner = await createBanner(parsedData)
 
         return NextResponse.json(newBanner, { status: 201 });

@@ -48,7 +48,6 @@ const CheckoutForm = ({
     });
 
     const onSubmit = async (data: FormValues) => {
-        console.log(data);
         const orderData:CreateOrderParams = {
             data: {
                 items: cartProducts.items.map((item) => ({
@@ -64,15 +63,12 @@ const CheckoutForm = ({
                 phone: data.phone,
             }
         }
-        console.log(orderData);
 
         try{
             const response = await createOrder(orderData).unwrap();
-            console.log(response);
             toast.success("Order created successfully");
             afterOrderCreated();
         }catch(error){
-            console.log(error);
             toast.error("Order creation failed");
         }
     }
@@ -88,6 +84,7 @@ const CheckoutForm = ({
                 register={register}
                 name="fullName"
                 errors={errors}    
+                disabled = {true}
               />
 
               <InputField
@@ -97,7 +94,7 @@ const CheckoutForm = ({
                 register={register}
                 name="email"
                 errors={errors}    
-
+                disabled = {true}
               />
 
               <InputField

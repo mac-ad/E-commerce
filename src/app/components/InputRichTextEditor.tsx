@@ -46,7 +46,6 @@ export default function InputRichTextEditor({placeholder, onChange, defaultValue
         setEditorState(value)
         // Convert the serialized state to a string representation
         const stringContent = JSON.stringify(value)
-        console.log(stringContent,'stringContent')
         onChange(stringContent)
         // setHtmlContent(stringContent)
     }

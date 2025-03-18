@@ -46,6 +46,7 @@ interface DataTableProps<TData, TValue> {
   refetch: () => void;
   showSearch?: boolean;
   showSn?: boolean;
+  searchText?:string;
 }
 
 export function DataTable<TData, TValue>({
@@ -59,7 +60,8 @@ export function DataTable<TData, TValue>({
   totalItems,
   refetch,
   showSearch = true,
-  showSn = true
+  showSn = true,
+  searchText = "Search..."
 }: DataTableProps<TData, TValue>) {
   const table = useReactTable({
     data,
@@ -73,7 +75,6 @@ export function DataTable<TData, TValue>({
     onPaginationChange: (updater) => {
       setPagination(old => {
         const newPaginationValue = updater instanceof Function ? updater(old) : updater
-        console.log("newPaginationValue", newPaginationValue)
         return newPaginationValue
       })
     },
@@ -116,7 +117,7 @@ export function DataTable<TData, TValue>({
         {
           showSearch && (
             <Input
-                placeholder="Search ..."
+                placeholder={searchText}
                 onChange={changeHandler}
                 className="max-w-sm"
                 defaultValue={search}

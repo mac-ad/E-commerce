@@ -59,7 +59,6 @@ const CreateProduct = (
                     const response = await getProductDetail(productId).unwrap()
                     const data = response.data
                     // Pre-fill the form with existing product data
-                    console.log('data',data,'setting values')
                     reset({
                         name: data.name,
                         price: data.price,
@@ -95,8 +94,8 @@ const CreateProduct = (
         formData.append('discount', String(data.discount))
         // Separate string and file images
         const images = data.images || [];
-        console.log("images = ",images)
 
+        
         if(images?.length){
             images.forEach((image: string | File) => {
                 if (image instanceof File) {

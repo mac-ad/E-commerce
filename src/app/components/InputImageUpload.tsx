@@ -40,7 +40,6 @@ export function InputImageUpload<T extends FieldValues>({
 
   const handleImageChange = (files: File[]) => {
     if (!files.length) return;
-    console.log("files",files)
 
     const newFiles = multiple ? [...previews, ...files] : [files[0]];
     setPreviews(newFiles);

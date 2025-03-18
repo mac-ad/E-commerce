@@ -24,7 +24,6 @@ export const withErrorHandler: Middleware = (handler: RouteHandler) => {
     return async (req: NextRequest, ...args: any[]) => {
         try {
             await connectToDb();
-            console.log("after connectToDn")
             return await handler(req, ...args);
         } catch (error) {
             if (error instanceof z.ZodError) {

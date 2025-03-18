@@ -11,11 +11,7 @@ export const sendEmail = async ({ to, subject, html }: EmailOptions) => {
 
     try {
 
-        console.log("process.env.SMTP_USER = ", process.env.SMTP_USER)
-        console.log("process.env.SMTP_PASS = ", process.env.SMTP_PASS)
-        console.log("process.env.SMTP_FROM = ", process.env.SMTP_FROM)
-        console.log("process.env.SMTP_HOST = ", process.env.SMTP_HOST)
-        // Create transporter
+         // Create transporter
         const transporter = nodemailer.createTransport({
             service: process.env.SMTP_SERVICE,
             host: process.env.SMTP_HOST,
@@ -35,7 +31,6 @@ export const sendEmail = async ({ to, subject, html }: EmailOptions) => {
             html
         });
 
-        console.log('Email sent successfully:', info.messageId);
         return true;
 
     } catch (error) {

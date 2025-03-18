@@ -10,6 +10,7 @@ import productModel from "@/app/models/productModel";
 import { sendOrderConfirmationEmail } from "@/app/utils/sendMail/sendMail";
 import { UserType } from "@/app/utils/types/api/common";
 import { decodeToken } from "@/app/utils/lib/jwt";
+import { getDiscountedPrice } from "@/app/utils/utilityFunctions";
 
 
 const model = OrderModel;
@@ -30,6 +31,10 @@ export async function fetchOrders({queryParams,user}:{queryParams?:URLSearchPara
         const limit = Number(queryParams?.get('pageSize')) || 10;
         const skip = (page) * limit;
         const search = queryParams?.get('search') || "";
+
+        if(search !== "" && mongoose.Types.ObjectId.isValid(search)){
+            query._id = new mongoose.Types.ObjectId(search)
+        }
 
         // it wont work for now, to be fixed later
         // if(search){
@@ -99,7 +104,12 @@ export const POST = withAuthAndErrorHandler(async (req: NextRequest) => {
             throw new Error(`Product with id ${productId} not found`);
         }
 
-        const discountedPrice = Number(product.price - (product.price * product.discount / 100));
+        const discountedPrice = Number(
+            getDiscountedPrice({
+                originalPrice : product?.price,
+                discount : product?.discount
+            })
+        );
         const total = Number(discountedPrice * item.quantity);
         const quantity = item.quantity;
         const price = Number(discountedPrice);

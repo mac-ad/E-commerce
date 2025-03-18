@@ -13,6 +13,7 @@ import { AppDispatch, RootState } from "@/store/store";
 import { useAddToCartMutation } from "@/features/api/cartApiSlice";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
+import { getCurrency, getDiscountAmount, getDiscountedPrice } from "@/app/utils/utilityFunctions";
 
 export default function ProductById() {
   const params = useParams();
@@ -41,7 +42,6 @@ export default function ProductById() {
           qty:1
         }
       }).unwrap();
-      console.log({response});
       toast.success(response?.message);
     }catch(error:any){
       console.log({error});
@@ -83,18 +83,26 @@ export default function ProductById() {
                         {productData?.discount ? (
                           <p className="text-sm font-semibold text-blue-400 mt-4 whitespace-nowrap">
                             
-                            {`Save Extra NPR ${(productData?.discount / 100 * productData?.price).toLocaleString("en-IN")}`}
+                            {`Save Extra ${getCurrency(getDiscountAmount({
+                              originalPrice : productData?.price,
+                              discount : productData?.discount
+                            }))}`}
                           </p>
                         ) : null}
 
                       <div className="flex flex-col">
                         <p className="mt-1 font-semibold text-2xl">
-                          {`NPR ${productData?.price ? (productData?.discount ? (productData.price - (productData.discount / 100 * productData.price))?.toLocaleString("en-IN") : productData.price.toLocaleString("en-IN")) : ''}`}
+                          {`${getCurrency(
+                            getDiscountedPrice({
+                              originalPrice : productData?.price ?? 0,
+                              discount : productData?.discount ?? 0
+                            })
+                          )}`}
                         </p>
                         {productData?.discount ? (
                           <>
                             <p className="mt-1  font-light text-base text-gray-400 line-through">
-                              {`NPR ${productData?.price?.toLocaleString("en-IN")}`}
+                              {`${getCurrency(productData?.price)}`}
                             </p>
                             <p className="mt-1 bg-primary/80 text-white px-4 py-1 rounded-sm w-fit">
                               {productData?.discount}% off

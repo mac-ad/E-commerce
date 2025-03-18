@@ -36,6 +36,27 @@ export const authApi = createApi({
                 body:data
             })
         }),
+        sendOTP : builder.mutation<{data:any,message:string},{email:string}>({
+            query : ({email}) => ({
+                url:"/auth/reset-password/send-otp",
+                method:"POST",
+                body:{email}
+            })
+        }),
+        verifyOTP : builder.mutation<{data:any,message:string},{email:string,otp:string}>({
+            query : ({email,otp}) => ({
+                url:"/auth/reset-password/verify-otp",
+                method:"PUT",
+                body:{email,otp}
+            })
+        }),
+        resetPassword : builder.mutation<{data:any,message:string},{email:string,password:string}>({
+            query : ({email,password}) => ({
+                url:"/auth/reset-password",
+                method:"PATCH",
+                body:{email,password}
+            })
+        }),
         // getHomepageProducts : builder.query<{message:string,data:Product[],category:CategoryItem},void>({
         //     query : () => ({
         //         url:"/homepageProducts",
@@ -45,4 +66,4 @@ export const authApi = createApi({
     }),
 });
 
-export const { useLoginMutation, useLogoutMutation, useRegisterMutation } = authApi;
+export const { useLoginMutation, useLogoutMutation, useRegisterMutation, useSendOTPMutation, useVerifyOTPMutation, useResetPasswordMutation } = authApi;

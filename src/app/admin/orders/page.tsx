@@ -44,7 +44,7 @@ const OrdersPage = () => {
 
     try {
       await updateOrder({data:formData, id: id}).unwrap()
-      toast.success(`Order ${currentAccessor === "status" ? "status" : "payment status"} updated successfully`)
+      toast.success(`Order status updated successfully`)
       setCurrentOrderId(null)
       setCurrentAccessor(null)
     } catch (error) {
@@ -144,7 +144,8 @@ const OrdersPage = () => {
           search={search}
           totalItems={orders?.totalItems ?? 0}
           refetch={refetch}
-          showSearch = {false}
+          showSearch = {true}
+          searchText = "Search for orderId...."
         />
       </div>
 

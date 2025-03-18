@@ -10,7 +10,6 @@ export const GET = withErrorHandler(async (
 ) => {
 
     const categoryId = params.id;
-    console.log({ categoryId })
 
     const products = await model.find({ category: categoryId });
 

@@ -40,7 +40,7 @@ export const GET = withAuthAndErrorHandler(async (
 
   const { id } = params;
   const userId = request.userId;
-  console.log(userId,id,'id');
+  (userId,id,'id');
 
   if(!id && !userId){
     return NextResponse.json({

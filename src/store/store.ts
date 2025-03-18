@@ -16,14 +16,6 @@ import { orderApi } from '../features/api/orderApiSlice';
 import { userApi } from '../features/api/userApiSlice';
 import { cartApi } from '../features/api/cartApiSlice';
 
-// const authMiddleware = (store: any) => (next: any) => (action: any) => {
-//     if (action.type === 'auth/logoutUser') {
-//         localStorage.removeItem('token');
-//         store.dispatch(logoutUser());
-//     }
-//     return next(action);
-// };
-
 export const store = configureStore({
     reducer: {
         auth: authReducer,

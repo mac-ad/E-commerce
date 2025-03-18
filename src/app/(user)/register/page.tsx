@@ -10,6 +10,7 @@ import { useRegisterMutation } from "@/features/api/apiSlice";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
+import Link from "next/link";
 
 export default function Register() {
   const router = useRouter();
@@ -31,11 +32,9 @@ export default function Register() {
   const [registerUser, {isLoading:registerLoading}] = useRegisterMutation();
 
   const submitData = async (data: RegisterData) => {
-    console.log("tryy registering in");
     try {
       // dispatch(registerUser(data));
       const res = await registerUser({data}).unwrap();
-      console.log("res = ", res)  
       toast.success(res.message)
       router.push("/login")
     } catch (err:any) {
@@ -114,9 +113,9 @@ export default function Register() {
             <Button type="submit" className="mt-6 sm:mt-8 w-full" disabled={registerLoading}>
               {registerLoading ? <Loader2 className="animate-spin" /> : "Register"}
             </Button>
-            <p className="flex justify-end text-[10px] sm:text-xs mt-2 text-gray-400 font-light">
+            <Link href="/forgot-password" className="flex justify-end text-[10px] sm:text-xs mt-2 text-gray-400 font-light">
               Forgot password ?
-            </p>
+            </Link>
             <p className="flex justify-center text-xs sm:text-sm font-extralight my-2">OR</p>
             <p className="mt-2 sm:mt-4 text-xs sm:text-sm font-extralight text-gray-500 text-center">
               Already have an account ?&nbsp;

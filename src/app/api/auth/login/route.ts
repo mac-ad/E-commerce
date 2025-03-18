@@ -58,6 +58,8 @@ export async function POST(request: Request) {
       sameSite: process.env.NODE_ENV === 'production' ? 'strict' : 'lax', // Stricter in production
       path: "/",
       maxAge: 5 * 24 * 60 * 60 // 5 days in seconds to match JWT expiry
+      // maxAge: 10 // 5 days in seconds to match JWT expiry
+
     });
 
     return NextResponse.json({
