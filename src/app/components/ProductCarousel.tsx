@@ -13,7 +13,7 @@ const ProductCarousel = ({images}:{images:string[]}) => {
     ]
 
   return (
-    <div className = "flex justify-center items-center">
+    <div className = "flex justify-center items-center h-full w-full self-start">
         <Carousel plugins={plugins}>
             <CarouselContent>
                 {

@@ -63,8 +63,10 @@ export default function ProductById() {
     <div className="w-[90%] mx-auto  max-w-[1700px] bg-gray-100  flex justify-center">
       <div className="w-full bg-white p-4 py-10 flex flex-col gap-4 lg:flex-row ">
           <React.Fragment key={productData?._id}>
-            <div className = "flex flex-col gap-4 md:min-w-[450px] flex-1 max-w-[500px] mx-auto lg:ml-auto lg:order-2">
-              <ProductCarousel images={productData?.images || []} />
+            <div className = "flex flex-col gap-4 md:min-w-[450px]  flex-1 max-w-[500px] mx-auto lg:ml-auto lg:order-2 self-start">
+             <div className = "w-full h-[500px] ">
+                <ProductCarousel images={productData?.images || []} />
+             </div>
               <Button
                 className = "rounded-none w-full max-w-[150px]  mx-auto md:hidden"
               >
