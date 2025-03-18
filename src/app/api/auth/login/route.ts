@@ -53,11 +53,12 @@ export async function POST(request: Request) {
     }
 
     cookies().set("token", token, {
-      httpOnly: process.env.NODE_ENV === 'production', // Only set httpOnly in production
-      secure: process.env.NODE_ENV === 'production', // Only set secure in production
-      sameSite: process.env.NODE_ENV === 'production' ? 'strict' : 'lax', // Stricter in production
+      // httpOnly: process.env.NODE_ENV === 'production', // Only set httpOnly in production
+      // secure: process.env.NODE_ENV === 'production', // Only set secure in production
+      // sameSite: process.env.NODE_ENV === 'production' ? 'strict' : 'lax', // Stricter in production
       path: "/",
-      maxAge: 5 * 24 * 60 * 60 // 5 days in seconds to match JWT expiry
+      maxAge: 5 * 24 * 60 * 60, // 5 days in seconds to match JWT expiry
+      sameSite : "lax"
       // maxAge: 10 // 5 days in seconds to match JWT expiry
 
     });
