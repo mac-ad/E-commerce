@@ -61,5 +61,5 @@ export const getDate = (value:string) => {
 }
 
 export const getFullUrl = (url:string) => {
-  return `${process.env.NEXT_PUBLIC_HOST_DOMAIN}/${url}`
+  return `${url}`
 }
