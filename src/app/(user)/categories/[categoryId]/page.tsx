@@ -7,6 +7,7 @@ import Pagination from "@/app/components/Pagination";
 import ProductsNotFound from "@/app/components/productsNotFound";
 import ProductListSkeleton from "@/app/components/skeleton/ProductList";
 import { PAGE, PAGE_SIZE } from "@/app/utils/constants/common";
+import { getFullUrl } from "@/app/utils/utilityFunctions";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useGetProductsQuery } from "@/features/api/productApiSlice";
 import { RootState } from "@/store/store";
@@ -62,7 +63,7 @@ export default function GetProductByCategory() {
               <Skeleton className="w-full h-[150px] md:h-[200px] lg:h-[300px] rounded-none" />
             </div> :  currentCategory?.bannerImage && (
               <Image 
-                src={currentCategory?.bannerImage} 
+                src={getFullUrl(currentCategory?.bannerImage)} 
                 alt={`${currentCategory?.name} banner`}
                 width={1920}
                 height={100}

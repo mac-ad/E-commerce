@@ -2,6 +2,7 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import Autoplay from 'embla-carousel-autoplay'
 import Image from 'next/image'
 import React from 'react'
+import { getFullUrl } from '../utils/utilityFunctions'
 
 const ProductCarousel = ({images}:{images:string[]}) => {
 
@@ -18,7 +19,7 @@ const ProductCarousel = ({images}:{images:string[]}) => {
                 {
                     images?.map((image,index) => (
                         <CarouselItem>
-                            <Image src={image} alt={`Product Image ${index}`} width={500} height={500} className = "mx-auto"/>    
+                            <Image src={getFullUrl(image)} alt={`Product Image ${index}`} width={500} height={500} className = "mx-auto"/>    
                         </CarouselItem>
                     ))
                 }

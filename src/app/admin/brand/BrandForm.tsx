@@ -42,7 +42,7 @@ const BrandForm = ({
 
                 <div>
                     <InputImageUpload
-                        onImageSelect={(files: File[]) => {
+                        onImageSelect={(files: (string | File)[]) => {
                             setValue("logo", files[0]);
                         }}
                         value={formValues.logo ? [formValues.logo] : []}

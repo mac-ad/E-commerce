@@ -13,6 +13,7 @@ import { useGetBrandsQuery } from '@/features/api/brandApiSlice';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
 import NoBrands from '@/app/components/NoBrands';
+import { getFullUrl } from '@/app/utils/utilityFunctions';
 
 interface Brand {
   id: string;
@@ -53,7 +54,7 @@ const HomepageBrands = () => {
                   <CardContent className="flex flex-col items-center p-6">
                     <div className="relative w-32 aspect-square mb-4">
                       <Image
-                        src={brand?.logo}
+                        src={getFullUrl(brand?.logo)}
                         alt={brand?.name}
                         fill
                         className="object-contain"
