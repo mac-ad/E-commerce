@@ -49,7 +49,7 @@ export const registerSchema: ZodType<RegisterData> = z
       .string()
       .min(2, { message: "Password must be at least 2 characters." })
       .regex(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{2,}$/,
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#@$!%*?&])[A-Za-z\d#@$!%*?&]{2,}$/,
         {
           message:
             "Password must include at least one uppercase letter, one lowercase letter, one number, and one special character.",

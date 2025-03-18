@@ -59,3 +59,7 @@ export const getDate = (value:string) => {
 
   return date?.toLocaleDateString('en-US',dateFormat as any)
 }
+
+export const getFullUrl = (url:string) => {
+  return `${process.env.host_domain}/${url}`
+}

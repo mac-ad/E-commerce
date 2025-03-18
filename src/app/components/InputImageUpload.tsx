@@ -5,6 +5,7 @@ import { UseFormRegister, FieldValues, Path, UseFormSetValue, PathValue } from "
 import FormError from './FormError';
 import { Label } from '@/components/ui/label';
 import { X } from 'lucide-react';
+import { getFullUrl } from '../utils/utilityFunctions';
 
 interface InputImageUploadProps<T extends FieldValues> {
   onImageSelect: (files: Array<string | File>) => void;
@@ -123,7 +124,7 @@ export function InputImageUpload<T extends FieldValues>({
               preview ? <div key={index} className="relative w-[150px] h-[150px] group overflow-hidden border shadow-md hover:shadow-lg transition-all duration-300">
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   <Image
-                    src={typeof preview === 'string' ? preview : URL.createObjectURL(preview)}
+                    src={typeof preview === 'string' ? getFullUrl(preview) : URL.createObjectURL(preview)}
                     alt={`Preview ${index + 1}`}
                     fill
                     className="object-contain "
