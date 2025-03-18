@@ -8,9 +8,9 @@ module.exports = {
         ignoreBuildErrors: true,
       },
     images: {
-        dangerouslyAllowSVG: true,
+      unoptimized: true,
+      dangerouslyAllowSVG: true,
       remotePatterns: [
-        
       ],
     },
   };
