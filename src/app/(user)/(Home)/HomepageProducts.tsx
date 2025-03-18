@@ -7,7 +7,7 @@ import {  useGetProductsQuery } from "@/features/api/productApiSlice";
 // displays recently added products on the homepage
 const HomepageProducts = ({className}:{className?:string}) => {
 
-  const {data,isLoading} = useGetProductsQuery();
+  const {data,isLoading} = useGetProductsQuery({isActive:true});
 
   return (
     <div className = {`w-[90%]  mx-auto  bg-white ${className}`}>

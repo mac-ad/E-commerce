@@ -7,7 +7,8 @@ import { useGetProductsQuery } from "@/features/api/productApiSlice";
 const HomepageDiscounted = ({className}:{className?:string}) => {
   // Add discount filter to query
   const { data, isLoading } = useGetProductsQuery({
-    discounted:true  // Sort by highest discount first
+    discounted:true,
+    isActive:true  // Sort by highest discount first
   });
 
 
