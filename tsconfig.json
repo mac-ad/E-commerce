@@ -29,6 +29,6 @@
     "src/app/[AirConditioner]",
     "src/app/(user)/AC",
     "src/app/utils/store/appstore.ts"
-  ],
+, "src/server.js"  ],
   "exclude": ["node_modules"]
 }

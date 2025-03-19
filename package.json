@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "next start",
-    "dev": "next dev",
+    "start": "node ./src/server.js",
+    "dev": "node ./src/server.js",
     "build": "next build",
     "lint": "next lint",
     "json-server": "json-server --watch db.json --port 2000"
@@ -49,6 +49,7 @@
     "e-commerce": "file:",
     "embla-carousel-autoplay": "^8.5.2",
     "embla-carousel-react": "^8.5.2",
+    "express": "^4.21.2",
     "input-otp": "^1.4.2",
     "js-cookie": "^3.0.5",
     "json-server": "^1.0.0-beta.2",
