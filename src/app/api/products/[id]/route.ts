@@ -68,10 +68,9 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
         const deletedImages = product?.images.filter((image:string) => !existingImages.includes(image));
 
         if(deletedImages.length > 0){
-            await deleteImages(deletedImages);
+            deleteImages(deletedImages);
         }
        
-
         if(!images.length && !existingImages.length) return NextResponse.json({
             message: "Image is required",
         }, { status: 400 })
@@ -158,7 +157,7 @@ export async function DELETE(request: NextRequest, { params }: { params: { id: s
             return NextResponse.json({ message: "Product not found" }, { status: 404 });
         }
         // delete the images of product from server
-        await deleteImages(product.images);
+        deleteImages(product.images);
 
         return NextResponse.json({ message: "Product deleted successfully" }, { status: 200 });
     } catch (error: any) {

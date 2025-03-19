@@ -19,22 +19,8 @@ export const loginSchema: ZodType<LoginData> = z.object({
     .min(2, { message: "Email must be at least 2 characters." }),
   password: z
     .string()
-    // .min(2, { message: "Password must be at least 2 characters." })
-    // .regex(
-    //   /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{2,}$/,
-    //   {
-    //     message:
-    //       "Password must include at least one uppercase letter, one lowercase letter, one number, and one special character.",
-    //   }
-    // ),
+   
 });
-// .refine(
-//   (data) => data.email === "Mikasha@316" && data.password === "12@Dharan",
-//   {
-//     message: "Username or password incorrect",
-//     path: ["password"],
-//   }
-// );
 
 export const registerSchema: ZodType<RegisterData> = z
   .object({

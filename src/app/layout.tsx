@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import ReactQueryProvider from "@/app/utils/Providers/ReactQueryProvider";
+// import ReactQueryProvider from "@/app/utils/Providers/ReactQueryProvider";
 import StoreProvider from "./StoreProvider";
 import { Toaster } from "sonner";
 import Wrapper from "./components/Wrapper";
@@ -28,12 +28,12 @@ export default function RootLayout({
       >
         <div className="">
           <StoreProvider>
-            <ReactQueryProvider>
+            {/* <ReactQueryProvider> */}
             <Toaster position="top-center" duration={3000} />
               <App>
                 {children}
               </App>
-            </ReactQueryProvider>
+            {/* </ReactQueryProvider> */}
           </StoreProvider>
         </div>
       </body>

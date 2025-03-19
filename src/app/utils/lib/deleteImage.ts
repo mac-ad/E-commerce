@@ -1,5 +1,3 @@
-import fs from 'fs'
-import path from 'path'
 import { deleteImages as DeleteCloudinaryImages } from './cloudinary'
 
 export const deleteImages = async (imagePaths: string[]): Promise<void> => {

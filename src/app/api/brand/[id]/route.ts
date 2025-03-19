@@ -1,4 +1,5 @@
 import brandModel from "@/app/models/brandModel";
+import { deleteImages } from "@/app/utils/lib/deleteImage";
 import { connectToDb } from "@/app/utils/lib/mongodb/mongodb";
 import { uploadMiddleware } from "@/app/utils/lib/multer";
 import { NextRequest, NextResponse } from "next/server";
@@ -27,12 +28,17 @@ export async function DELETE(
 
         const deletedBrand = await model.findOneAndDelete({ _id: brandId });
 
+      
+
         if (!deletedBrand) {
             return NextResponse.json(
                 { error: "Brand not found" },
                 { status: 404 }
             );
         }
+
+        // delete image from cloudinary dont want to delete all images
+        deleteImages([deletedBrand?.logo])
 
         return NextResponse.json({
             message: "Brand deleted successfully",
@@ -69,6 +75,10 @@ export async function PUT(req: NextRequest, { params }: {
             return NextResponse.json({
                 message: "Invalid image input. expected one recieved many",
             }, { status: 400 })
+        }
+
+        if(existingImage) {
+            deleteImages([existingImage])
         }
 
         let images:string[] = [];

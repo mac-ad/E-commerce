@@ -1,6 +1,4 @@
-import path from 'path';
-import fs from 'fs';
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 import { uploadImages } from './cloudinary';
 
 
@@ -11,36 +9,6 @@ const uploadAllFiles = async ({
     files: File[],
     filesPath: string[]
 }) => {
-    // const promises = files.map(async (file) => {
-    //     try {
-    //         // const bytes = await file.arrayBuffer();
-    //         // const formData = new FormData();
-    //         // formData.append('file', new Blob([bytes]));
-    //         // formData.append('upload_preset', 'ecomerce-bikaldai'); // Replace with your Cloudinary upload preset
-            
-    //         // const response = await fetch(
-    //         //     `https://api.cloudinary.com/v1_1/djhsz1acw/image/upload`, // Replace with your cloud name
-    //         //     {
-    //         //         method: 'POST',
-    //         //         body: formData
-    //         //     }
-    //         // );
-
-    //         const result = await uploadImages([file])
-
-    //         if (!response.ok) {
-    //             throw new Error('Failed to upload to Cloudinary');
-    //         }
-
-    //         const data = await response.json();
-    //         return data.secure_url; // Returns the CDN URL of the uploaded image
-
-    //     } catch (err) {
-    //         throw new Error(`Error uploading file to Cloudinary: ${err}`);
-    //     }
-    // });
-
-    // const uploadedPaths = await Promise.all(promises);
     const uploadedPaths = await uploadImages(files)
     filesPath.push(...uploadedPaths);
 }
@@ -57,7 +25,6 @@ export async function uploadMiddleware(files: File[]): Promise<NextResponse> {
         }
 
         const filesPath: string[] = [];
-
 
         await uploadAllFiles({
             files: files,
