@@ -1,23 +1,8 @@
-import multer from 'multer';
 import path from 'path';
 import fs from 'fs';
 import { NextRequest, NextResponse } from 'next/server';
+import { uploadImages } from './cloudinary';
 
-// // Configure Multer storage
-// const storage = multer.diskStorage({
-//     destination: (req, file, cb) => {
-//         const uploadDir = path.join(process.cwd(), "@/uploads");
-//         if (!fs.existsSync(uploadDir)) {
-//             fs.mkdirSync(uploadDir, { recursive: true });
-//         }
-//         cb(null, uploadDir);
-//     },
-//     filename: (req, file, cb) => {
-//         cb(null, `${Date.now()}-${file.originalname}`);
-//     },
-// });
-
-// const upload = multer({ storage });
 
 const uploadAllFiles = async ({
     files,
@@ -26,29 +11,37 @@ const uploadAllFiles = async ({
     files: File[],
     filesPath: string[]
 }) => {
-    console.log("files.length", files)
-    const promises = files.map(async (file) => {
-        try {
-            const bytes = await file.arrayBuffer();
-            const buffer = Buffer.from(bytes);
-            const uploadDir = path.join(process.cwd(), "src/uploads");
+    // const promises = files.map(async (file) => {
+    //     try {
+    //         // const bytes = await file.arrayBuffer();
+    //         // const formData = new FormData();
+    //         // formData.append('file', new Blob([bytes]));
+    //         // formData.append('upload_preset', 'ecomerce-bikaldai'); // Replace with your Cloudinary upload preset
+            
+    //         // const response = await fetch(
+    //         //     `https://api.cloudinary.com/v1_1/djhsz1acw/image/upload`, // Replace with your cloud name
+    //         //     {
+    //         //         method: 'POST',
+    //         //         body: formData
+    //         //     }
+    //         // );
 
-            // Check if directory exists and create if needed
-            if (!await fs.promises.access(uploadDir).then(() => true).catch(() => false)) {
-                await fs.promises.mkdir(uploadDir, { recursive: true });
-            }
+    //         const result = await uploadImages([file])
 
-            const filename = `${Date.now()}-${Math.random().toString(36).substring(2, 15)}-${file.name}`;
-            const filepath = path.join(uploadDir, filename);
-            await fs.promises.writeFile(filepath, new Uint8Array(buffer));
+    //         if (!response.ok) {
+    //             throw new Error('Failed to upload to Cloudinary');
+    //         }
 
-            return `/uploads/${filename}`;
-        } catch (err) {
-            throw new Error(`Error uploading file: ${err}`);
-        }
-    });
+    //         const data = await response.json();
+    //         return data.secure_url; // Returns the CDN URL of the uploaded image
 
-    const uploadedPaths = await Promise.all(promises);
+    //     } catch (err) {
+    //         throw new Error(`Error uploading file to Cloudinary: ${err}`);
+    //     }
+    // });
+
+    // const uploadedPaths = await Promise.all(promises);
+    const uploadedPaths = await uploadImages(files)
     filesPath.push(...uploadedPaths);
 }
 
@@ -65,19 +58,11 @@ export async function uploadMiddleware(files: File[]): Promise<NextResponse> {
 
         const filesPath: string[] = [];
 
-        // Use Promise.all to properly handle async operations
-        // await Promise.all(
-        //     fileArray.map(async (file: File) => {
-        //          // Use filename instead of full filepath
-        //     })
-        // );
 
         await uploadAllFiles({
             files: files,
             filesPath
         });
-
-        console.log(filesPath, 'fulePaths')
 
         return NextResponse.json({
             message: "Files uploaded successfully",
