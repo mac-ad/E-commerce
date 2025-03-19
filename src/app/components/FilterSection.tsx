@@ -91,9 +91,10 @@ const FilterSection = ({categoryId,loading,setFilter,filter,resetPagination}:{ca
                         <div className="flex gap-1 flex-wrap max-h-[150px] overflow-y-auto">
                             {
                                 brands?.data.map((brand) => (
-                                    <Button variant="outline" key={brand._id} className="uppercase text-xs bg-muted/30 hover:bg-primary hover:text-primary-foreground">
-                                        <span>{brand.name}</span> 
-                                    </Button>
+                                    <div className = "flex items-center gap-2 text-capitalize">
+                                        <Checkbox checked = {filter.brand.includes(brand._id)} onCheckedChange = {(checked) => filterChangeHandler(checked as boolean,brand._id)} />
+                                    <span>{brand.name}</span> 
+                                </div>
                                 ))
                             }
                         </div>
@@ -104,9 +105,10 @@ const FilterSection = ({categoryId,loading,setFilter,filter,resetPagination}:{ca
                             <div className="flex flex-col gap-1 bg-gray-100 p-4 rounded-md">
                             <span className="text-sm pb-2 mt-4">NRs.{price[0]} - NRs.{price[1]}</span>
                             <Slider defaultValue={price}  max={MAX_PRICE} step={500} onValueChange={(value) => setPrice(value as [number,number])} />
+                            <Button variant="default" className="w-fit mt-10 ml-auto" onClick={() => setFilter({...filter,price:price})}>Apply Filter</Button>
                         </div>
                     </div>
-                <Button variant="default" className="w-fit mt-10 ml-auto">Apply Filter</Button>
+                {/* <Button variant="default" className="w-fit mt-10 ml-auto">Apply Filter</Button> */}
                 </div>
 
             </SheetContent>
