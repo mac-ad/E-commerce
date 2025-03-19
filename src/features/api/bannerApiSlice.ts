@@ -6,12 +6,15 @@ import { baseQuery, baseQueryWithReauth } from './common';
 export const bannerApi = createApi({
   reducerPath: 'bannerApi',
   baseQuery: baseQueryWithReauth,
+  tagTypes: ['Banner'],
   endpoints: (builder) => ({
     getBanners: builder.query<{data:Banner[],total:number}, void>({
       query: () => '/banner',
+      providesTags: ['Banner']
     }),
     getBannerById: builder.query<Banner, string>({
       query: (id) => `/banner/${id}`,
+      providesTags: ['Banner']
     }),
     createBanner: builder.mutation<Banner, Partial<Banner>>({
       query: (banner) => ({
@@ -19,6 +22,7 @@ export const bannerApi = createApi({
         method: 'POST',
         body: banner,
       }),
+      invalidatesTags: ['Banner']
     }),
     updateBanner: builder.mutation<Banner, Partial<Banner>>({
       query: (banner) => ({
@@ -26,12 +30,14 @@ export const bannerApi = createApi({
         method: 'PUT',
         body: banner,
       }),
+      invalidatesTags: ['Banner']
     }),
     deleteBanner: builder.mutation<void, string>({
       query: (id) => ({
         url: `/banner/${id}`,
         method: 'DELETE',
       }),
+      invalidatesTags: ['Banner']
     }),
   }),
 });

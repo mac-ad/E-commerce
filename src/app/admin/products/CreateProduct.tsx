@@ -133,7 +133,7 @@ const CreateProduct = (
                     defaultValues={defaultValues}
                     formValues={formValues}
                     setValue={setValue}
-                    loading={isLoadingProductDetail || isUpdatingProduct}
+                    loading={isLoadingProductDetail || isUpdatingProduct || isCreatingProduct}
                 />
             }
         </div>

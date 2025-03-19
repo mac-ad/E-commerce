@@ -28,6 +28,7 @@ export const categoryApi = createApi({
         url: `/category/${id}`,
         method: 'GET',
       }),
+      providesTags: ['Category'],
     }),
     createCategory: builder.mutation<CategoryItem, {data:FormData}>({
       query: ({data}) => ({

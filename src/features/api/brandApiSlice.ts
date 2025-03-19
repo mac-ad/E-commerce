@@ -23,6 +23,7 @@ interface BrandParams {
 export const brandApi = createApi({
   reducerPath: 'brandApi',
   baseQuery: baseQueryWithReauth,
+  tagTypes: ['Brand'],
   endpoints: (builder) => ({
     getBrands: builder.query<BrandResponse,BrandParams | void >({
       query: (params: BrandParams) => {
@@ -40,30 +41,35 @@ export const brandApi = createApi({
           url: url.pathname + url.search,
           credentials: 'include',
         };
-      }
+      },
+      providesTags: ['Brand']
     }),
     createBrand: builder.mutation<{message: string, brand: Brand}, {data: FormData}>({
       query: ({data}) => ({
         url: '/brand',
         method: 'POST',
         body: data
-      })
+      }),
+      invalidatesTags: ['Brand']
     }),
     updateBrand: builder.mutation<{message: string, brand: Brand}, {data: FormData, id: string}>({
       query: ({id, data}) => ({
         url: `/brand/${id}`,
         method: 'PUT',
         body: data
-      })
+      }),
+      invalidatesTags: ['Brand']
     }),
     deleteBrand: builder.mutation<{message: string}, string>({
       query: (id) => ({
         url: `/brand/${id}`,
         method: 'DELETE'
-      })
+      }),
+      invalidatesTags: ['Brand']
     }),
     getBrand: builder.query<{data: Brand, message: string}, string>({
-      query: (id) => `/brand/${id}`
+      query: (id) => `/brand/${id}`,
+      providesTags: ['Brand']
     })
   })
 });
@@ -73,7 +79,8 @@ export const {
   useCreateBrandMutation,
   useUpdateBrandMutation,
   useDeleteBrandMutation,
-  useLazyGetBrandQuery
+  useLazyGetBrandQuery,
+  useGetBrandQuery
 } = brandApi;
 
 export const {util:api} = brandApi;
