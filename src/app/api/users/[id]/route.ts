@@ -4,10 +4,11 @@ import { connectToDb } from "@/app/utils/lib/mongodb/mongodb";
 import { withAuthAndErrorHandler } from "@/app/utils/routesMiddleware";
 
 const model = UserModel;
-    export const PUT = withAuthAndErrorHandler(async (
-    request: Request,
-    { params }: { params: { id: string } }
-    ) => {
+
+export const PUT = withAuthAndErrorHandler(async (
+  request: Request,
+  { params }: { params: { id: string } }
+) => {
         await connectToDb();
 
         const body = await request.json();
@@ -30,7 +31,7 @@ const model = UserModel;
         data: user,
         message: "User updated successfully"
         });
-    });
+});
 
 export const GET = withAuthAndErrorHandler(async (
   request: Request,
@@ -40,7 +41,6 @@ export const GET = withAuthAndErrorHandler(async (
 
   const { id } = params;
   const userId = request.userId;
-  (userId,id,'id');
 
   if(!id && !userId){
     return NextResponse.json({

@@ -1,10 +1,7 @@
 import { BASE_URL } from "@/app/utils/constants/routes";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { logoutUser, User } from "../states/authSlice";
-import { RootState } from "@/store/store";
-import { baseQuery } from "./common";
-import { Product } from "./productApiSlice";
-import { CategoryItem } from "../states/CategorySlice";
+import {  User } from "../states/authSlice";
+
 import { RegisterData } from "@/app/utils/types/z.schema";
 
 export const authApi = createApi({

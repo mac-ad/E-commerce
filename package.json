@@ -3,11 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "node ./src/server.js",
-    "dev": "node ./src/server.js",
+    "start": "next start",
+    "dev": "next dev",
     "build": "next build",
-    "lint": "next lint",
-    "json-server": "json-server --watch db.json --port 2000"
+    "lint": "next lint"
   },
   "dependencies": {
     "@excalidraw/excalidraw": "^0.18.0",
@@ -43,6 +42,7 @@
     "axios": "^1.8.1",
     "bcrypt": "^5.1.1",
     "class-variance-authority": "^0.7.1",
+    "cloudinary": "^2.6.0",
     "clsx": "^2.1.1",
     "cmdk": "^1.0.0",
     "cors": "^2.8.5",

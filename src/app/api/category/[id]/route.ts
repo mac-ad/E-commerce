@@ -1,4 +1,5 @@
 import categoryModel from "@/app/models/categoryModel";
+import { deleteImages } from "@/app/utils/lib/deleteImage";
 import { connectToDb } from "@/app/utils/lib/mongodb/mongodb";
 import { uploadMiddleware } from "@/app/utils/lib/multer";
 import { NextRequest, NextResponse } from "next/server";
@@ -32,6 +33,9 @@ export async function DELETE(
                 { status: 404 }
             );
         }
+
+        // delete image from cloudinary
+        deleteImages([deletedCategory?.bannerImage])
 
         return NextResponse.json({
             message: "Category deleted successfully",
@@ -67,6 +71,10 @@ export async function PUT(req: NextRequest, { params }: {
             return NextResponse.json({
                 message: "Invalid image input. expected one recieved many",
             }, { status: 400 })
+        }
+
+        if(existingImage) {
+            deleteImages([existingImage])
         }
 
         let images:string[] = [];

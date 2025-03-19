@@ -17,6 +17,24 @@ interface ProfileResponse {
   message: string;
 }
 
+interface DashboardResponse {
+  data: {
+    totalUsers: number;
+    totalOrders: number;
+    totalProducts: number;
+    totalRevenue: number;
+    ordersByStatus: {
+    pending: number;
+    processing: number;
+    shipped: number;
+    delivered: number;
+    cancelled: number;
+  };
+  recentOrders: any[]; // TODO: Type this properly once order type is defined
+  },
+  message: string;
+}
+
 interface GetUsersParams {
   page?: number;
   limit?: number;
@@ -79,9 +97,15 @@ export const userApi = createApi({
         method: "DELETE",
       }),
     }),
+    getDashboard: builder.query<DashboardResponse, void>({
+      query: () => ({
+        url: "/dashboard",
+        method: "GET",
+      }),
+    }),
   }),
 });
 
-export const { useGetProfileQuery,useLazyGetProfileQuery,  useGetUsersQuery, useGetUserQuery, useUpdateUserMutation, useDeleteUserMutation,useLazyGetUserQuery } = userApi;
+export const { useGetProfileQuery,useLazyGetProfileQuery,  useGetUsersQuery, useGetUserQuery, useUpdateUserMutation, useDeleteUserMutation,useLazyGetUserQuery, useGetDashboardQuery } = userApi;
 
 export const {util:api} = userApi;
