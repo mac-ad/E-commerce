@@ -9,17 +9,12 @@ import { Table, TableCell } from '@/components/ui/table';
 import { TableBody } from '@/components/ui/table';
 import { TableHead, TableRow } from '@/components/ui/table';
 import { TableHeader } from '@/components/ui/table';
+import { useGetDashboardQuery } from '@/features/api/userApiSlice';
 
 const DashboardPage = () => {
-  const { data: dashboardData, isLoading } = useQuery({
-    queryKey: ['dashboard'],
-    queryFn: async () => {
-      const res = await fetch('/api/dashboard')
-      const data = await res.json()
-      return data.data
-    }
-  })
-
+  const {data, isLoading} = useGetDashboardQuery();
+  const dashboardData = data?.data;
+  
   if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
