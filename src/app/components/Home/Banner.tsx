@@ -45,7 +45,7 @@ const HomeBanner = () => {
                     {banners?.data?.map((banner, index) => (
                     <CarouselItem key={index}>
                         <div>
-                            <Image src={banner.image} alt="banner" width={1920} height={300}/>
+                            <Image src={banner.image} alt="banner" width={1920} height={300} className="cursor-pointer" onClick={() => window.open(banner.link, "_blank")}/>
                         </div>
                     </CarouselItem>
                     ))}

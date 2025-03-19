@@ -92,14 +92,18 @@ export default function GetProductByCategory() {
             </div>
             )
           }
-          <div className="flex justify-center items-center mt-5">
-            <Pagination 
-              currentPage={pageIndex}
-              totalPages={totalPages}
-              onPageChange={(page) => setPageIndex(page)}
-              hasNext={hasNext}
-            />
-          </div>
+          {
+            !isLoading && products?.data && products?.data?.length > 0 && (
+            <div className="flex justify-center items-center mt-5">
+                <Pagination 
+                  currentPage={pageIndex}
+                  totalPages={totalPages}
+                  onPageChange={(page) => setPageIndex(page)}
+                  hasNext={hasNext}
+                />
+            </div>
+            )
+          }
 
         </div>
         </div>

@@ -9,6 +9,7 @@ export interface Banner {
     _id:string;
     image:string;
     link:string;
+    isActive:boolean;
 }
 
 const initialState: BannerState = {

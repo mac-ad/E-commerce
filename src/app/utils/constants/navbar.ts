@@ -44,6 +44,12 @@ export const sidebarDataDefault = {
             isActive: false,
         },
         {
+            title: "Banners",
+            url: "/admin/banner",
+            icon: ShoppingBag,
+            isActive: false,
+        },
+        {
             title: "Users",
             url: "/admin/users",
             icon: Users,

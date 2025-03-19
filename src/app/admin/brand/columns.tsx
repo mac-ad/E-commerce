@@ -5,6 +5,7 @@ import { ArrowUpDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { DataTableColumnHeader } from "@/app/components/DataTable/DataTableColumnHeader";
 import { Brand } from "@/features/api/brandSlice";
+import { Banner } from "@/features/states/BannerSlice";
 
 export const BrandColumns: ColumnDef<Brand>[] = [
     {
