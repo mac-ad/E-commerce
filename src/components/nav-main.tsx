@@ -21,7 +21,7 @@ import { usePathname, useRouter } from "next/navigation"
 import Image from "next/image"
 import { cn } from "@/lib/utils"
 import { useEffect } from "react"
-import { useWindowSize } from "@/app/utils/hooks/useWindowSize"
+import { useWindowSize } from "@/utils/hooks/useWindowSize"
 
 export function NavMain({
   items,

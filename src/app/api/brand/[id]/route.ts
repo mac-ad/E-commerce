@@ -1,7 +1,7 @@
-import brandModel from "@/app/models/brandModel";
-import { deleteImages } from "@/app/utils/lib/deleteImage";
-import { connectToDb } from "@/app/utils/lib/mongodb/mongodb";
-import { uploadMiddleware } from "@/app/utils/lib/multer";
+import brandModel from "@/lib/models/brandModel";
+import { deleteImages } from "@/lib/deleteImage";
+import { connectToDb } from "@/lib/mongodb/mongodb";
+import { uploadMiddleware } from "@/lib/multer";
 import { NextRequest, NextResponse } from "next/server";
 
 const model = brandModel;

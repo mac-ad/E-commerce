@@ -31,7 +31,7 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar"
 import { useRouter } from "next/navigation"
-import { useLogout } from "@/app/utils/hooks/useLogout"
+import { useLogout } from "@/utils/hooks/useLogout"
 
 export function NavUser({
   user,

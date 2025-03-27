@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { UserModel } from "@/app/models/userModel";
+import { UserModel } from "@/lib/models/userModel";
 
 // Verify OTP endpoint
 export async function PUT(req: NextRequest) {

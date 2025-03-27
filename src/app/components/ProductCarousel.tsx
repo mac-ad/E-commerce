@@ -2,7 +2,7 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import Autoplay from 'embla-carousel-autoplay'
 import Image from 'next/image'
 import React from 'react'
-import { getFullUrl } from '../utils/utilityFunctions'
+import { getFullUrl } from '@/utils/utilityFunctions'
 
 const ProductCarousel = ({images}:{images:string[]}) => {
 

@@ -11,8 +11,8 @@ import { Home, HomeIcon, Package, Settings, ShoppingCart, Users } from 'lucide-r
 import { usePathname } from 'next/navigation'
 import React, { useEffect, useMemo, useState } from 'react'
 import { useSelector } from 'react-redux'
-import { sidebarDataDefault } from '../utils/constants/navbar'
-import { BASE_URL } from '../utils/constants/routes'
+import { sidebarDataDefault } from '@/utils/constants/navbar'
+import { BASE_URL } from '@/utils/constants/routes'
 import { useLazyGetProfileQuery } from '@/features/api/userApiSlice'
 
 

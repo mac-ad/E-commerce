@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-import { connectToDb } from "@/app/utils/lib/mongodb/mongodb";
-import productModel from "@/app/models/productModel";
-import CategoryModel from "@/app/models/categoryModel";
+import { connectToDb } from "@/lib/mongodb/mongodb";
+import productModel from "@/lib/models/productModel";
+import CategoryModel from "@/lib/models/categoryModel";
 import { fetchProducts } from "../products/route";
 
 export async function GET(req: NextRequest) {

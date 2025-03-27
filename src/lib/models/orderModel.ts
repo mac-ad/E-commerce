@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import { IProductBasic } from './productModel';
-import { OrderStatusEnum, OrderStatusEnumArray, PaymentStatusEnum, PaymentStatusEnumArray } from '../utils/types/api/common';
+import { OrderStatusEnum, OrderStatusEnumArray, PaymentStatusEnum, PaymentStatusEnumArray } from '@/utils/types/api/common';
 
 interface IOrderItem {
     productId: mongoose.Types.ObjectId;

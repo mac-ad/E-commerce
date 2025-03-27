@@ -1,4 +1,4 @@
-import { JwtPayload } from "@/app/utils/lib/jwt";
+import { JwtPayload } from "@/lib/jwt";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { toast } from "sonner";
 

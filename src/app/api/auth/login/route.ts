@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
-import { connectToDb } from "@/app/utils/lib/mongodb/mongodb";
-import { UserModel } from "@/app/models/userModel";
-import { hashPassword } from "@/app/utils/lib/hash";
-import { generateToken } from "@/app/utils/lib/jwt";
+import { connectToDb } from "@/lib/mongodb/mongodb";
+import { UserModel } from "@/lib/models/userModel";
+import { hashPassword } from "@/lib/hash";
+import { generateToken } from "@/lib/jwt";
 import bcrypt from "bcrypt";
 import { cookies } from "next/headers";
 

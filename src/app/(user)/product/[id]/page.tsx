@@ -13,7 +13,7 @@ import { AppDispatch, RootState } from "@/store/store";
 import { useAddToCartMutation } from "@/features/api/cartApiSlice";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
-import { getCurrency, getDiscountAmount, getDiscountedPrice } from "@/app/utils/utilityFunctions";
+import { getCurrency, getDiscountAmount, getDiscountedPrice } from "@/utils/utilityFunctions";
 
 export default function ProductById() {
   const params = useParams();

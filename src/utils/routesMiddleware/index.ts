@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
-import { connectToDb } from "../lib/mongodb/mongodb";
-import { decodeToken } from "../lib/jwt";
+import { decodeToken } from "../../lib/jwt";
 
 type RouteHandler = (req: NextRequest, ...args: any[]) => Promise<NextResponse>;
 type Middleware = (handler: RouteHandler) => RouteHandler;
@@ -23,7 +22,7 @@ export const composeMiddleware = (...middlewares: Middleware[]) => {
 export const withErrorHandler: Middleware = (handler: RouteHandler) => {
     return async (req: NextRequest, ...args: any[]) => {
         try {
-            await connectToDb();
+            // await connectToDb();
             return await handler(req, ...args);
         } catch (error) {
             if (error instanceof z.ZodError) {

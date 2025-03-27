@@ -23,7 +23,7 @@ import { Button } from "@/components/ui/button"
 import TableDataSkeleton from "../skeleton/TableData"
 import { DataTablePagination } from "./DataTablePagination"
 import { Dispatch, SetStateAction } from "react"
-import { debounce } from "@/app/utils/utilityFunctions"
+import { debounce } from "@/utils/utilityFunctions"
 import NoDataFoundDataTable from "./NoDataFoundDataTable"
 import { Icon } from "@iconify/react/dist/iconify.js"
 

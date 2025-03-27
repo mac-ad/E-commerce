@@ -13,7 +13,7 @@ import { useGetBrandsQuery } from '@/features/api/brandApiSlice';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
 import NoBrands from '@/app/components/NoBrands';
-import { getFullUrl } from '@/app/utils/utilityFunctions';
+import { getFullUrl } from '@/utils/utilityFunctions';
 
 interface Brand {
   id: string;

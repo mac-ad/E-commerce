@@ -1,6 +1,6 @@
 // src/models/User.ts
 import mongoose, { Schema, models, model } from "mongoose";
-import { UserRoleEnum, UserRoleEnumArray } from "../utils/types/api/common";
+import { UserRoleEnum, UserRoleEnumArray } from "@/utils/types/api/common";
 
 // Define indexes at schema level for better query performance
 const userSchema = new Schema(

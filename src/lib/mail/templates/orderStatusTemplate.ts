@@ -1,5 +1,5 @@
-import { IOrder, IOrderWithProduct } from "@/app/models/orderModel";
-import { IOrderToCreate } from "@/app/utils/types/api/order";
+import { IOrder, IOrderWithProduct } from "@/lib/models/orderModel";
+import { IOrderToCreate } from "@/utils/types/api/order";
 
 export const getOrderStatusEmailTemplate = ({
     username,

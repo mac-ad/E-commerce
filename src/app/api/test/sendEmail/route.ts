@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-import { sendOrderConfirmationEmail, sendOrderStatusEmail, sendOtpEmail, sendWelcomeMail } from "@/app/utils/sendMail/sendMail";
-import { OrderModel } from "@/app/models/orderModel";
+import { sendOrderConfirmationEmail, sendOrderStatusEmail, sendOtpEmail, sendWelcomeMail } from "@/utils/sendMail/sendMail";
+import { OrderModel } from "@/lib/models/orderModel";
 
 export async function POST(req: Request) {
     try {

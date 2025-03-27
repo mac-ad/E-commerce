@@ -5,7 +5,7 @@ import { ArrowUpDown, MoreHorizontal } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CategoryItem } from "@/features/states/CategorySlice";
 import { DataTableColumnHeader } from "@/app/components/DataTable/DataTableColumnHeader";
-import { getDate } from "@/app/utils/utilityFunctions";
+import { getDate } from "@/utils/utilityFunctions";
 
 export const columns: ColumnDef<CategoryItem>[] = [
     {

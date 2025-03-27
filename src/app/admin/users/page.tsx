@@ -4,12 +4,12 @@ import { DataTable } from "@/app/components/DataTable/DataTable"
 import { UserColumns } from "./columns"
 import { useGetUsersQuery, useUpdateUserMutation } from "@/features/api/userApiSlice"
 import { useMemo, useState } from "react"
-import { PAGE_SIZE, PAGE } from "@/app/utils/constants/common"
+import { PAGE_SIZE, PAGE } from "@/utils/constants/common"
 import {  Row } from "@tanstack/react-table"
 import AdminHeader from "@/app/components/AdminHeader"
 import { toast } from "sonner"
 import DataTableRoleCell from "@/app/components/DataTable/DataTableRoleCell"
-import { UserRoleEnum } from "@/app/utils/types/api/common"
+import { UserRoleEnum } from "@/utils/types/api/common"
 const UsersPage = () => {
   const [pagination, setPagination] = useState({ pageIndex: PAGE, pageSize: PAGE_SIZE })
   const [search, setSearch] = useState<string>("")

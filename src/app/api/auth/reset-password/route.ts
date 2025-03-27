@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import bcrypt from "bcrypt";
-import { UserModel } from "@/app/models/userModel";
+import { UserModel } from "@/lib/models/userModel";
 
 // Reset password endpoint
 export async function PATCH(req: NextRequest) {

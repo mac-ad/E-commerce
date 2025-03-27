@@ -4,7 +4,7 @@ import React from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { Loader2, DollarSign, Package, ShoppingCart, Users } from 'lucide-react'
 import OrderStatus from '@/app/components/OrderStatus'
-import { OrderStatus as OrderStatusType } from '@/app/utils/types/api/common';
+import { OrderStatus as OrderStatusType } from '@/utils/types/api/common';
 import { Table, TableCell } from '@/components/ui/table';
 import { TableBody } from '@/components/ui/table';
 import { TableHead, TableRow } from '@/components/ui/table';

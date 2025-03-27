@@ -1,12 +1,12 @@
-import productModel from "@/app/models/productModel";
-import { connectToDb } from "@/app/utils/lib/mongodb/mongodb";
+import productModel from "@/lib/models/productModel";
+import { connectToDb } from "@/lib/mongodb/mongodb";
 import { NextRequest, NextResponse } from "next/server";
-import { uploadMiddleware } from "@/app/utils/lib/multer";
+import { uploadMiddleware } from "@/lib/multer";
 import { z } from "zod";
-import { ItemType, UserType } from "@/app/utils/types/api/common";
-import { decodeToken } from "@/app/utils/lib/jwt";
-import brandModel from "@/app/models/brandModel";
-import categoryModel from "@/app/models/categoryModel";
+import { ItemType, UserType } from "@/utils/types/api/common";
+import { decodeToken } from "@/lib/jwt";
+import brandModel from "@/lib/models/brandModel";
+import categoryModel from "@/lib/models/categoryModel";
 
 const model = productModel;
 

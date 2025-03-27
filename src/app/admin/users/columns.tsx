@@ -2,7 +2,7 @@
 
 import { Column } from "@tanstack/react-table"
 import { DataTableColumnHeader } from "@/app/components/DataTable/DataTableColumnHeader"
-import { getDate } from "@/app/utils/utilityFunctions"
+import { getDate } from "@/utils/utilityFunctions"
 
 export const UserColumns = [
   {

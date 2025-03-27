@@ -5,7 +5,7 @@ import { UseFormRegister, FieldValues, Path, UseFormSetValue, PathValue } from "
 import FormError from './FormError';
 import { Label } from '@/components/ui/label';
 import { X } from 'lucide-react';
-import { getFullUrl } from '../utils/utilityFunctions';
+import { getFullUrl } from '@/utils/utilityFunctions';
 
 interface InputImageUploadProps<T extends FieldValues> {
   onImageSelect: (files: Array<string | File>) => void;

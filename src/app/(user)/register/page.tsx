@@ -3,7 +3,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
-import { RegisterData, registerSchema } from "../../utils/types/z.schema";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/store/store";
 import { useRegisterMutation } from "@/features/api/apiSlice";
@@ -11,6 +10,7 @@ import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
 import Link from "next/link";
+import { RegisterData, registerSchema } from "@/utils/types/z.schema";
 
 export default function Register() {
   const router = useRouter();

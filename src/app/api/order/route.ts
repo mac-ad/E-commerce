@@ -1,16 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
-import { OrderModel } from "@/app/models/orderModel";
-import { connectToDb } from "@/app/utils/lib/mongodb/mongodb";
-import { withAuthAndErrorHandler, withErrorHandler } from "@/app/utils/routesMiddleware";
-import { UserModel } from "@/app/models/userModel";
+import { OrderModel } from "@/lib/models/orderModel";
+import { connectToDb } from "@/lib/mongodb/mongodb";
+import { withAuthAndErrorHandler, withErrorHandler } from "@/utils/routesMiddleware";
+import { UserModel } from "@/lib/models/userModel";
 import mongoose, { Mongoose } from "mongoose";
-import { IOrderToCreate, orderSchema } from "@/app/utils/types/api/order";
-import productModel from "@/app/models/productModel";
-import { sendOrderConfirmationEmail } from "@/app/utils/sendMail/sendMail";
-import { UserType } from "@/app/utils/types/api/common";
-import { decodeToken } from "@/app/utils/lib/jwt";
-import { getDiscountedPrice } from "@/app/utils/utilityFunctions";
+import { IOrderToCreate, orderSchema } from "@/utils/types/api/order";
+import productModel from "@/lib/models/productModel";
+import { sendOrderConfirmationEmail } from "@/utils/sendMail/sendMail";
+import { UserType } from "@/utils/types/api/common";
+import { decodeToken } from "@/lib/jwt";
+import { getDiscountedPrice } from "@/utils/utilityFunctions";
 
 
 const model = OrderModel;

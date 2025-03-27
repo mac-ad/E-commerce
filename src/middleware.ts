@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { decodeToken } from "./app/utils/lib/jwt";
+import { decodeToken } from "./lib/jwt";
 
 const handleAdminRoute = (req: NextRequest) => {
   const token = req.cookies.get("token")?.value?.split(",")[0] || req.headers.get("Authorization")?.split(" ")[1];

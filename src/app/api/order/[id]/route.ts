@@ -1,10 +1,10 @@
 
-import { connectToDb } from "@/app/utils/lib/mongodb/mongodb";
+import { connectToDb } from "@/lib/mongodb/mongodb";
 import { NextRequest, NextResponse } from "next/server";
 import { Order } from "@/features/api/orderApiSlice";
-import { OrderModel } from "@/app/models/orderModel";
-import { OrderStatusEnum } from "@/app/utils/types/api/common";
-import { sendOrderStatusEmail } from "@/app/utils/sendMail/sendMail";
+import { OrderModel } from "@/lib/models/orderModel";
+import { OrderStatusEnum } from "@/utils/types/api/common";
+import { sendOrderStatusEmail } from "@/utils/sendMail/sendMail";
 
 const model = OrderModel;
 

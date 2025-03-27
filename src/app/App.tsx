@@ -9,14 +9,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useGetBrandsQuery } from '@/features/api/brandApiSlice';
 import { setBrand } from '@/features/api/brandSlice';
 import { usePathname, useRouter } from 'next/navigation';
-import { decodeToken, JwtPayload } from './utils/lib/jwt';
 import { logoutUser, logUser, resetUser } from '@/features/states/authSlice';
 import { useGetCategoriesQuery } from '@/features/api/categoryApiSlice';
 import { setCategories, setCategoriesLoading } from '@/features/states/CategorySlice';
 import { cartApi, useGetCartQuery } from '@/features/api/cartApiSlice';
 import { cartInitialState, resetCart, setCart, setCartLoading } from '@/features/states/cartSlice';
 import { useGetProfileQuery, useLazyGetProfileQuery, userApi } from '@/features/api/userApiSlice';
-import { BASE_URL } from './utils/constants/routes';
+import { BASE_URL } from '@/utils/constants/routes';
 
 const App = ({
     children,

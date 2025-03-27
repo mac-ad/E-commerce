@@ -1,7 +1,7 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import { baseQuery, baseQueryWithReauth } from "./common";
-import { BASE_URL } from "@/app/utils/constants/routes";
-import { OrderStatus, PaymentStatus } from "@/app/utils/types/api/common";
+import { BASE_URL } from "@/utils/constants/routes";
+import { OrderStatus, PaymentStatus } from "@/utils/types/api/common";
 
 export interface Order {
     _id: string;

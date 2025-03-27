@@ -2,7 +2,7 @@
 
 import { useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
-import { getCurrency } from "../utils/utilityFunctions";
+import { getCurrency } from "@/utils/utilityFunctions";
 
 const getNumber = (value:any) => {
 
