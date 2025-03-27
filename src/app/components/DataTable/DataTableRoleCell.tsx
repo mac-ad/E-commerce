@@ -1,7 +1,7 @@
 "use client"
 
 import { Badge } from "@/components/ui/badge"
-import { UserRoleEnum } from "@/app/utils/types/api/common"
+import { UserRoleEnum } from "@/utils/types/api/common"
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Loader2 } from "lucide-react"
 import { useMemo } from "react"

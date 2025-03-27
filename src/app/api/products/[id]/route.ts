@@ -1,12 +1,12 @@
-import productModel from "@/app/models/productModel";
-import { connectToDb } from "@/app/utils/lib/mongodb/mongodb";
+import productModel from "@/lib/models/productModel";
+import { connectToDb } from "@/lib/mongodb/mongodb";
 import { NextRequest, NextResponse } from "next/server";
 import { Product } from "../route";
-import { decodeToken } from "@/app/utils/lib/jwt";
-import { UserType } from "@/app/utils/types/api/common";
-import brandModel from "@/app/models/brandModel";
-import { uploadMiddleware } from "@/app/utils/lib/multer";
-import { deleteImages } from "@/app/utils/lib/deleteImage";
+import { decodeToken } from "@/lib/jwt";
+import { UserType } from "@/utils/types/api/common";
+import brandModel from "@/lib/models/brandModel";
+import { uploadMiddleware } from "@/lib/multer";
+import { deleteImages } from "@/lib/deleteImage";
 
 const model = productModel;
 

@@ -1,5 +1,5 @@
-import productModel from "@/app/models/productModel";
-import { withErrorHandler } from "@/app/utils/routesMiddleware";
+import productModel from "@/lib/models/productModel";
+import { withErrorHandler } from "@/utils/routesMiddleware";
 import { NextRequest, NextResponse } from "next/server";
 
 const model = productModel;

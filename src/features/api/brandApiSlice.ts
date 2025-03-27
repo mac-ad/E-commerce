@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { Brand } from './brandSlice';
-import { BASE_URL } from '@/app/utils/constants/routes';
+import { BASE_URL } from '@/utils/constants/routes';
 import { baseQuery, baseQueryWithReauth } from './common';
 
 interface BrandResponse {

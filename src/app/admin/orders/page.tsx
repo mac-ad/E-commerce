@@ -5,7 +5,7 @@ import { OrderColumns } from "./columns"
 import {  useDeleteOrderMutation, useGetOrdersQuery, useUpdateOrderMutation } from "@/features/api/orderApiSlice"
 import OrderDetail from "./OrderDetail"
 import { useMemo, useState } from "react"
-import { PAGE_SIZE, PAGE } from "@/app/utils/constants/common"
+import { PAGE_SIZE, PAGE } from "@/utils/constants/common"
 import { Column, Row } from "@tanstack/react-table"
 import AdminHeader from "@/app/components/AdminHeader"
 import { toast } from "sonner"
@@ -13,7 +13,7 @@ import { DataTableColumnHeader } from "@/app/components/DataTable/DataTableColum
 import { Button } from "@/components/ui/button"
 import { EyeIcon, TrashIcon } from "lucide-react"
 import ConfirmDialog from "@/app/components/ConfirmDialog"
-import { OrderStatus as OrderStatusType, PaymentStatus as PaymentStatusType } from "@/app/utils/types/api/common"
+import { OrderStatus as OrderStatusType, PaymentStatus as PaymentStatusType } from "@/utils/types/api/common"
 import OrderStatus from "@/app/components/OrderStatus"
 
 const OrdersPage = () => {

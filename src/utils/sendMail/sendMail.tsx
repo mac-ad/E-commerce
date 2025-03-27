@@ -1,4 +1,4 @@
-import { IOrder, IOrderItemWithProduct, IOrderWithProduct } from "@/app/models/orderModel";
+import { IOrder, IOrderItemWithProduct, IOrderWithProduct } from "@/lib/models/orderModel";
 import { EMAIL_SUBJECT } from "../constants/text";
 import { sendEmail } from "../../lib/mail/mail"
 import { getOrderConfirmationEmailTemplate } from "../../lib/mail/templates/orderConfirmationTemplate";

@@ -1,8 +1,8 @@
-import brandModel from "@/app/models/brandModel";
-import { connectToDb } from "@/app/utils/lib/mongodb/mongodb";
+import brandModel from "@/lib/models/brandModel";
+import { connectToDb } from "@/lib/mongodb/mongodb";
 import { NextRequest, NextResponse } from "next/server";
-import { uploadMiddleware } from "@/app/utils/lib/multer";
-import { UserType } from "@/app/utils/types/api/common";
+import { uploadMiddleware } from "@/lib/multer";
+import { UserType } from "@/utils/types/api/common";
 import mongoose from "mongoose";
 
 const model = brandModel;

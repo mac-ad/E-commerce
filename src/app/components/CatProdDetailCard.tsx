@@ -1,7 +1,7 @@
 import { FC } from "react";
 import Link from "next/link";
 import { Product } from "@/features/api/productApiSlice";
-import { getCurrency, getDiscountedPrice } from "../utils/utilityFunctions";
+import { getCurrency, getDiscountedPrice } from "@/utils/utilityFunctions";
 
 export const CatProdDetailCard: FC<{ data: Product }> = ({ data }) => {
   return (

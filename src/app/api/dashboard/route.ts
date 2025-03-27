@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
-import { connectToDb } from "@/app/utils/lib/mongodb/mongodb";
-import { withAuthAndErrorHandler } from "@/app/utils/routesMiddleware";
-import { OrderModel } from "@/app/models/orderModel";
-import { UserModel } from "@/app/models/userModel";
-import productModel from "@/app/models/productModel";
-import { UserRoleEnum } from "@/app/utils/types/api/common";
+import { connectToDb } from "@/lib/mongodb/mongodb";
+import { withAuthAndErrorHandler } from "@/utils/routesMiddleware";
+import { OrderModel } from "@/lib/models/orderModel";
+import { UserModel } from "@/lib/models/userModel";
+import productModel from "@/lib/models/productModel";
+import { UserRoleEnum } from "@/utils/types/api/common";
 
 const Order = OrderModel;
 const User = UserModel;

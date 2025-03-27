@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { UserModel } from "@/app/models/userModel";
-import { sendOtpEmail } from "@/app/utils/sendMail/sendMail";
+import { UserModel } from "@/lib/models/userModel";
+import { sendOtpEmail } from "@/utils/sendMail/sendMail";
 
 // Send OTP endpoint
 export async function POST(req: NextRequest) {

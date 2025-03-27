@@ -1,6 +1,6 @@
-import bannerModel from "@/app/models/bannerModel";
-import { connectToDb } from "@/app/utils/lib/mongodb/mongodb";
-import { uploadMiddleware } from "@/app/utils/lib/multer";
+import bannerModel from "@/lib/models/bannerModel";
+import { connectToDb } from "@/lib/mongodb/mongodb";
+import { uploadMiddleware } from "@/lib/multer";
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 

@@ -1,6 +1,6 @@
-import { IOrder, IOrderWithProduct } from "@/app/models/orderModel";
-import { IOrderToCreate } from "@/app/utils/types/api/order";
-import { getCurrency } from "@/app/utils/utilityFunctions";
+import { IOrder, IOrderWithProduct } from "@/lib/models/orderModel";
+import { IOrderToCreate } from "@/utils/types/api/order";
+import { getCurrency } from "@/utils/utilityFunctions";
 
 export const getOrderConfirmationEmailTemplate = ({
     username,

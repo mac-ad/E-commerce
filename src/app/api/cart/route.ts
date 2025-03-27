@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
-import { connectToDb } from "@/app/utils/lib/mongodb/mongodb";
-import Cart from "@/app/models/cartModel";
-import { withAuthAndErrorHandler } from "@/app/utils/routesMiddleware";
+import { connectToDb } from "@/lib/mongodb/mongodb";
+import Cart from "@/lib/models/cartModel";
+import { withAuthAndErrorHandler } from "@/utils/routesMiddleware";
 import { CartItem } from "@/features/api/cartApiSlice";
-import productModel from "@/app/models/productModel";
+import productModel from "@/lib/models/productModel";
 
 export const GET = withAuthAndErrorHandler(async (req: NextRequest) => {
 

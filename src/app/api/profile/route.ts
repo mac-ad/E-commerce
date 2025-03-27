@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
 import jwt from "jsonwebtoken";
-import { UserModel } from "@/app/models/userModel";
-import { connectToDb } from "@/app/utils/lib/mongodb/mongodb";
-import { decodeToken } from "@/app/utils/lib/jwt";
+import { UserModel } from "@/lib/models/userModel";
+import { connectToDb } from "@/lib/mongodb/mongodb";
+import { decodeToken } from "@/lib/jwt";
 import { cookies } from "next/headers";
 
 const model = UserModel;

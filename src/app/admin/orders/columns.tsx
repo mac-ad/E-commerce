@@ -2,7 +2,7 @@
 
 import { Column, Row, Table } from "@tanstack/react-table"
 import { DataTableColumnHeader } from "@/app/components/DataTable/DataTableColumnHeader"
-import { getCurrency, getDate } from "@/app/utils/utilityFunctions"
+import { getCurrency, getDate } from "@/utils/utilityFunctions"
 
 export const OrderColumns = [
   {

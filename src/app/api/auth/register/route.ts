@@ -1,9 +1,9 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
-import { UserModel } from "@/app/models/userModel";
-import { connectToDb } from "@/app/utils/lib/mongodb/mongodb";
-import { hashPassword } from "@/app/utils/lib/hash";
-import { sendWelcomeMail } from "@/app/utils/sendMail/sendMail";
+import { UserModel } from "@/lib/models/userModel";
+import { connectToDb } from "@/lib/mongodb/mongodb";
+import { hashPassword } from "@/lib/hash";
+import { sendWelcomeMail } from "@/utils/sendMail/sendMail";
 
 const userSchema = z.object({
   fullName: z.string().min(1, 'FullName is required').max(100),

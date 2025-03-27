@@ -1,7 +1,7 @@
 import ActiveToggle from "@/app/components/ActiveToggle";
 import DataTableActiveHeader from "@/app/components/DataTable/DataTableActiveHeader";
 import { DataTableColumnHeader } from "@/app/components/DataTable/DataTableColumnHeader";
-import { getCurrency } from "@/app/utils/utilityFunctions";
+import { getCurrency } from "@/utils/utilityFunctions";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Column, Row, Table } from "@tanstack/react-table";
 

@@ -5,7 +5,7 @@ import { DataTable } from "@/app/components/DataTable/DataTable";
 import AdminHeader from "@/app/components/AdminHeader";
 import ConfirmDialog from "@/app/components/ConfirmDialog";
 import { useMemo, useState } from "react";
-import { PAGE, PAGE_SIZE } from "@/app/utils/constants/common";
+import { PAGE, PAGE_SIZE } from "@/utils/constants/common";
 import { columns } from "./columns";
 import { toast } from "sonner";
 import { DataTableColumnHeader } from "@/app/components/DataTable/DataTableColumnHeader";

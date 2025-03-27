@@ -1,8 +1,8 @@
 import { RootState } from "@/store/store";
 import { fetchBaseQuery } from "@reduxjs/toolkit/query";
 import { logoutUser } from "../states/authSlice";
-import { isTokenExpired } from "@/app/utils/lib/jwt";
-import { BASE_URL } from "@/app/utils/constants/routes";
+import { isTokenExpired } from "@/lib/jwt";
+import { BASE_URL } from "@/utils/constants/routes";
 import { toast } from "sonner";
 
 export const baseQuery = fetchBaseQuery({

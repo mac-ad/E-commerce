@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-import { UserModel } from "@/app/models/userModel";
-import { connectToDb } from "@/app/utils/lib/mongodb/mongodb";
+import { UserModel } from "@/lib/models/userModel";
+import { connectToDb } from "@/lib/mongodb/mongodb";
 
 const model = UserModel
 

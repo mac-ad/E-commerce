@@ -9,9 +9,9 @@ import { useLoginMutation } from '@/features/api/apiSlice';
 import { toast } from 'sonner';
 import { Icon } from '@iconify/react';
 import {useDispatch} from 'react-redux';
-import { LoginData, loginSchema } from '../../utils/types/z.schema';
 import { logUser } from '@/features/states/authSlice';
 import Link from 'next/link';
+import { LoginData, loginSchema } from '@/utils/types/z.schema';
 
 const Login = () => {
     const router = useRouter();

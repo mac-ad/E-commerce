@@ -1,8 +1,8 @@
-import { BASE_URL } from "@/app/utils/constants/routes";
+import { BASE_URL } from "@/utils/constants/routes";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import {  User } from "../states/authSlice";
 
-import { RegisterData } from "@/app/utils/types/z.schema";
+import { RegisterData } from "@/utils/types/z.schema";
 
 export const authApi = createApi({
     reducerPath: "authApi",
