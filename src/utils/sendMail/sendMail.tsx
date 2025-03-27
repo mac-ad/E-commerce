@@ -1,11 +1,11 @@
 import { IOrder, IOrderItemWithProduct, IOrderWithProduct } from "@/app/models/orderModel";
 import { EMAIL_SUBJECT } from "../constants/text";
-import { sendEmail } from "../lib/mail/mail"
-import { getOrderConfirmationEmailTemplate } from "../lib/mail/templates/orderConfirmationTemplate";
-import { getWelcomeTemplate } from "../lib/mail/templates/welcomeMailTemplate";
+import { sendEmail } from "../../lib/mail/mail"
+import { getOrderConfirmationEmailTemplate } from "../../lib/mail/templates/orderConfirmationTemplate";
+import { getWelcomeTemplate } from "../../lib/mail/templates/welcomeMailTemplate";
 import { IOrderToCreate } from "../types/api/order";
-import { getOrderStatusEmailTemplate } from "../lib/mail/templates/orderStatusTemplate";
-import { getOtpEmailTemplate } from "../lib/mail/templates/otpTemplate";
+import { getOrderStatusEmailTemplate } from "../../lib/mail/templates/orderStatusTemplate";
+import { getOtpEmailTemplate } from "../../lib/mail/templates/otpTemplate";
 
 export const sendWelcomeMail = async ({
     to,

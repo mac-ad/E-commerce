@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
-import { connectToDb } from "../lib/mongodb/mongodb";
-import { decodeToken } from "../lib/jwt";
+import { connectToDb } from "../../lib/mongodb/mongodb";
+import { decodeToken } from "../../lib/jwt";
 
 type RouteHandler = (req: NextRequest, ...args: any[]) => Promise<NextResponse>;
 type Middleware = (handler: RouteHandler) => RouteHandler;
