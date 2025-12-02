@@ -1,4 +1,5 @@
 import mongoose, { Schema, models, model } from "mongoose";
+import './categoryModel';
 
 const brandSchema = new Schema({
     name: {

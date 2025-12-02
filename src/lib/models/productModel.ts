@@ -1,4 +1,6 @@
 import mongoose from 'mongoose';
+import './brandModel';
+import './categoryModel';
 
 
 export interface IProduct {
